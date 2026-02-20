@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Parkside.fans",
+  "url": "https://parkside.fans",
+  "description": "A convenient website designed for European Parkside enthusiasts. Automatically scrapes every Lidl webshop to gather all Parkside products in one place with price comparison and history.",
+  "applicationCategory": "ShoppingApplication",
+  "operatingSystem": "Web",
+  "author": {
+    "@type": "Person",
+    "name": "Marijn Bent",
+    "url": "https://marijnbent.nl"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  }
+};
+---
+
+<Layout
+  title="Parkside.fans – Marijn Bent"
+  description="A convenient website for European Parkside enthusiasts. Compare prices across Lidl webshops, track price history, and discover new Parkside tools."
+  schema={schema}
+>
+  <article class="prose-content">
+    <h1 class="text-3xl font-bold tracking-tight mb-6">Parkside.fans</h1>
+
+    <div class="space-y-4 text-muted-foreground leading-relaxed">
+      <p>
+        If you're a fan of Parkside tools, you've probably noticed how tricky it can be to keep track of all the products and prices across different Lidl webshops. That's exactly why I created <a href="https://parkside.fans" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">parkside.fans</a>—a convenient website designed especially for European Parkside enthusiasts. This handy tool automatically scrapes every Lidl webshop to gather all Parkside products in one easy-to-navigate place. You'll always be among the first to discover new items, and you'll clearly see price differences between countries at a glance.
+      </p>
+
+      <p>
+        On parkside.fans, each product page neatly shows you exactly which countries have it in stock, the current price in each country, and even a detailed price history updated three times per week. This makes it incredibly easy to spot genuine discounts and know when you're getting the best possible deal. For example, did you know that Lidl's Belgian and French webshops often have significantly better prices compared to Germany—sometimes up to 20% cheaper?
+      </p>
+
+      <p>
+        The site also includes a powerful search feature, allowing you to quickly filter products by name or specific Parkside product lines (like Performance), and sort by most recent additions. Whether you're looking for updates on your favorite battery pack or hunting down the latest Parkside tools, parkside.fans helps you stay informed, save money, and shop smarter.
+      </p>
+    </div>
+  </article>
+</Layout>

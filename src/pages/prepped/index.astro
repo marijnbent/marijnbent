@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Prepped",
+  "description": "A self-hosted recipe management app for families. Import recipes from any URL with AI extraction, scale servings, track cooking attempts with photos, and chat with AI about any recipe.",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Docker, Node.js",
+  "author": {
+    "@type": "Person",
+    "name": "Marijn Bent",
+    "url": "https://marijnbent.nl"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  }
+};
+---
+
+<Layout
+  title="Prepped – Marijn Bent"
+  description="A self-hosted recipe management app for families. Import recipes from URLs with AI, scale servings, track cooking attempts, and chat with AI about any recipe."
+  schema={schema}
+>
+  <article class="prose-content">
+    <h1 class="text-3xl font-bold tracking-tight mb-6">Prepped</h1>
+
+    <div class="space-y-4 text-muted-foreground leading-relaxed">
+      <p>
+        Prepped is a self-hosted recipe management app I built for my family. The idea is simple: instead of bookmarking recipes across dozens of websites (half of which are buried under ads and life stories), you import them into Prepped and they're yours—clean, organized, and always available.
+      </p>
+
+      <p>
+        Just paste a URL and AI extracts the ingredients, steps, and metadata automatically. It even converts everything to metric if needed. You can also paste raw recipe text and the AI will structure it for you. Once a recipe is in Prepped, you can scale servings and all ingredients adjust in real time. There's also an AI chat on every recipe page—ask about substitutions, technique tips, or what to do if you're missing an ingredient.
+      </p>
+
+      <p>
+        Beyond importing, Prepped helps you actually cook. A cook log lets you track when you made a recipe, with photos, notes, and ratings. Organize everything with collections and tags. YouTube videos are embedded on recipe pages when available. The interface works great on phones, which is where you'll probably use it most—right there in the kitchen.
+      </p>
+
+      <p>
+        The app supports English and Dutch, uses a single SQLite file for the database (backup = copy one folder), and runs in Docker. It's built with Astro, React, Tailwind, Drizzle ORM, Better Auth, and Google Gemini for the AI features. All your data stays on your own server—no cloud dependencies, no subscriptions, no ads.
+      </p>
+    </div>
+  </article>
+</Layout>

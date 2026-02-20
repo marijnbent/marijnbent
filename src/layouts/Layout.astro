@@ -1,0 +1,94 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  schema?: Record<string, unknown>;
+}
+
+const { title, description, canonical, schema } = Astro.props;
+const siteUrl = 'https://marijnbent.nl';
+const currentPath = Astro.url.pathname;
+const canonicalUrl = canonical || `${siteUrl}${currentPath}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Marijn Bent" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Schema.org JSON-LD -->
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen bg-background font-sans antialiased" style="font-family: 'Inter', sans-serif;">
+    <div class="mx-auto max-w-2xl px-6 py-12">
+      <header class="mb-12">
+        <nav class="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <a href="/" class="text-lg font-semibold text-foreground hover:text-foreground/80 transition-colors">
+            Marijn Bent
+          </a>
+          <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+            <a
+              href="/prepped/"
+              class:list={["hover:text-foreground transition-colors", { "text-foreground font-medium": currentPath === '/prepped/' }]}
+            >
+              Prepped
+            </a>
+            <a
+              href="/hiredd/"
+              class:list={["hover:text-foreground transition-colors", { "text-foreground font-medium": currentPath === '/hiredd/' }]}
+            >
+              Hiredd
+            </a>
+            <a
+              href="/parkside-fans/"
+              class:list={["hover:text-foreground transition-colors", { "text-foreground font-medium": currentPath === '/parkside-fans/' }]}
+            >
+              Parkside.fans
+            </a>
+            <a
+              href="/bitcoin-simulator/"
+              class:list={["hover:text-foreground transition-colors", { "text-foreground font-medium": currentPath === '/bitcoin-simulator/' }]}
+            >
+              Bitcoin simulator
+            </a>
+            <a
+              href="/obsidian-print/"
+              class:list={["hover:text-foreground transition-colors", { "text-foreground font-medium": currentPath === '/obsidian-print/' }]}
+            >
+              Obsidian Print
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

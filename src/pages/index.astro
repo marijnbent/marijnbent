@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Marijn Bent",
+  "url": "https://marijnbent.nl",
+  "description": "Mostly working with AI and smart contracts. But I love creating web applications with Laravel, Vue and some Python for scripts.",
+  "sameAs": []
+};
+---
+
+<Layout
+  title="Marijn Bent"
+  description="Mostly working with AI and smart contracts. But I love creating web applications with Laravel, Vue and some Python for scripts."
+  schema={schema}
+>
+  <h1 class="text-3xl font-bold tracking-tight mb-4">Marijn Bent</h1>
+  <p class="text-muted-foreground leading-relaxed">
+    Mostly working with AI and smart contracts. But I love creating web applications with Laravel, Vue and some Python for scripts.
+  </p>
+</Layout>

@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Obsidian Print",
+  "url": "https://github.com/marijnbent/obsidian-print",
+  "description": "An Obsidian plugin that lets you print notes directly from your workspace in one easy step, without exporting to PDF first.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Windows, macOS, Linux",
+  "author": {
+    "@type": "Person",
+    "name": "Marijn Bent",
+    "url": "https://marijnbent.nl"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  }
+};
+---
+
+<Layout
+  title="Obsidian Print – Marijn Bent"
+  description="An Obsidian plugin that simplifies printing, letting you go directly from your workspace to a printed page in one easy step."
+  schema={schema}
+>
+  <article class="prose-content">
+    <h1 class="text-3xl font-bold tracking-tight mb-6">Obsidian Print</h1>
+
+    <div class="space-y-4 text-muted-foreground leading-relaxed">
+      <p>
+        If you're a big fan of Obsidian like I am, you probably enjoy how it lets you organize, link, and format your notes. But there's one thing that's always bugged me: there's no straightforward way to directly print your notes! Currently, you have to first export your notes as a PDF and then print them separately—definitely not the smooth, hassle-free experience we're aiming for.
+      </p>
+
+      <p>
+        That's why I created <strong class="text-foreground font-semibold">Obsidian Print</strong>!
+      </p>
+
+      <p>
+        This handy plugin simplifies the entire printing process, letting you go directly from your Obsidian workspace to a printed page in just one easy step. After installing Obsidian Print, you'll immediately have the option to print any note without ever leaving the app.
+      </p>
+
+      <p>
+        Ready to try it out? Simply install Obsidian Print from the community plugin store. For more details or if you'd like to explore the code yourself, head over to the <a href="https://github.com/marijnbent/obsidian-print" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">project's GitHub page</a>!
+      </p>
+    </div>
+  </article>
+</Layout>
