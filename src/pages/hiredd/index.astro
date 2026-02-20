@@ -5,7 +5,7 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Hiredd",
-  "description": "A self-hostable job application tracker. Manage workspaces, track applications through pipeline stages, schedule interviews, store documents, and stay on top of your job search.",
+  "description": "Self-hostable job application tracker. Organize applications in workspaces, track pipeline stages, schedule interviews and store documents.",
   "applicationCategory": "ProductivityApplication",
   "operatingSystem": "Docker, Node.js",
   "author": {
@@ -23,7 +23,7 @@ const schema = {
 
 <Layout
   title="Hiredd – Marijn Bent"
-  description="A self-hostable job application tracker. Manage workspaces, track applications through pipeline stages, schedule interviews, and store documents."
+  description="Self-hostable job application tracker. Organize applications in workspaces, track pipeline stages, schedule interviews and store documents."
   schema={schema}
 >
   <article class="prose-content">
@@ -31,19 +31,19 @@ const schema = {
 
     <div class="space-y-4 text-muted-foreground leading-relaxed">
       <p>
-        Hiredd is a self-hostable job application tracker I built for myself. If you've ever juggled multiple job applications across different companies, you know how quickly things get messy—different stages, interview dates, notes scattered everywhere. Hiredd brings it all together in one clean dashboard.
+        Hiredd is a self-hostable job application tracker. When you're applying to multiple companies at once, things get messy fast. Different stages, interview dates, notes all over the place. Hiredd keeps it in one dashboard.
       </p>
 
       <p>
-        The app is organized around workspaces, so you can separate different job searches (say, one for frontend roles and another for freelance projects). Within each workspace, you manage applications through a pipeline: from initial application to interviews, offers, and beyond. Each application tracks the company, role, current stage, and a full timeline of events and notes.
+        Applications are organized in workspaces, so you can separate different job searches. Within a workspace, each application moves through a pipeline: applied, interviewing, offer, etc. You track the company, role, stage and a timeline of events and notes.
       </p>
 
       <p>
-        Hiredd also includes a task and schedule view to keep track of upcoming interviews and to-dos, a profile section for your personal details, and a documents area to store resumes and cover letters. Everything is designed to be straightforward and fast—no unnecessary complexity.
+        There's also a task and schedule view for upcoming interviews and to-dos, a profile section, and a documents area for resumes and cover letters.
       </p>
 
       <p>
-        The whole thing is self-hostable with Docker. It's built with Astro SSR, React, Tailwind CSS, SQLite (via Drizzle ORM), and Better Auth for authentication. Just spin up the container, point your reverse proxy at it, and you're good to go. All your data stays on your own server. Check out the source on <a href="https://github.com/marijnbent/hiredd" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
+        Runs in Docker with Astro SSR, React, Tailwind, SQLite via Drizzle ORM and Better Auth. All data stays on your own server. Source is on <a href="https://github.com/marijnbent/hiredd" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
       </p>
     </div>
   </article>

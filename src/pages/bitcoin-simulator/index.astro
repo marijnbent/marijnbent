@@ -6,7 +6,7 @@ const schema = {
   "@type": "WebApplication",
   "name": "Bitcoin Simulator",
   "url": "https://bitcoinsimulator.cowsandbytes.party/",
-  "description": "An interactive Bitcoin simulator supporting multiple blockchains, mining, transactions, wallets, and fork visualization. Built for blockchain education and workshops.",
+  "description": "Bitcoin simulator for blockchain courses. Supports multiple chains, mining, transactions, wallets and fork visualization.",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "Web",
   "author": {
@@ -24,7 +24,7 @@ const schema = {
 
 <Layout
   title="Bitcoin simulator – Marijn Bent"
-  description="An interactive Bitcoin simulator for blockchain education. Supports multiple blockchains, mining, transactions, wallets, and fork visualization."
+  description="Bitcoin simulator for blockchain courses. Supports multiple chains, mining, transactions, wallets and fork visualization."
   schema={schema}
 >
   <article class="prose-content">
@@ -32,19 +32,19 @@ const schema = {
 
     <div class="space-y-4 text-muted-foreground leading-relaxed">
       <p>
-        A few times each year, I offer beginner-level blockchain courses, primarily aimed at professionals working in the banking sector. These two-day workshops are designed not only to explain blockchain technology clearly and understandably but also to provide practical, hands-on experience using the Ethereum blockchain and the Bitcoin testnet. However, over time I've noticed that the Bitcoin testnet has become increasingly challenging to use—its applications are often complicated to set up and lack clarity for beginners.
+        I give beginner blockchain courses a few times a year, mostly for people working in banking. The workshops are two days and cover both theory and hands-on work with Ethereum and Bitcoin. The problem is that the Bitcoin testnet has become hard to use - the tooling is clunky and confusing for beginners.
       </p>
 
       <p>
-        Since Bitcoin remains an excellent tool for grasping fundamental blockchain concepts, I began searching for a simpler and more user-friendly alternative. I initially found a Bitcoin simulator online, but unfortunately, its codebase was quite outdated. Determined to provide a better learning experience, I spent a weekend building my own improved Bitcoin simulator.
+        I found an existing Bitcoin simulator online but the code was outdated, so I built my own over a weekend.
       </p>
 
       <p>
-        This new simulator supports multiple blockchains, making it ideal for group exercises or classroom settings. It allows users to visualize blocks clearly, mine new blocks, and add transactions easily. It even includes a built-in wallet feature for sending and receiving virtual Bitcoins. Additionally, the simulator handles blockchain forks elegantly by clearly displaying them and automatically invalidating transactions that are no longer part of the longest chain.
+        It supports multiple blockchains, which works well for group exercises. You can visualize blocks, mine new ones, add transactions and send/receive coins with a built-in wallet. It also handles forks by displaying them and invalidating transactions that fall off the longest chain.
       </p>
 
       <p>
-        Feel free to test it out at <a href="https://bitcoinsimulator.cowsandbytes.party/" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">bitcoinsimulator.cowsandbytes.party</a>.
+        Try it at <a href="https://bitcoinsimulator.cowsandbytes.party/" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">bitcoinsimulator.cowsandbytes.party</a>.
       </p>
     </div>
   </article>

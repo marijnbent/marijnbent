@@ -5,7 +5,7 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Prepped",
-  "description": "A self-hosted recipe management app for families. Import recipes from any URL with AI extraction, scale servings, track cooking attempts with photos, and chat with AI about any recipe.",
+  "description": "Self-hosted recipe app. Import recipes from URLs with AI, scale servings, track what you cook, and keep everything on your own server.",
   "applicationCategory": "LifestyleApplication",
   "operatingSystem": "Docker, Node.js",
   "author": {
@@ -23,7 +23,7 @@ const schema = {
 
 <Layout
   title="Prepped – Marijn Bent"
-  description="A self-hosted recipe management app for families. Import recipes from URLs with AI, scale servings, track cooking attempts, and chat with AI about any recipe."
+  description="Self-hosted recipe app. Import recipes from URLs with AI, scale servings, track what you cook, and keep everything on your own server."
   schema={schema}
 >
   <article class="prose-content">
@@ -31,19 +31,19 @@ const schema = {
 
     <div class="space-y-4 text-muted-foreground leading-relaxed">
       <p>
-        Prepped is a self-hosted recipe management app I built for my family. The idea is simple: instead of bookmarking recipes across dozens of websites (half of which are buried under ads and life stories), you import them into Prepped and they're yours—clean, organized, and always available.
+        Prepped is a self-hosted recipe app I built for my family. We kept bookmarking recipes across dozens of websites, most of them buried under ads and life stories. Prepped puts them all in one place.
       </p>
 
       <p>
-        Just paste a URL and AI extracts the ingredients, steps, and metadata automatically. It even converts everything to metric if needed. You can also paste raw recipe text and the AI will structure it for you. Once a recipe is in Prepped, you can scale servings and all ingredients adjust in real time. There's also an AI chat on every recipe page—ask about substitutions, technique tips, or what to do if you're missing an ingredient.
+        Paste a URL and AI extracts the ingredients, steps and metadata. It converts to metric if needed. You can also paste plain text and it gets structured the same way. Servings scale in real time, and there's an AI chat per recipe for substitutions or technique questions.
       </p>
 
       <p>
-        Beyond importing, Prepped helps you actually cook. A cook log lets you track when you made a recipe, with photos, notes, and ratings. Organize everything with collections and tags. YouTube videos are embedded on recipe pages when available. The interface works great on phones, which is where you'll probably use it most—right there in the kitchen.
+        There's a cook log to track when you made something, with photos, notes and ratings. Recipes can be organized with collections and tags. The interface is mobile-first since that's where you use it - in the kitchen.
       </p>
 
       <p>
-        The app supports English and Dutch, uses a single SQLite file for the database (backup = copy one folder), and runs in Docker. It's built with Astro, React, Tailwind, Drizzle ORM, Better Auth, and Google Gemini for the AI features. All your data stays on your own server—no cloud dependencies, no subscriptions, no ads. Check out the source on <a href="https://github.com/marijnbent/prepped" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
+        It supports English and Dutch, stores everything in a single SQLite file, and runs in Docker. Built with Astro, React, Tailwind, Drizzle ORM, Better Auth and Google Gemini. All data stays on your own server. Source is on <a href="https://github.com/marijnbent/prepped" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
       </p>
     </div>
   </article>
