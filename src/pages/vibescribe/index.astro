@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "VibeScribe",
+  "url": "https://github.com/marijnbent/vibescribe",
+  "description": "macOS app that transcribes your speech in real time and optionally runs it through an LLM before pasting it wherever you're typing.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "macOS",
+  "author": {
+    "@type": "Person",
+    "name": "Marijn Bent",
+    "url": "https://marijnbent.nl"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  }
+};
+---
+
+<Layout
+  title="VibeScribe – Marijn Bent"
+  description="macOS app that transcribes your speech in real time and optionally runs it through an LLM before pasting it wherever you're typing."
+  schema={schema}
+>
+  <article class="prose-content">
+    <h1 class="text-3xl font-bold tracking-tight mb-6">VibeScribe</h1>
+
+    <div class="space-y-4 text-muted-foreground leading-relaxed">
+      <p>
+        VibeScribe is a macOS app that transcribes your speech in real time using Deepgram's streaming API and pastes the result into whatever app you're working in. Hold a key, talk, let go - that's it.
+      </p>
+
+      <p>
+        You can configure multiple shortcuts, each with its own behavior. Each shortcut can have a prompt attached to it, so the transcript gets cleaned up or reformatted by an LLM before it lands. You can also set per-app prompt overrides that activate automatically based on which app is in focus.
+      </p>
+
+      <p>
+        It needs a Deepgram API key for transcription and an OpenRouter key if you want the AI enhancement. New Deepgram accounts come with enough free credit to get started. Source is on <a href="https://github.com/marijnbent/vibescribe" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
+      </p>
+    </div>
+  </article>
+</Layout>
