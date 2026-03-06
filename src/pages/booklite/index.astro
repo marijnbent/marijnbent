@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "BookLite",
+  "url": "https://github.com/marijnbent/booklite",
+  "description": "A lightweight, self-hosted digital library for households and small teams. Manage EPUBs and PDFs, organize collections, and sync reading progress to Kobo e-readers.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Docker",
+  "author": {
+    "@type": "Person",
+    "name": "Marijn Bent",
+    "url": "https://marijnbent.nl"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  }
+};
+---
+
+<Layout
+  title="BookLite – Marijn Bent"
+  description="A lightweight, self-hosted digital library for households and small teams. Manage EPUBs and PDFs, organize collections, and sync reading progress to Kobo e-readers."
+  schema={schema}
+>
+  <article class="prose-content">
+    <h1 class="text-3xl font-bold tracking-tight mb-6">BookLite</h1>
+
+    <div class="space-y-4 text-muted-foreground leading-relaxed">
+      <p>
+        I wanted a simple way to share books with my household and keep reading progress synced to a Kobo. Most self-hosted options are either too heavy or packed with features I'll never use. So I forked <a href="https://github.com/adithyaakrishna/BookLore" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">BookLore</a> and stripped it down to what actually matters.
+      </p>
+
+      <p>
+        BookLite is a single Docker container. Upload EPUBs and PDFs through the web interface, organize them into collections, and everything stays in sync. Kobo e-readers connect to it directly — open a book on your e-reader and your progress is tracked. Pick it back up on another device and you're where you left off.
+      </p>
+
+      <p>
+        It supports multiple users with a simple owner/member setup, so one person can manage the library while others just read. Metadata gets pulled automatically from Open Library and Google Books when you add a book, so you don't have to fill that in yourself.
+      </p>
+
+      <p>
+        I removed the browser reader, OPDS, and a bunch of other things that made the original more complex than I needed. The goal was something I could run and forget about. Source is on <a href="https://github.com/marijnbent/booklite" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
+      </p>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "OpenFront Enhanced",
+  "url": "https://github.com/marijnbent/openfront-extension",
+  "description": "A Chrome extension that adds keyboard shortcuts, spawn phase improvements, and neighbor alerts to openfront.io.",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Chrome",
+  "author": {
+    "@type": "Person",
+    "name": "Marijn Bent",
+    "url": "https://marijnbent.nl"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  }
+};
+---
+
+<Layout
+  title="OpenFront Enhanced – Marijn Bent"
+  description="A Chrome extension that adds keyboard shortcuts, spawn phase improvements, and neighbor alerts to openfront.io."
+  schema={schema}
+>
+  <article class="prose-content">
+    <h1 class="text-3xl font-bold tracking-tight mb-6">OpenFront Enhanced</h1>
+
+    <div class="space-y-4 text-muted-foreground leading-relaxed">
+      <p>
+        <a href="https://openfront.io" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">OpenFront</a> is a browser-based strategy game where you expand territory, form alliances, and try not to get steamrolled. It's fun, but there were a few rough edges in the interface that kept bugging me — so I built a Chrome extension to smooth them out.
+      </p>
+
+      <p>
+        The most useful part is the keyboard shortcuts. You can open a chat with whoever you're hovering over, send an alliance request, launch a quick 1% troop boat attack, or pull up an emoji picker — all without clicking around. Everything is rebindable if the defaults don't work for you.
+      </p>
+
+      <p>
+        During the spawn phase the extension adds red dot markers on nations so you can actually see what you're picking at any zoom level, and plays an audio alert when the phase starts and when the game begins. It also notifies you when a neighboring player disconnects or betrays an alliance, which is the kind of thing you really don't want to miss.
+      </p>
+
+      <p>
+        To install it, clone or download the repo, go to Chrome's extension settings, enable Developer Mode, click "Load unpacked," and point it at the folder. It activates automatically when you visit openfront.io. Source is on <a href="https://github.com/marijnbent/openfront-extension" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
+      </p>
+    </div>
+  </article>
+</Layout>
