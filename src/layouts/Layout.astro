@@ -6,12 +6,16 @@ interface Props {
   description: string;
   canonical?: string;
   schema?: Record<string, unknown>;
+  bare?: boolean;
+  emoji?: string;
 }
 
-const { title, description, canonical, schema } = Astro.props;
+const { title, description, canonical, schema, bare = false, emoji } = Astro.props;
 const siteUrl = 'https://marijnbent.nl';
 const currentPath = Astro.url.pathname;
 const canonicalUrl = canonical || `${siteUrl}${currentPath}`;
+// Extract project name from title like "VibeScribe – Marijn Bent"
+const projectName = title.includes(' – ') ? title.split(' – ')[0] : title;
 ---
 
 <!doctype html>
@@ -45,21 +49,40 @@ const canonicalUrl = canonical || `${siteUrl}${currentPath}`;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body class="min-h-screen bg-background font-sans antialiased" style="font-family: 'Inter', sans-serif;">
-    <div class="mx-auto max-w-2xl px-6 py-12">
-      <header class="mb-12">
-        <nav>
-          <a href="/" class="text-lg font-semibold text-foreground hover:text-foreground/80 transition-colors">
+  <body class="min-h-screen bg-white font-sans antialiased" style="font-family: 'Inter', sans-serif;">
+    {bare ? (
+      <slot />
+    ) : (
+      <div class="mx-auto max-w-2xl px-6 pt-10 pb-20">
+
+        <!-- Back nav -->
+        <nav class="mb-14">
+          <a href="/" class="inline-flex items-center gap-1.5 text-sm text-black/35 hover:text-black transition-colors duration-150">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M8.5 2.5L4 7L8.5 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             Marijn Bent
           </a>
         </nav>
-      </header>
 
-      <main>
-        <slot />
-      </main>
-    </div>
+        <!-- Project header -->
+        <header class="mb-10">
+          {emoji && <div class="text-4xl mb-5 leading-none">{emoji}</div>}
+          <h1 class="text-[2.5rem] font-bold tracking-[-0.03em] leading-tight text-black mb-3">
+            {projectName}
+          </h1>
+          <p class="text-base text-black/45 leading-relaxed max-w-lg">{description}</p>
+        </header>
+
+        <hr class="border-black/[0.08] mb-10" />
+
+        <main class="project-page">
+          <slot />
+        </main>
+
+      </div>
+    )}
   </body>
 </html>

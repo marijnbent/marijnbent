@@ -122,3 +122,27 @@
     @apply bg-background text-foreground;
     }
 }
+
+/* Project page prose styles */
+.project-page p {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: oklch(0.38 0 0);
+}
+
+.project-page .space-y-4 > * + * {
+  margin-top: 1.25rem;
+}
+
+.project-page a {
+  color: oklch(0.15 0 0);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: oklch(0.72 0 0);
+  transition: text-decoration-color 0.15s;
+}
+
+.project-page a:hover {
+  text-decoration-color: oklch(0.15 0 0);
+}
