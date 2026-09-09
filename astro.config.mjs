@@ -15,5 +15,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react(), sitemap()]
+  integrations: [react(), sitemap({
+    filter: (page) => !/^\/(i-want-to-work-for|ik-wil-werken-voor|applications)(\/|$)/.test(new URL(page).pathname)
+  })]
 });

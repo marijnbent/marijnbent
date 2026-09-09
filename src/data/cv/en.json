@@ -1,0 +1,57 @@
+{
+  "name": "Marijn Bent",
+  "title": "Technical founder & product builder",
+  "email": "marijn@marijnbent.nl",
+  "website": "https://marijnbent.nl",
+  "github": "https://github.com/marijnbent",
+  "summary": "Hands-on builder with experience co-founding a software company, leading a development team, creating integrations and building full-stack products. I enjoy connecting product decisions with reliable implementation and useful tools.",
+  "sections": [
+    {
+      "heading": "Selected experience",
+      "entries": [
+        {
+          "title": "WordProof",
+          "subtitle": "Co-founder & technical lead",
+          "body": "Led a team of four developers. Worked on the Laravel application, an AWS migration, a reusable WordPress SDK and integrations with Yoast, Shopify and Wix. Built across application, API and integration boundaries."
+        },
+        {
+          "title": "Studiozoek",
+          "subtitle": "Business owner & developer",
+          "body": "Build and run business websites and internal tools. The Hub brings CRM, campaigns, review and operations together, with the application, websites and supporting tools organized in a shared repository."
+        },
+        {
+          "title": "Workshops & technical communication",
+          "subtitle": "Blockchain education",
+          "body": "Experience delivering blockchain workshops and explaining technical concepts to different audiences."
+        }
+      ]
+    },
+    {
+      "heading": "Selected products",
+      "entries": [
+        {
+          "title": "BookLite",
+          "subtitle": "TypeScript / React / Vite / Fastify / Drizzle",
+          "body": "Self-hosted library with background imports, metadata from multiple providers, permissions, shared contracts and Kobo synchronization.",
+          "url": "https://github.com/marijnbent/booklite"
+        },
+        {
+          "title": "Prepped",
+          "subtitle": "Astro / React / SQLite",
+          "body": "Recipe manager with imports, serving adjustments, household sharing, collections and English/Dutch interfaces.",
+          "url": "https://github.com/marijnbent/prepped"
+        },
+        {
+          "title": "Obsidian Print",
+          "subtitle": "TypeScript / Desktop & mobile",
+          "body": "Public Obsidian plugin for printing notes, selections and folders, with platform-specific behavior and customization.",
+          "url": "https://github.com/marijnbent/obsidian-print"
+        }
+      ]
+    }
+  ],
+  "skillsHeading": "Technical focus",
+  "skills": "TypeScript, React, Astro, Vite, React Router, Laravel, WordPress integrations, APIs, relational databases, background jobs and deployment workflows.",
+  "phone": "+31 6 8105 3848",
+  "phoneHref": "tel:+31681053848"
+}

@@ -1,0 +1,7 @@
+---
+import ApplicationPage from '../../components/application/ApplicationPage.astro';
+import { applicationsFor } from '../../data/applications';
+export const getStaticPaths = () => applicationsFor('en').map(application => ({ params: { company: application.slug }, props: { application } }));
+const { application } = Astro.props;
+---
+<ApplicationPage application={application} />

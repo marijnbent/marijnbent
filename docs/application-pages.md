@@ -1,6 +1,6 @@
 # Personal application pages — implementation brief
 
-Status: agreed direction; website implementation and artwork are still to be built.
+Status: implemented on the feature branch; see application-pages-maintenance.md for usage, verification and remaining factual review.
 First application: Genki, Lead Web Engineer.
 Website: https://marijnbent.nl
 Repository: marijnbent/marijnbent
@@ -11,7 +11,7 @@ Create company-specific application pages on Marijn's own website. Each page sho
 
 Build Genki first, then reuse the page components and verified profile information for future applications. Personalization must extend to the narrative, project selection, motivation, and visual details.
 
-This file is an implementation brief. It does not indicate that application pages, indexing controls, illustrations, or PDFs have already been implemented.
+This file preserves the original implementation brief. The maintenance guide records the completed implementation and any remaining deployment or factual checks.
 
 ## Confirmed preferences
 

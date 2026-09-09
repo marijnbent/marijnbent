@@ -1,0 +1,31 @@
+---
+import '../styles/application.css';
+import { applicationPath, type Application } from '../data/applications/types';
+interface Props { application: Application }
+const { application } = Astro.props;
+const canonical = new URL(applicationPath(application), 'https://marijnbent.nl').href;
+const title = `Marijn × ${application.company} — ${application.role}`;
+const theme = application.theme ?? { accent: '#174e3b', scene: '#e6eddf' };
+if (!Object.values(theme).every(color => /^#[0-9a-fA-F]{6}$/.test(color))) throw new Error('Application theme colors must be six-digit hex values.');
+---
+<!doctype html>
+<html lang={application.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <meta name="description" content={application.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content={theme.accent} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={application.description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={application.description} />
+  </head>
+  <body style={`--green:${theme.accent};--scene:${theme.scene}`}><slot /></body>
+</html>

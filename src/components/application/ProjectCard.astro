@@ -1,0 +1,13 @@
+---
+import type { Project } from '../../data/projects';
+interface Props { project: Project; locale: 'en' | 'nl' }
+const { project, locale } = Astro.props;
+---
+<article class="project-card">
+  <p class="project-topline">{project.category}</p>
+  <h3>{project.name}</h3>
+  {project.image && <a class="project-image-link" href={project.href} target="_blank" rel="noopener noreferrer"><img class="project-image" src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} loading="lazy" decoding="async" /></a>}
+  <p>{project.detail}</p>
+  <ul class="tags" aria-label={`${project.name} ${locale === 'nl' ? 'technologieën' : 'technologies'}`}>{project.stack.map(item => <li>{item}</li>)}</ul>
+  {project.href && <div class="project-bottom"><a href={project.href} target="_blank" rel="noopener noreferrer">{project.linkLabel}<span aria-hidden="true"> ↗</span></a></div>}
+</article>

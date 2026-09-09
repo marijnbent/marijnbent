@@ -1,0 +1,8 @@
+---
+import type { Scene } from '../../data/applications/types';
+interface Props { scene: Scene; eager?: boolean; class?: string }
+const { scene, eager = false, class: className = '' } = Astro.props;
+---
+<div class:list={['stop-motion-frame', className]} data-stop-motion={scene} data-frame="0" aria-hidden="true">
+  <img class="stop-motion-sheet" src={`/images/applications/marijn/${scene}-frames.webp`} width="1536" height="1024" alt="" loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding="async" />
+</div>
