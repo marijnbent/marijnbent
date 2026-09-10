@@ -26,22 +26,22 @@ export const genki: Application = {
   work: {
     eyebrow: '', heading: 'Some of my work.',
     introduction: '',
-    projects: [projects.wordproof, projects.booklite, projects.studiozoek],
-    moreProjects: [projects.prepped, projects['obsidian-print']],
+    projects: [projects.wordproof, projects.platform, projects.studiozoek],
+    moreProjects: [projects.yoast, projects.schemaorg, projects.booklite, projects.prepped, projects['obsidian-print']],
   },
   aiStory: {
     heading: 'I’m AI-pilled.',
     paragraphs: [
       'I use AI a lot. Hermes is my assistant, and I use Openmausbots with six bots to help run Studiozoek. I’ve built plenty of personal apps, usually because I wanted something for myself.',
-      'I’m interested in your plan to let more people at Genki build software. I’d enjoy figuring out how to make that useful in practice, with proper review and clear permissions.',
+      'I’ve also worked on MCP-based authoring, previews and publishing in a separate web platform. That’s why your plan to let more people at Genki build software interests me: I’ve been working on how to make that useful, with review steps and clear permissions.',
     ],
   },
   fit: {
     eyebrow: '', heading: 'Why Genki?',
     items: [
-      { title: '', body: 'I like having responsibility for a product beyond one feature or screen. The role you describe has that: building things, maintaining them and deciding what needs to change.' },
-      { title: '', body: 'Bringing your web projects together sounds like work I’d enjoy. At WordProof I worked on a shared SDK and integrations; at Studiozoek I’m building the tools and websites for my own business.' },
-      { title: '', body: 'And I’d be working on something for people whose lives I understand. I’d like that.' },
+      { title: '', body: 'At WordProof I led a distributed team while still writing the backend and integrations. I like that combination of making technical decisions, helping a team deliver and staying close to the code.' },
+      { title: '', body: 'Bringing your web projects together sounds like work I’d enjoy. I’ve built shared SDKs, worked through code reviews with Yoast engineers, and dealt with migrations and release checks. At Studiozoek I also run the tools and websites for my own business.' },
+      { title: '', body: 'I’ve taught blockchain courses too. Helping someone understand a tool, try it and ask questions is work I enjoy. I’d bring that to helping more people at Genki build things, alongside my own experience of travelling.' },
     ],
     closing: '',
   },

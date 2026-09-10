@@ -6,7 +6,7 @@ from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, KeepTogether
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, KeepTogether, PageBreak
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
@@ -57,6 +57,8 @@ def generate(config_path):
     contact = f"{link('mailto:'+cv['email'], cv['email'])} &nbsp; | &nbsp; {link(cv['phoneHref'], cv['phone'])}<br/>{link(cv['website'], 'marijnbent.nl')} &nbsp; | &nbsp; {link(cv['github'], 'github.com/marijnbent')}"
     story = [p(escape(app['cvLabel']), 'label'), p(escape(cv['name']), 'name'), p(escape(cv['title']), 'title'), p(contact, 'small'), HRFlowable(width='100%', thickness=.6, color=colors.HexColor('#d9e1d9')), Spacer(1, 9), p(escape(cv['summary']))]
     for section in cv['sections']:
+        if section.get('pageBreakBefore'):
+            story.append(PageBreak())
         story.append(p(escape(section['heading']), 'section'))
         for entry in section['entries']:
             title = link(entry['url'], entry['title']) if entry.get('url') else escape(entry['title'])

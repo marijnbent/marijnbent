@@ -24,7 +24,7 @@ Do not reuse another company's motivation unchanged. The reusable layer is the i
 
 ## Documents and factual review
 
-The CV is a selected-experience CV reconstructed from known work, not the recovered original. Employment dates, education and metrics have deliberately not been invented. Before submitting, confirm chronology and education against the original CV if those details should be included.
+The two-page CV draws on the master dossier supplied on 10 September 2026, alongside Marijn’s confirmed contact and narrative inputs. The original CV has not been recovered. Employment dates, official education details and scale metrics still need confirmation. The dossier itself is private source material and is not copied into this public repository. See [CV source decisions](cv-source-decisions.md) for the selected facts and public evidence.
 
 Marijn confirmed `marijn@marijnbent.nl` and `+31 6 8105 3848` as his contact details. Update `src/data/profile.ts` and the relevant CV JSON together if it changes, then regenerate PDFs.
 

@@ -1,10 +1,10 @@
 {
   "name": "Marijn Bent",
-  "title": "Technical founder & product builder",
+  "title": "Technical lead & product-minded developer",
   "email": "marijn@marijnbent.nl",
   "website": "https://marijnbent.nl",
   "github": "https://github.com/marijnbent",
-  "summary": "Hands-on builder with experience co-founding a software company, leading a development team, creating integrations and building full-stack products. I enjoy connecting product decisions with reliable implementation and useful tools.",
+  "summary": "I build web products and the systems behind them. At WordProof I combined backend development with leading a distributed engineering team. My work spans reusable integrations, APIs, deployment and migration tooling, business websites and personal applications. I also teach technical subjects and enjoy helping people understand how things work.",
   "sections": [
     {
       "heading": "Selected experience",
@@ -12,46 +12,92 @@
         {
           "title": "WordProof",
           "subtitle": "Co-founder & technical lead",
-          "body": "Led a team of four developers. Worked on the Laravel application, an AWS migration, a reusable WordPress SDK and integrations with Yoast, Shopify and Wix. Built across application, API and integration boundaries."
+          "body": "Built the initial platform and led a distributed frontend/backend team while continuing to implement core features. Developed Laravel services for queued timestamp processing, billing and PDF certificates, and migrated the application to AWS/serverless infrastructure. Built reusable PHP SDKs and embeddable certificate components. Implemented the Yoast SEO integration, built WordPress and Shopify integrations, and collaborated on Wix integration work. Coordinated technical planning and delivery with the team and external engineers.",
+          "url": "https://wordproof.com"
+        },
+        {
+          "title": "Web platform engineering",
+          "subtitle": "Architecture & delivery",
+          "body": "Developed an API-first platform with a separate serving runtime, schema migrations and release checks. Implemented authentication, request validation, idempotent processing and deployment diagnostics. Added checkpointed migration tooling and review/preview steps before publishing changes."
         },
         {
           "title": "Studiozoek",
           "subtitle": "Business owner & developer",
-          "body": "Build and run business websites and internal tools. The Hub brings CRM, campaigns, review and operations together, with the application, websites and supporting tools organized in a shared repository."
+          "body": "Build and run business websites and the tools behind them. Work includes a Hub/CRM, campaign and review workflows, supporting web infrastructure and operational tooling."
         },
         {
-          "title": "Workshops & technical communication",
-          "subtitle": "Blockchain education",
-          "body": "Experience delivering blockchain workshops and explaining technical concepts to different audiences."
+          "title": "Eduvision / blockchain education",
+          "subtitle": "Technical teaching",
+          "body": "Prepared and delivered practical blockchain teaching, including Bitcoin, Ethereum, wallets, transactions, consensus and smart contracts. Developed interactive exercises and used course reflections to improve the sequence and clarity of explanations."
+        },
+        {
+          "title": "Blocklab / Open Energy Hub",
+          "subtitle": "Thesis & collaborative engineering",
+          "body": "Worked on “The Smart Smart Meter” thesis and collaborated on an open-source distributed database for smart-meter data. Contributed dashboard and API work, Raspberry Pi setup and data handling.",
+          "url": "https://github.com/OEHU/oehu-website"
         }
       ]
     },
     {
-      "heading": "Selected products",
+      "heading": "Selected projects",
+      "pageBreakBefore": true,
       "entries": [
         {
-          "title": "BookLite",
-          "subtitle": "TypeScript / React / Vite / Fastify / Drizzle",
-          "body": "Self-hosted library with background imports, metadata from multiple providers, permissions, shared contracts and Kobo synchronization.",
-          "url": "https://github.com/marijnbent/booklite"
+          "title": "Obsidian Print",
+          "subtitle": "Public plugin / TypeScript",
+          "body": "Printing for Obsidian notes, selections and folders, with platform-specific behavior on desktop and mobile.",
+          "url": "https://github.com/marijnbent/obsidian-print"
         },
         {
           "title": "Prepped",
-          "subtitle": "Astro / React / SQLite",
-          "body": "Recipe manager with imports, serving adjustments, household sharing, collections and English/Dutch interfaces.",
+          "subtitle": "Personal application / Astro, React, SQLite",
+          "body": "Self-hosted recipe management with imports, cook logs, meal planning and household sharing. Recent work includes improving the ingredient layout.",
           "url": "https://github.com/marijnbent/prepped"
         },
         {
-          "title": "Obsidian Print",
-          "subtitle": "TypeScript / Desktop & mobile",
-          "body": "Public Obsidian plugin for printing notes, selections and folders, with platform-specific behavior and customization.",
-          "url": "https://github.com/marijnbent/obsidian-print"
+          "title": "BookLite",
+          "subtitle": "Maintained fork / TypeScript, React, Fastify",
+          "body": "Maintain a fork of a self-hosted digital library with Kobo synchronization, metadata and reading tools. My recent work includes settings and runtime-safety improvements.",
+          "url": "https://github.com/marijnbent/booklite"
+        }
+      ]
+    },
+    {
+      "heading": "Public contributions",
+      "entries": [
+        {
+          "title": "Yoast SEO",
+          "subtitle": "Integration engineering",
+          "body": "Authored the WordProof integration restoration and follow-up fixes across SDK behavior, authentication and editor support, working through upstream review and acceptance tests.",
+          "url": "https://github.com/Yoast/wordpress-seo/pull/18540"
+        },
+        {
+          "title": "Schema.org",
+          "subtitle": "Timestamping proposal",
+          "body": "Co-proposed a content-timestamping approach with Yoast, WordProof and structured-data specialists. Contributed analysis of hash verification and cross-chain identifiers.",
+          "url": "https://github.com/schemaorg/schemaorg/issues/2756"
+        },
+        {
+          "title": "Fastpotify",
+          "subtitle": "Merged macOS contribution",
+          "body": "Contributed a Rust/macOS window-lifecycle fix for reopening the player after closing its window.",
+          "url": "https://github.com/crmne/fastpotify/pull/67"
+        }
+      ]
+    },
+    {
+      "heading": "Volunteering & languages",
+      "entries": [
+        {
+          "title": "Lighthouse Support & Kompaskamp",
+          "subtitle": "Project review & facilitation",
+          "body": "Participate in nonprofit project evaluation and coordination at Lighthouse Support. Co-head leadership for Kompaskamp in 2026. Languages: Dutch and English."
         }
       ]
     }
   ],
   "skillsHeading": "Technical focus",
-  "skills": "TypeScript, React, Astro, Vite, React Router, Laravel, WordPress integrations, APIs, relational databases, background jobs and deployment workflows.",
+  "skills": "PHP / Laravel; JavaScript / TypeScript; Vue / React; APIs and reusable SDKs; queues and billing; AWS/serverless; PostgreSQL; deployments, migrations and diagnostics; team coordination and technical teaching.",
   "phone": "+31 6 8105 3848",
   "phoneHref": "tel:+31681053848"
 }
