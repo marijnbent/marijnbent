@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const description = 'Independent Lidl price comparison across Europe, with price history, deals and watchlist alerts.';
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://marijnbent.nl/yellow-store/#app",
+  "name": "Yellow Store",
+  "url": "https://yellowshop.fans/",
+  "description": description,
+  "applicationCategory": "ShoppingApplication",
+  "operatingSystem": "Web",
+  "author": {
+    "@type": "Person",
+    "@id": "https://marijnbent.nl/#person",
+    "name": "Marijn Bent",
+    "url": "https://marijnbent.nl/"
+  }
+};
+---
+
+<Layout title="Yellow Store – Marijn Bent" description={description} schema={schema} emoji="🟡">
+  <article class="prose-content">
+    <div class="space-y-4 leading-relaxed">
+      <p>
+        <a href="https://yellowshop.fans/" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">Yellow Store</a> compares Lidl product prices across European webshops. It started as Parkside.fans and has grown beyond tools to cover more Lidl brands and everyday products.
+      </p>
+      <p>
+        Search by product, brand or IAN number, compare prices between countries and look back at price history. The deals overview highlights recorded price drops, while a watchlist lets you save products and receive price alerts.
+      </p>
+      <p>
+        Yellow Store is an independent comparison site. Purchases happen at Lidl, where you can check the final price and availability.
+      </p>
+    </div>
+  </article>
+</Layout>

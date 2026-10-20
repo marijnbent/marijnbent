@@ -1,45 +1,34 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const description = "VibeScribe’s dictation is now part of Ollie, my native macOS app for everyday tools.";
 const schema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "VibeScribe",
-  "url": "https://github.com/marijnbent/vibescribe",
-  "description": "macOS app that transcribes your speech in real time and optionally runs it through an LLM before pasting it wherever you're typing.",
-  "applicationCategory": "ProductivityApplication",
-  "operatingSystem": "macOS",
-  "author": {
-    "@type": "Person",
-    "name": "Marijn Bent",
-    "url": "https://marijnbent.nl"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "EUR"
+  "@type": "WebPage",
+  "@id": "https://marijnbent.nl/vibescribe/#page",
+  "name": "VibeScribe’s dictation is now part of Ollie, my native macOS app for everyday tools.",
+  "url": "https://marijnbent.nl/vibescribe/",
+  "description": "VibeScribe’s dictation is now part of Ollie, my native macOS app for everyday tools.",
+  "about": {
+    "@type": "SoftwareApplication",
+    "@id": "https://marijnbent.nl/ollie/#app",
+    "name": "Ollie",
+    "url": "https://github.com/marijnbent/ollie"
   }
 };
 ---
 
-<Layout
-  title="VibeScribe – Marijn Bent"
-  description="macOS app that transcribes your speech in real time and optionally runs it through an LLM before pasting it wherever you're typing."
-  schema={schema}
-  emoji="🎤"
->
+<Layout title="VibeScribe – Marijn Bent" description={description} schema={schema} emoji="🎤">
   <article class="prose-content">
     <div class="space-y-4 leading-relaxed">
       <p>
-        VibeScribe is a macOS app that transcribes your speech in real time using Deepgram's streaming API and pastes the result into whatever app you're working in. Hold a key, talk, let go - that's it.
+        VibeScribe started as a speech-to-text app: hold a key, talk and insert the transcript wherever you’re typing, with optional AI cleanup.
       </p>
-
       <p>
-        You can configure multiple shortcuts, each with its own behavior. Each shortcut can have a prompt attached to it, so the transcript gets cleaned up or reformatted by an LLM before it lands. You can also set per-app prompt overrides that activate automatically based on which app is in focus.
+        That functionality now lives in <a class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors" href="/ollie/">Ollie</a>, together with an app launcher, clipboard history, snippets, window switching and other everyday utilities.
       </p>
-
       <p>
-        It needs a Deepgram API key for transcription and an OpenRouter key if you want the AI enhancement. New Deepgram accounts come with enough free credit to get started. Source is on <a href="https://github.com/marijnbent/vibescribe" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
+        Visit the <a class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors" href="https://github.com/marijnbent/ollie">Ollie repository</a> for the current source and build instructions.
       </p>
     </div>
   </article>
