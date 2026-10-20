@@ -4,12 +4,19 @@ import Layout from '../layouts/Layout.astro';
 const schema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://marijnbent.nl/#person",
   "name": "Marijn Bent",
   "url": "https://marijnbent.nl",
   "description": "Technical founder and product builder. I create useful web applications, build tools for my businesses, and enjoy learning by making things."
 };
 
 const projects = [
+  {
+    name: "Studiozoek",
+    emoji: "🔴",
+    href: "https://studiozoek.nl/",
+    description: "My web design business: websites and ongoing hosting, email and maintenance for freelancers and small businesses in the Netherlands."
+  },
   {
     name: "VibeScribe",
     emoji: "🎤",
