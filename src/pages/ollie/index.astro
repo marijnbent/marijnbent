@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const description = 'A native macOS utility combining a launcher, dictation, clipboard history, snippets and window switching.';
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://marijnbent.nl/ollie/#app",
+  "name": "Ollie",
+  "url": "https://github.com/marijnbent/ollie",
+  "description": description,
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "macOS 26 or later",
+  "author": {
+    "@type": "Person",
+    "@id": "https://marijnbent.nl/#person",
+    "name": "Marijn Bent",
+    "url": "https://marijnbent.nl/"
+  }
+};
+---
+
+<Layout title="Ollie – Marijn Bent" description={description} schema={schema} emoji="🦦">
+  <article class="prose-content">
+    <div class="space-y-4 leading-relaxed">
+      <p>
+        Ollie brings the small tools I use throughout the day into one native macOS app. VibeScribe’s dictation is now part of it, alongside an app launcher, clipboard history, text snippets and window switching.
+      </p>
+      <p>
+        Use the keyboard to open apps, find something you copied earlier or insert a saved snippet. For dictation, hold a shortcut, speak and insert the transcript into the app you’re using, with optional AI cleanup.
+      </p>
+      <p>
+        Ollie also includes desktop switching, camera imports, ntfy notifications, typing sounds and per-app network usage. Each feature can be enabled separately, with shared shortcut settings and a compact menu bar interface.
+      </p>
+      <p>
+        The launcher builds on Tinycast. Ollie is open source and requires macOS 26 or later. The code and build instructions are on <a href="https://github.com/marijnbent/ollie" class="text-foreground font-medium underline underline-offset-4 hover:text-foreground/80 transition-colors">GitHub</a>.
+      </p>
+    </div>
+  </article>
+</Layout>
