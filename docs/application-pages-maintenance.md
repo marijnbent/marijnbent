@@ -38,7 +38,9 @@ Public project links are used as evidence; private source code and operational d
 
 `astro.config.mjs` filters both application route prefixes and `/applications/` out of the sitemap. `public/robots.txt` allows fetching these URLs so search engines can read `noindex`.
 
-`public/_headers` sets `X-Robots-Tag: noindex` for application HTML and PDFs on hosts that support this file, including Cloudflare Pages and Netlify. The existing site's hosting provider is not defined in this repository. If it uses another host, configure the equivalent response headers there. For nginx, for example, put `add_header X-Robots-Tag "noindex" always;` in the matching application/PDF location blocks while preserving that deployment's existing file-serving configuration.
+Production runs on Dokploy with Railpack, which serves the static build using the root `Caddyfile`. It sets `X-Robots-Tag: noindex` for application HTML and PDFs. Railpack copies the build to `/app/dist` and supplies the listening port. Keep these response headers when changing the hosting configuration.
+
+`public/_headers` provides equivalent rules for Cloudflare Pages and Netlify previews. Caddy does not interpret that file.
 
 After deployment, inspect the actual PDF HTTP response to verify the header. HTML's own `noindex` works independently of `_headers`. These controls do not make the public repository or page URL private.
 
