@@ -67,7 +67,7 @@ Marijn supplied these points directly:
 
 - He built his van to become better with his hands.
 - He has travelled extensively.
-- His last major trip was to Kyrgyzstan, around two years before this conversation, and he broke his leg.
+- He travelled towards Kyrgyzstan and broke his leg in Armenia while jumping away from a charging dog. The location was clarified by Marijn on 30 October 2026; no exact trip date is verified.
 - He has built many personal apps.
 - He uses Hermes as a personal assistant.
 - He uses Openmausbots to run Studiozoek with six bots.

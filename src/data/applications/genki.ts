@@ -17,7 +17,7 @@ export const genki: Application = {
       heading: 'I built a van.',
       paragraphs: [
         'I wanted to get better with my hands, so I converted a camper. I spent a lot of time figuring things out as I went.',
-        'I’ve travelled a lot. My last major trip was to Kyrgyzstan, where I broke my leg and had to change my plans.',
+        'I’ve travelled a lot. On a trip towards Kyrgyzstan, I broke my leg in Armenia while jumping away from a charging dog and had to change my plans.',
         'That’s part of why Genki interests me. I know what it’s like to be a long way from home when something goes wrong.',
       ],
       scene: 'camper',

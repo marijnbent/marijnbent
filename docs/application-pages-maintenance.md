@@ -28,7 +28,7 @@ The two-page CV draws on the master dossier supplied on 10 September 2026, along
 
 Marijn confirmed `marijn@marijnbent.nl` and `+31 6 8105 3848` as his contact details. Update `src/data/profile.ts` and the relevant CV JSON together if it changes, then regenerate PDFs.
 
-Genki's motivation is drafted for Marijn's review. The Kyrgyzstan story omits a specific year because the exact chronology is not verified. It makes no claim about treatment, insurance coverage or being a Genki customer. The van illustration is a stylized scene, not a factual rendering of his conversion.
+Genki's motivation is drafted for Marijn's review. The trip was towards Kyrgyzstan; Marijn clarified that he broke his leg in Armenia while jumping away from a charging dog. The story omits a specific year because the exact chronology is not verified. It makes no claim about treatment, insurance coverage or being a Genki customer. The van illustration is a stylized scene, not a factual rendering of his conversion.
 
 The six-bot Openmausbots setup and use of Hermes were supplied directly by Marijn. No bot responsibilities, autonomy levels, efficiency metrics or customer outcomes are invented.
 

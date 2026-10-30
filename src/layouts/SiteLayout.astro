@@ -16,7 +16,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/cow.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -25,7 +25,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}
     <script defer src="https://analytics.cowsandbytes.com/script.js" data-website-id="4effb6d5-fab0-4937-bdbc-3b3e6de7e0a5"></script>
   </head>

@@ -3,6 +3,8 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import { featuredWork, studiozoek } from '../data/work';
 import { courses, courseFacts } from '../data/courses';
 import { profile } from '../data/profile';
+import Cow from '../components/site/Cow.astro';
+import VanRoute from '../components/site/VanRoute.astro';
 const description = 'Marijn Bent bouwt software, deelt veel ervan als open source, maakt websites met Studiozoek en geeft praktische cursussen in AI en blockchain.';
 const schema = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name, url: profile.website, email: profile.email, telephone: profile.phone, image: 'https://marijnbent.nl/images/site/marijn.webp', description, sameAs: [profile.github] };
 const sheet = featuredWork.filter(item => ['/booklite/', '/yellow-store/'].includes(item.href));
@@ -11,11 +13,11 @@ const sheet = featuredWork.filter(item => ['/booklite/', '/yellow-store/'].inclu
   <section class="hero wrap">
     <h1>Marijn Bent</h1>
     <div class="hero-intro">
-      <p>Ik bouw software die ik zelf gebruik en deel veel ervan als open source. Met Studiozoek maak ik websites voor zzp’ers, en ik geef cursussen waarin je zelf aan de slag gaat.</p>
-      <a class="button" href="/cursussen/">Bekijk de cursussen</a>
+      <p>Ik bouw software en websites, geef cursussen in AI en blockchain en hou van koeien. Mijn bus bouwde ik zelf.</p>
+      <div class="actions"><a class="button" href="#werk">Bekijk mijn werk</a><a class="scribble story-link" href="#buiten">Over die bus…</a></div>
     </div>
+    <div class="hero-person"><img src="/images/site/marijn.webp" alt="Marijn Bent" width="460" height="460" fetchpriority="high" /><Cow /></div>
     <ul class="sheet" aria-label="Werk in beeld">
-      <li class="sheet-portrait"><img src="/images/site/marijn.webp" alt="Portret van Marijn Bent" width="460" height="460" fetchpriority="high" /></li>
       {sheet.map(item => item.image && (
         <li><a href={item.href}><img class="shot" src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} /><span>{item.name}</span></a></li>
       ))}
@@ -37,6 +39,15 @@ const sheet = featuredWork.filter(item => ['/booklite/', '/yellow-store/'].inclu
         </li>
       ))}
     </ul>
+  </section>
+
+  <section class="outside wrap" id="buiten">
+    <div class="outside-story">
+      <h2>Ook zonder laptop</h2>
+      <p>Ik bouwde mijn eigen bus en ging ermee op reis richting Kirgizië. In Armenië sprong ik weg voor een hond die op me afstormde. Daarbij brak ik mijn been.</p>
+      <p class="scribble">Dat stond niet op de route.</p>
+    </div>
+    <VanRoute />
   </section>
 
   <section class="studio" id="studiozoek">
