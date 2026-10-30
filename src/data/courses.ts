@@ -58,6 +58,12 @@ export const courses: Course[] = [
       { title: "Documenten voorbereiden", body: "Een eerste versie van een offerte, verslag of brief op basis van vaste invoer. Jij controleert de inhoud." },
       { title: "Een kleine interne tool", body: "Een rekenhulp, checklist of formulier voor een taak die je team elke week doet." },
     ],
+    image: {
+      src: "/images/site/course-whiteboard.webp",
+      alt: "Marijn Bent schrijft op een whiteboard en kijkt opzij tijdens een uitleg",
+      width: 1536,
+      height: 1024,
+    },
   },
   {
     slug: "blockchain",
