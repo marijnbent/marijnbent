@@ -1,167 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://marijnbent.nl/#person",
-  "name": "Marijn Bent",
-  "url": "https://marijnbent.nl",
-  "description": "Technical founder and product builder. I create useful web applications, build tools for my businesses, and enjoy learning by making things."
-};
-
-const projects = [
-  {
-    name: "Studiozoek",
-    emoji: "🔴",
-    href: "https://studiozoek.nl/",
-    description: "My web design business: websites and ongoing hosting, email and maintenance for freelancers and small businesses in the Netherlands."
-  },
-  {
-    name: "Ollie",
-    emoji: "🦦",
-    href: "/ollie/",
-    description: "A native macOS app for launching apps, dictation, clipboard history, snippets and window switching."
-  },
-  {
-    name: "BookLite",
-    emoji: "📚",
-    href: "/booklite/",
-    description: "Self-hosted digital library with Kobo sync for households and small teams."
-  },
-  {
-    name: "Prepped",
-    emoji: "🍽️",
-    href: "/prepped/",
-    description: "Self-hosted recipe app. Import recipes from URLs with AI, scale servings, and keep everything on your own server."
-  },
-  {
-    name: "OpenFront Enhanced",
-    emoji: "🎮",
-    href: "/openfront-extension/",
-    description: "Browser extension that adds useful overlays to the OpenFront.io strategy game."
-  },
-  {
-    name: "Yellow Store",
-    emoji: "🟡",
-    href: "/yellow-store/",
-    description: "Compare Lidl product prices across Europe, explore price history and get alerts when saved products drop in price."
-  },
-  {
-    name: "Bitcoin simulator",
-    emoji: "₿",
-    href: "/bitcoin-simulator/",
-    description: "See what your investment would be worth if you had bought Bitcoin at any point in the past."
-  },
-  {
-    name: "Obsidian Print",
-    emoji: "🖨️",
-    href: "/obsidian-print/",
-    description: "Obsidian plugin that adds a print option directly, no PDF export needed."
-  }
-];
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { work } from '../data/work';
+const description = 'Ik bouw software, werk aan open source en geef praktische cursussen in AI en blockchain. Bekijk mijn projecten en Studiozoek.';
+const schema = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: 'Marijn Bent', url: 'https://marijnbent.nl', description, sameAs: ['https://github.com/marijnbent'] };
 ---
-
-<Layout
-  title="Marijn Bent"
-  description="Technical founder and product builder. I create useful web applications, build tools for my businesses, and enjoy learning by making things."
-  schema={schema}
-  bare={true}
->
-  <div class="min-h-screen bg-white">
-
-    <!-- ── HERO ─────────────────────────────────────────────────── -->
-    <section class="flex flex-col items-center justify-center px-6 pt-24 pb-20 text-center">
-
-      <!-- Outlined pill badge -->
-      <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-black/[0.12] bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-black/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
-        <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
-        Builder &amp; Developer
-      </div>
-
-      <!-- Massive heading — Inter 900, tight tracking, newspaper weight -->
-      <h1
-        class="max-w-3xl text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.95] tracking-[-0.03em] text-black"
-      >
-        Marijn Bent.
-      </h1>
-
-      <!-- Subtitle -->
-      <p class="mt-6 max-w-sm text-[1.0625rem] leading-relaxed text-black/45 font-normal">
-        Useful software, thoughtful tools, and things built by hand.
-      </p>
-
-      <!-- GitHub link as a pill button -->
-      <a
-        href="https://github.com/marijnbent"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mt-8 inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white transition-all duration-150 hover:bg-black/80 active:scale-[0.97]"
-      >
-        <!-- GitHub icon -->
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-        </svg>
-        GitHub
-      </a>
-    </section>
-
-    <!-- ── DIVIDER ────────────────────────────────────────────────── -->
-    <div class="mx-auto max-w-4xl px-6">
-      <hr class="border-black/[0.07]" />
-    </div>
-
-    <!-- ── PROJECTS ───────────────────────────────────────────────── -->
-    <section class="mx-auto max-w-4xl px-6 py-16">
-
-      <!-- Section heading -->
-      <div class="mb-8 flex items-baseline gap-3">
-        <h2 class="text-2xl font-bold tracking-tight text-black">Projects</h2>
-        <span class="text-sm font-medium text-black/30">{projects.length}</span>
-      </div>
-
-      <!-- Grid -->
-      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {projects.map(project => (
-          <a
-            href={project.href}
-            class="group relative flex flex-col rounded-xl border border-black/[0.08] bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-black/[0.14] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.12)]"
-          >
-            <!-- Emoji watermark -->
-            <span
-              class="mb-3 text-2xl leading-none"
-              aria-hidden="true"
-            >{project.emoji}</span>
-
-            <div class="font-semibold text-black tracking-tight mb-1.5 group-hover:text-black/80 transition-colors duration-150">
-              {project.name}
-            </div>
-            <div class="text-sm text-black/45 leading-relaxed">
-              {project.description}
-            </div>
-
-            <!-- Subtle arrow that appears on hover -->
-            <svg
-              class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-30 group-hover:translate-x-0"
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <!-- ── FOOTER ────────────────────────────────────────────────── -->
-    <footer class="mx-auto max-w-4xl px-6 py-10 border-t border-black/[0.07]">
-      <p class="text-xs text-black/30 font-medium">
-        &copy; {new Date().getFullYear()} Marijn Bent
-      </p>
-    </footer>
-
-  </div>
-</Layout>
+<SiteLayout title="Marijn Bent — software, open source en cursussen" description={description} schema={schema}>
+  <section class="home-hero frame">
+    <div class="hero-intro"><p>Ik bouw software, werk aan open source en geef praktische cursussen in AI en blockchain.</p><a class="button" href="#projecten">Bekijk mijn werk <span aria-hidden="true">↘</span></a></div>
+    <h1>Marijn Bent</h1>
+    <div class="hero-bottom"><p>Van een eigen tool tot je eerste automatisering.</p><a href="/cursussen/ai-op-de-werkvloer/">AI op de werkvloer</a></div>
+  </section>
+  <section class="work-section light frame" id="projecten">
+    <div class="section-intro"><h2>Projecten</h2><p>Ik maak tools die ik zelf wil gebruiken. Veel daarvan deel ik als open source.</p></div>
+    <div class="work-names">{work.map(project => <a href={project.href}>{project.name}</a>)}</div>
+    <div class="work-feature"><a href="/booklite/" class="product-image"><img src="/images/applications/projects/booklite.webp" alt="BookLite met een overzicht van boeken in de digitale bibliotheek" width="1200" height="838" loading="lazy" /></a><div><h3>Een eigen bibliotheek</h3><p>BookLite houdt je boeken en leesvoortgang bij, ook op je Kobo. Ik onderhoud deze fork en maak hem passend voor dagelijks gebruik.</p><a class="text-link" href="https://github.com/marijnbent/booklite">Bekijk de broncode</a></div></div>
+    <details class="project-details"><summary>Wat doet elk project?</summary><dl>{work.map(project => <div><dt><a href={project.href}>{project.name}</a></dt><dd>{project.description}</dd></div>)}</dl></details>
+  </section>
+  <section class="studio-section frame">
+    <div><h2>Studiozoek</h2><a class="text-link" href="https://studiozoek.nl/">Naar Studiozoek</a></div>
+    <p>Met Studiozoek maak en beheer ik websites voor zzp’ers en kleine bedrijven. Van het eerste ontwerp tot hosting, e-mail en onderhoud. Ook de tools achter mijn bedrijf bouw ik zelf.</p>
+  </section>
+  <section class="training-section lime frame">
+    <div class="training-heading"><h2>Zelf aan de slag</h2><p>Een dag leren door te doen. Met je eigen werk als vertrekpunt en tijd voor persoonlijke begeleiding.</p></div>
+    <div class="training-split"><img src="/images/site/whiteboard.webp" alt="Marijn Bent bij een whiteboard met een schema van een AI-werkproces" width="1536" height="1024" loading="lazy" /><div class="course-links"><a href="/cursussen/ai-op-de-werkvloer/"><h3>AI op de werkvloer</h3><p>Werk met Codex en Claude aan je eigen automatisering.</p><span>Bekijk de cursus ↗</span></a><a href="/cursussen/blockchain/"><h3>Blockchain</h3><p>Begrijp hoe een blockchain werkt door er zelf mee te oefenen.</p><span>Bekijk de cursus ↗</span></a></div></div>
+    <p class="training-facts">Eén dag · 1–15 deelnemers · Op locatie of online</p>
+  </section>
+</SiteLayout>

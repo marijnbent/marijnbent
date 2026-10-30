@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { profile } from '../../data/profile';
+import type { Course } from '../../data/courses';
+interface Props { course: Course }
+const { course } = Astro.props;
+const isAI = course.slug === 'ai-op-de-werkvloer';
+const email = `mailto:${profile.email}?subject=${encodeURIComponent(`Cursus ${course.title}`)}&body=${encodeURIComponent('Hoi Marijn,\n\nIk wil graag overleggen over deze cursus.\n\nAantal deelnemers: \nOp locatie of online: \nGewenste periode: \nWat we willen leren: \n')}`;
+const schema = { '@context': 'https://schema.org', '@type': 'Course', name: course.title, description: course.description, inLanguage: 'nl', provider: { '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name }, url: `https://marijnbent.nl/cursussen/${course.slug}/` };
+---
+<SiteLayout title={`${course.title} — cursus met Marijn Bent`} description={course.description} schema={schema}>
+  <section class="course-hero frame">
+    <a class="back-link" href="/cursussen/">Alle cursussen</a>
+    <h1>{course.title}</h1>
+    <div class="course-lead"><p>{course.lead}</p><a class="button" href={email}>Bespreek je cursus <span aria-hidden="true">↗</span></a></div>
+    <dl class="course-facts"><div><dt>Duur</dt><dd>Eén dag</dd></div><div><dt>Groep</dt><dd>1–15 deelnemers</dd></div><div><dt>Waar</dt><dd>Op locatie of online</dd></div></dl>
+  </section>
+  <section class="course-result light frame"><div><h2>{isAI ? 'Je eigen automatisering' : 'Zelf aan de knoppen'}</h2><p class="lead">{course.outcome}</p><h3>Voor wie?</h3><p>{course.audience}</p></div><img src="/images/site/whiteboard.webp" alt="Marijn Bent legt een werkproces uit bij een whiteboard" width="1536" height="1024" loading="lazy" /></section>
+  <section class="programme frame"><h2>Wat je gaat doen</h2><div class="session-list">{course.sessions.map(session => <article><h3>{session.title}</h3><p>{session.body}</p></article>)}</div></section>
+  {isAI ? <section class="example-section light frame"><div><h2>Neem je eigen taak mee</h2><p>Je hoeft geen idee voor een hele app te hebben. Begin met iets kleins dat je vaak doet.</p></div><div class="examples"><details open><summary>Gegevens verwerken</summary><p>Zet een rommelige export om in een bruikbaar overzicht. Spreek het gewenste formaat af en controleer of de gegevens kloppen.</p></details><details><summary>Documenten voorbereiden</summary><p>Maak van vaste invoer een eerste versie van een document. Jij bepaalt de opbouw en controleert de inhoud.</p></details><details><summary>Een kleine tool bouwen</summary><p>Maak een rekenhulp of checklist voor een terugkerende taak. Test je tool met voorbeelden uit je eigen werk.</p></details></div></section> : <section class="example-section light frame"><div><h2>Probeer de simulator</h2><p>De Bitcoin simulator die ik voor mijn cursussen bouwde, maakt transacties, mining en forks zichtbaar.</p></div><a class="button" href="https://bitcoinsimulator.cowsandbytes.com/">Open de simulator <span aria-hidden="true">↗</span></a></section>}
+  <section class="practical frame"><h2>Klein genoeg voor aandacht</h2><div><p>Ik geef de cursus aan één tot vijftien deelnemers. Zo is er tijd om mee te kijken en je individueel verder te helpen. Voor een groter team kunnen we meerdere cursusdagen plannen.</p><p>{course.preparation}</p><p>Datum, locatie en prijs stemmen we vooraf af.</p><a class="button" href={email}>Bespreek je cursus</a><a class="text-link adjacent" href={profile.phoneHref}>Of bel {profile.phone}</a></div></section>
+</SiteLayout>
