@@ -1,13 +1,12 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { featuredWork, studiozoek } from '../data/work';
-import { courses, courseFacts } from '../data/courses';
+import { courses } from '../data/courses';
 import { profile } from '../data/profile';
 import Cow from '../components/site/Cow.astro';
 import VanRoute from '../components/site/VanRoute.astro';
 const description = 'Marijn Bent bouwt software, deelt veel ervan als open source, maakt websites met Studiozoek en geeft praktische cursussen in AI en blockchain.';
 const schema = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name, url: profile.website, email: profile.email, telephone: profile.phone, image: 'https://marijnbent.nl/images/site/marijn.webp', description, sameAs: [profile.github] };
-const sheet = featuredWork.filter(item => ['/booklite/', '/yellow-store/'].includes(item.href));
 ---
 <SiteLayout title="Marijn Bent — software, open source en cursussen" description={description} schema={schema}>
   <section class="hero wrap">
@@ -17,11 +16,6 @@ const sheet = featuredWork.filter(item => ['/booklite/', '/yellow-store/'].inclu
       <div class="actions"><a class="button" href="#werk">Bekijk mijn werk</a><a class="scribble story-link" href="#buiten">Over die bus…</a></div>
     </div>
     <div class="hero-person"><img src="/images/site/marijn.webp" alt="Marijn Bent" width="460" height="460" fetchpriority="high" /><Cow /></div>
-    <ul class="sheet" aria-label="Werk in beeld">
-      {sheet.map(item => item.image && (
-        <li><a href={item.href}><img class="shot" src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} /><span>{item.name}</span></a></li>
-      ))}
-    </ul>
   </section>
 
   <section class="work wrap" id="werk">
@@ -29,21 +23,14 @@ const sheet = featuredWork.filter(item => ['/booklite/', '/yellow-store/'].inclu
       <h2>Wat ik maak</h2>
       <p>Meestal begint het met iets wat ik zelf mis. Als het goed werkt, deel ik de code.</p>
     </div>
-    <ul class="index">
-      {featuredWork.map(item => (
-        <li>
-          <h3><a href={item.href}>{item.name}</a></h3>
-          <p class="kind">{item.kind}</p>
-          <p>{item.description}</p>
-          {item.source && <a class="code-link" href={item.source}>Code op GitHub</a>}
-        </li>
-      ))}
+    <ul class="work-gallery">
+      {featuredWork.map(item => <li class:list={['work-tile', { 'featured-tile': ['booklite', 'yellow-store'].includes(item.slug), 'icon-tile': item.visual === 'icon' }]}><a href={item.href}>{item.image && <div class="work-picture"><img src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} loading="lazy" /></div>}<div class="work-caption"><h3>{item.name}<span aria-hidden="true">↗</span></h3><p>{item.summary ?? item.description}</p><span class="kind">{item.kind}</span></div></a></li>)}
     </ul>
   </section>
 
   <section class="outside wrap" id="buiten">
     <div class="outside-story">
-      <h2>Ook zonder laptop</h2>
+      <h2>Richting<br />Kirgizië</h2>
       <p>Ik bouwde mijn eigen bus en ging ermee op reis richting Kirgizië. In Armenië sprong ik weg voor een hond die op me afstormde. Daarbij brak ik mijn been.</p>
       <p class="scribble">Dat stond niet op de route.</p>
     </div>
@@ -76,8 +63,5 @@ const sheet = featuredWork.filter(item => ['/booklite/', '/yellow-store/'].inclu
         </a>
       ))}
     </div>
-    <dl class="facts">
-      {courseFacts.map(fact => <div><dt>{fact.term}</dt><dd>{fact.value}</dd></div>)}
-    </dl>
   </section>
 </SiteLayout>

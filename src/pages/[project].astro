@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { work, featuredWork, type WorkItem } from '../data/work';
+import { profile } from '../data/profile';
+export function getStaticPaths() { return work.map(project => ({ params: { project: project.slug }, props: { project } })); }
+interface Props { project: WorkItem }
+const { project } = Astro.props;
+const position = featuredWork.findIndex(item => item.slug === project.slug);
+const next = featuredWork[(position + 1) % featuredWork.length];
+const schema = { '@context': 'https://schema.org', '@type': project.schemaType, '@id': `${profile.website}${project.href}#${project.schemaType === 'WebPage' ? 'page' : 'app'}`, name: project.name, url: project.action?.href.startsWith('https:') ? project.action.href : `${profile.website}${project.href}`, description: project.description, inLanguage: 'nl', ...(project.schemaType !== 'WebPage' ? { operatingSystem: project.platform, applicationCategory: project.slug === 'bitcoin-simulator' ? 'EducationalApplication' : 'ProductivityApplication' } : {}), author: { '@type': 'Person', '@id': `${profile.website}/#person`, name: profile.name } };
+---
+<SiteLayout title={`${project.name} — Marijn Bent`} description={project.description} schema={schema}>
+  <article class:list={['project', 'wrap', { 'icon-project': project.visual === 'icon' }]}>
+    <a class="back" href="/#werk">Alle projecten</a>
+    <header class="project-heading">
+      {project.visual === 'icon' && project.image && <img class="project-logo" src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} />}<h1>{project.name}</h1>
+      <div><p class="project-lead">{project.description}</p>{project.action && <a class="button" href={project.action.href}>{project.action.label}</a>}</div>
+    </header>
+    <ul class="project-facts" aria-label="Projectgegevens"><li>{project.kind}</li><li>{project.platform}</li></ul>
+    <div class:list={['project-story', { 'with-image': !!project.image && project.visual !== 'icon' }]}>
+      <div class="project-body"><p class="project-reason scribble">{project.reason}</p><div class="project-prose">{project.paragraphs.map(paragraph => <p>{paragraph}</p>)}</div></div>
+      {project.image && project.visual !== 'icon' ? <figure class:list={['project-evidence', { 'app-icon': project.slug === 'ollie' }]}><img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} /></figure> : null}
+    </div>
+    {next && <nav class="project-next" aria-label="Verder kijken"><a href={next.href}><span>Volgend project</span><strong>{next.name}</strong><span aria-hidden="true">↗</span></a></nav>}
+  </article>
+</SiteLayout>

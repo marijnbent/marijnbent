@@ -1,22 +1,21 @@
 ---
 import '../styles/site.css';
 import { profile } from '../data/profile';
-interface Props { title: string; description: string; lang?: 'nl' | 'en'; schema?: Record<string, unknown>; }
-const { title, description, lang = 'nl', schema } = Astro.props;
-const nl = lang === 'nl';
+interface Props { title: string; description: string; schema?: Record<string, unknown>; contact?: { title: string; text: string; email: string };  }
+const { title, description, schema, contact } = Astro.props;
 const canonical = new URL(Astro.url.pathname, profile.website).href;
 const path = Astro.url.pathname;
 const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefined);
 ---
 <!doctype html>
-<html lang={lang}>
+<html lang="nl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/cow.svg" type="image/svg+xml" />
+    <link rel="icon" href="/cow-favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -30,23 +29,23 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
     <script defer src="https://analytics.cowsandbytes.com/script.js" data-website-id="4effb6d5-fab0-4937-bdbc-3b3e6de7e0a5"></script>
   </head>
   <body>
-    <a href="#inhoud" class="skip-link">{nl ? 'Naar inhoud' : 'Skip to content'}</a>
+    <a href="#inhoud" class="skip-link">Naar inhoud</a>
     <header class="bar wrap">
-      <a href="/" class="wordmark">Marijn Bent</a>
-      <nav aria-label={nl ? 'Hoofdnavigatie' : 'Main navigation'}>
-        <a href="/#werk">{nl ? 'Werk' : 'Work'}</a>
+      <a href="/" class="wordmark"><img src="/cow-favicon.svg" alt="" width="32" height="32" />Marijn Bent</a>
+      <nav aria-label="Hoofdnavigatie">
+        <a href="/#werk">Werk</a>
         <a href="/#studiozoek">Studiozoek</a>
-        <a href="/cursussen/" aria-current={current('/cursussen')}>{nl ? 'Cursussen' : 'Courses'}</a>
+        <a href="/cursussen/" aria-current={current('/cursussen')}>Cursussen</a>
         <a href={profile.github}>GitHub</a>
       </nav>
-      <a class="button small" href={profile.phoneHref}>{nl ? 'Bel Marijn' : 'Call Marijn'}</a>
+      <a class="button small" href={profile.phoneHref}>Bel Marijn</a>
     </header>
     <main id="inhoud"><slot /></main>
     <footer class="foot wrap">
-      <h2>{nl ? 'Bel of mail me' : 'Call or email me'}</h2>
+      {contact ? <div class="foot-intro"><img src="/images/site/marijn.webp" alt="Marijn Bent" width="460" height="460" loading="lazy" /><div><h2>{contact.title}</h2><p>{contact.text}</p></div></div> : <h2>Bel of mail me</h2>}
       <ul class="foot-links">
         <li><a href={profile.phoneHref}>{profile.phone}</a></li>
-        <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+        <li><a href={contact?.email ?? `mailto:${profile.email}`}>{profile.email}</a></li>
         <li><a href={profile.github}>github.com/marijnbent</a></li>
         <li><a href="https://studiozoek.nl/">studiozoek.nl</a></li>
       </ul>

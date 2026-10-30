@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { courses, courseFacts } from '../../data/courses';
+import CourseFigure from '../../components/site/CourseFigure.astro';
 import { profile } from '../../data/profile';
 ---
 <SiteLayout title="Cursussen AI en blockchain — Marijn Bent" description="Praktische cursussen in AI en blockchain van Marijn Bent. Eén dag, 1 tot 15 deelnemers, bij jullie of online. Je werkt aan je eigen vragen en opdrachten.">
@@ -18,9 +19,9 @@ import { profile } from '../../data/profile';
     <h2 class="visually-hidden">Kies een cursus</h2>
     {courses.map(course => (
       <a class="catalogue-item" href={`/cursussen/${course.slug}/`}>
-        <h3>{course.title}</h3>
+        <CourseFigure kind={course.slug === 'blockchain' ? 'fork' : 'export'} /><h3>{course.title}</h3>
         <p>{course.lead}</p>
-        <ol>{course.sessions.map(session => <li>{session.title}</li>)}</ol>
+
         <span class="more">Bekijk het programma</span>
       </a>
     ))}

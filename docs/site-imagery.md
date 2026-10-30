@@ -1,30 +1,30 @@
 # Site imagery
 
-## Work screenshots
+## Work
 
-`public/images/work/*.webp` (1200 × 840, WebP quality 84) are real screenshots, cropped to 10:7:
+The project screenshots are 1200 × 840 WebP images, cropped to 10:7:
 
-- `booklite`, `obsidian-print`, `openfront`: screenshots from the READMEs of the GitHub repositories.
-- `yellow-store`, `bitcoin-simulator`, `studiozoek`: captured from yellowshop.fans, bitcoinsimulator.cowsandbytes.com and studiozoek.nl through Graze on 30 October 2026.
+- `booklite`, `obsidian-print`, `openfront`: GitHub README screenshots.
+- `yellow-store`, `bitcoin-simulator`, `studiozoek`: captured from the live sites through Graze on 30 October 2026.
 
-Retake them when a product changes visibly.
+`public/images/work/ollie-icon.webp` and `prepped-icon.webp` are 512 × 512 conversions of the projects' current app icons. They are icons, not screenshots. Ollie's inherited Tinycast screenshot is not presented as its current interface.
 
-`public/images/site/marijn.webp` is `public/images/applications/marijn/github-photo.png` converted to WebP.
+Retake screenshots when a product changes visibly. Keep the full screenshot on project pages rather than cropping away its content.
 
-## Course photo
+## Portrait
 
-Both generated whiteboard images were rejected. They have been removed from the pages and public assets at Marijn's request. The site uses his existing portrait only. The last prompt below is retained as a record of the rejected attempt.
+`public/images/site/marijn.webp` comes from `public/images/applications/marijn/github-photo.png`.
 
-Reject a result if the face does not clearly match the reference, if he looks into the camera, if the board shows neat readable labels, or if hands or the marker are malformed.
+Both generated whiteboard images were rejected and removed at Marijn's request. Use the existing portrait. No replacement whiteboard photo is requested.
 
-Prompt:
+## Illustrations
 
-> Documentary photograph taken during a small hands-on workshop in a plain Dutch meeting room on an overcast afternoon. Use the provided portrait as identity reference: preserve this exact man's recognizable facial structure, curly wavy brown hair, short beard, age and build. He stands at a used whiteboard, body turned toward it, head turned in three-quarter profile toward people outside the frame so his face is recognizable. Mid-sentence, thoughtful and engaged, not posing, no smile toward camera, eyes never looking at camera. One hand holds an uncapped black marker naturally against the board, other hand relaxed. Plain dark navy crewneck sweater, sleeves pushed up. Whiteboard has authentic grey erased ghosting, quick rough boxes, an arrow crossed out and redrawn, a few barely legible scribbles, plenty of unfilled board. No neat rendered labels or diagram words. Soft-focus foreground shows the edge of an everyday meeting table, back of an open laptop, charging cable. Not an aspirational designer office; modest practical space, ordinary window, radiator. Flat grey daylight mixed with ceiling light, slightly cool natural color, realistic unretouched skin, fine sensor grain. Eye-level candid 35mm photograph from three metres away, landscape 3:2, natural depth of field. No logos, no audience faces, no stock photo gestures, no theatrical lighting. Identity match matters more than idealized beauty. Save the generated image as a local file for the website.
+The selected cow, favicon and van are the original flat SVG family from the Opus consultation. `public/cow.svg` is the homepage cow; `public/cow-favicon.svg` is the favicon and small header mark.
 
-## Personal illustrations
+The cow uses a native button with a silent text response, keyboard support, a pressed state and a static no-JavaScript fallback.
 
-`public/cow.svg` is a small original vector drawing, used as the public site's favicon and as the homepage's interactive cow. It is a native button with a silent text response, keyboard support, a pressed state and a static no-JavaScript fallback.
+`src/components/site/VanRoute.astro` is a schematic van and journey, not a rendering of Marijn's actual van or a geographic map. He built his van and broke his leg in Armenia while jumping away from a charging dog, on a trip towards Kyrgyzstan.
 
-`src/components/site/VanRoute.astro` is a schematic drawing of a van and the interrupted journey towards Kyrgyzstan. It is not a rendering of Marijn's actual van or a geographic map. The story is based on Marijn's clarification: he built his own van and broke his leg in Armenia while jumping away from a charging dog. Existing stylized camper illustrations are not used on the homepage.
+The inline course figures in `src/components/site/figures/` use the same ink/blue palette. Their labels inherit the site typeface. The export table is illustrative course material, not a client result.
 
-The small marginal notes use Caveat alongside the existing Schibsted Grotesk typeface.
+Marginal notes use Caveat alongside Schibsted Grotesk. See `iterate/summary.md` for the retained design and the rejected alternatives.

@@ -1,0 +1,7 @@
+---
+import Export from './figures/Export.astro';
+import Fork from './figures/Fork.astro';
+interface Props { kind: 'export' | 'fork' }
+const { kind } = Astro.props;
+---
+<div class="course-drawing">{kind === 'export' ? <Export /> : <Fork />}</div>
