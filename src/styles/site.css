@@ -465,6 +465,7 @@ dd {
   letter-spacing: -0.06em;
   white-space: nowrap;
   margin-top: clamp(24px, 4vw, 64px);
+  padding-bottom: 0.15em;
 }
 
 .course-top {
@@ -770,6 +771,10 @@ dd {
     order: 3;
     width: 100%;
     gap: 20px;
+  }
+  .bar nav a {
+    padding-block: 12px;
+    margin-block: -12px;
   }
   .sheet {
     grid-template-columns: repeat(2, minmax(0, 1fr));
