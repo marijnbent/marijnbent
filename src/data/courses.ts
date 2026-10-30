@@ -30,7 +30,7 @@ export const courses: Course[] = [
       "Praktische AI-cursus van één dag met Codex van OpenAI en Claude van Anthropic. Je bouwt een automatisering voor je eigen werk. Voor 1 tot 15 deelnemers, bij jullie of online.",
     lead: "Je werkt een dag met Codex van OpenAI en Claude van Anthropic aan een taak uit je eigen werk. Aan het eind draait er een automatisering die je zelf hebt gebouwd.",
     outcome:
-      "Je gaat naar huis met een werkende automatisering voor een taak die je vaak doet. Je weet hoe je de uitkomst controleert, wat je wel en niet aan de tools geeft en hoe je hem later aanpast.",
+      "Je neemt een werkende automatisering mee. Je weet hoe je de uitkomst controleert en de oplossing later zelf aanpast.",
     audience:
       "Voor professionals en teams die AI echt willen gebruiken in hun werk. Je hoeft niet te kunnen programmeren. We kiezen een opdracht die past bij wat je al kunt.",
     preparation:
@@ -58,12 +58,6 @@ export const courses: Course[] = [
       { title: "Documenten voorbereiden", body: "Een eerste versie van een offerte, verslag of brief op basis van vaste invoer. Jij controleert de inhoud." },
       { title: "Een kleine interne tool", body: "Een rekenhulp, checklist of formulier voor een taak die je team elke week doet." },
     ],
-    image: {
-      src: "/images/site/course-whiteboard.webp",
-      alt: "Marijn Bent schrijft op een whiteboard en kijkt opzij tijdens een uitleg",
-      width: 1536,
-      height: 1024,
-    },
   },
   {
     slug: "blockchain",

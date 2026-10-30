@@ -13,7 +13,7 @@ Retake them when a product changes visibly.
 
 ## Course photo
 
-The first generated whiteboard image was rejected and removed. The replacement was generated with the built-in OpenAI image tool on 30 October 2026, using `public/images/applications/marijn/github-photo.png` as the identity reference. The original is `public/images/site/course-whiteboard.png`; the website uses `public/images/site/course-whiteboard.webp` (1536 × 1024, quality 88). It is integrated into the AI course as a photograph, separately from the blockchain simulator section. It illustrates a workshop; it is not a photograph of a past event.
+Both generated whiteboard images were rejected. They have been removed from the pages and public assets at Marijn's request. The site uses his existing portrait only. The last prompt below is retained as a record of the rejected attempt.
 
 Reject a result if the face does not clearly match the reference, if he looks into the camera, if the board shows neat readable labels, or if hands or the marker are malformed.
 

@@ -1,11 +1,11 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { work, studiozoek } from '../data/work';
+import { featuredWork, studiozoek } from '../data/work';
 import { courses, courseFacts } from '../data/courses';
 import { profile } from '../data/profile';
 const description = 'Marijn Bent bouwt software, deelt veel ervan als open source, maakt websites met Studiozoek en geeft praktische cursussen in AI en blockchain.';
 const schema = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name, url: profile.website, email: profile.email, telephone: profile.phone, image: 'https://marijnbent.nl/images/site/marijn.webp', description, sameAs: [profile.github] };
-const sheet = work.filter(item => item.image);
+const sheet = featuredWork.filter(item => ['/booklite/', '/yellow-store/'].includes(item.href));
 ---
 <SiteLayout title="Marijn Bent — software, open source en cursussen" description={description} schema={schema}>
   <section class="hero wrap">
@@ -19,7 +19,6 @@ const sheet = work.filter(item => item.image);
       {sheet.map(item => item.image && (
         <li><a href={item.href}><img class="shot" src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} /><span>{item.name}</span></a></li>
       ))}
-      <li><a href="#studiozoek"><img class="shot" src={studiozoek.image.src} alt={studiozoek.image.alt} width={studiozoek.image.width} height={studiozoek.image.height} /><span>Studiozoek</span></a></li>
     </ul>
   </section>
 
@@ -29,7 +28,7 @@ const sheet = work.filter(item => item.image);
       <p>Meestal begint het met iets wat ik zelf mis. Als het goed werkt, deel ik de code.</p>
     </div>
     <ul class="index">
-      {work.map(item => (
+      {featuredWork.map(item => (
         <li>
           <h3><a href={item.href}>{item.name}</a></h3>
           <p class="kind">{item.kind}</p>

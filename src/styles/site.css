@@ -6,7 +6,7 @@
   --accent: #1442f5;
   --on-dark: #f3f3f0;
   --margin: clamp(16px, 3.2vw, 48px);
-  --section: clamp(96px, 12vw, 176px);
+  --section: clamp(64px, 7vw, 112px);
   --text: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
   --small: 0.9375rem;
   --h3: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
@@ -101,7 +101,7 @@ dd {
 }
 
 .wrap {
-  padding-inline: var(--margin);
+  padding-inline: max(var(--margin), calc((100% - 1344px) / 2));
 }
 
 .visually-hidden {
@@ -250,21 +250,21 @@ dd {
 .sheet {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1.85fr repeat(3, minmax(0, 1.43fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin-top: clamp(40px, 5vw, 72px);
 }
 
 .sheet-portrait {
-  grid-row: span 2;
-  background: #fff;
+  background: var(--tone);
+  aspect-ratio: 10 / 7;
 }
 
 .sheet-portrait img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
+  object-fit: contain;
+  object-position: 50% 100%;
 }
 
 .sheet a {
@@ -459,13 +459,12 @@ dd {
 
 .foot-name {
   grid-column: 1 / -1;
-  font-size: clamp(4rem, 17.6vw, 20rem);
+  font-size: clamp(4rem, 17.6vw, 15rem);
   font-weight: 800;
-  line-height: 0.74;
+  line-height: 0.95;
   letter-spacing: -0.06em;
   white-space: nowrap;
   margin-top: clamp(24px, 4vw, 64px);
-  margin-left: -0.04em;
 }
 
 .course-top {
@@ -506,17 +505,6 @@ dd {
   padding-block: clamp(64px, 8vw, 120px);
   background: var(--accent);
   color: #fff;
-}
-
-.course-photo {
-  margin: clamp(40px, 5vw, 72px) 0 0;
-}
-
-.course-photo img {
-  width: 100%;
-  max-height: 720px;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
 }
 
 .outcome-grid {
@@ -682,7 +670,7 @@ dd {
   display: grid;
   gap: 28px;
   padding-top: clamp(24px, 4vw, 64px);
-  max-width: calc(1100px + 2 * var(--margin));
+  padding-inline: max(var(--margin), calc((100% - 1100px) / 2));
 }
 
 .project .back {
@@ -725,28 +713,6 @@ dd {
 
 .project-body a:hover {
   color: var(--accent);
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .index li,
-    .teach-item,
-    .steps li,
-    .studio-grid > *,
-    .ideas li,
-    .catalogue-item {
-      animation: rise linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 40%;
-    }
-  }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

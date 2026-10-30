@@ -75,3 +75,6 @@ export const studiozoek = {
   href: "https://studiozoek.nl/",
   image: screen("studiozoek", "De website van Studiozoek met een voorbeeld van een kapsalonwebsite"),
 };
+
+export const featuredWork = ["/ollie/", "/booklite/", "/prepped/", "/yellow-store/", "/obsidian-print/"]
+  .flatMap(href => work.filter(item => item.href === href));

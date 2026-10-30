@@ -4,7 +4,6 @@ import { profile } from '../../data/profile';
 import { courseFacts, type Course } from '../../data/courses';
 interface Props { course: Course }
 const { course } = Astro.props;
-const isAI = course.slug === 'ai-op-de-werkvloer';
 const email = `mailto:${profile.email}?subject=${encodeURIComponent(`Cursus ${course.title}`)}&body=${encodeURIComponent('Hoi Marijn,\n\nIk wil graag een cursusdag plannen.\n\nAantal deelnemers: \nBij ons of online: \nGewenste periode: \nWat we willen leren: \n')}`;
 const schema = { '@context': 'https://schema.org', '@type': 'Course', name: course.title, description: course.description, inLanguage: 'nl', provider: { '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name }, url: `https://marijnbent.nl/cursussen/${course.slug}/` };
 ---
@@ -20,12 +19,6 @@ const schema = { '@context': 'https://schema.org', '@type': 'Course', name: cour
       {courseFacts.map(fact => <div><dt>{fact.term}</dt><dd>{fact.value}</dd></div>)}
     </dl>
   </section>
-
-  {isAI && course.image && (
-    <figure class="course-photo wrap">
-      <img src={course.image.src} alt={course.image.alt} width={course.image.width} height={course.image.height} loading="lazy" />
-    </figure>
-  )}
 
   <section class="outcome">
     <div class="wrap outcome-grid">
@@ -44,7 +37,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'Course', name: cour
   {course.examples.length > 0 && (
     <section class="ideas wrap">
       <div>
-        <h2>Neem je eigen taak mee</h2>
+        <h2>Jouw eigen taak</h2>
         <p>Je hoeft geen idee voor een hele app te hebben. Een klus die je elke week doet is genoeg.</p>
       </div>
       <ul>
@@ -53,7 +46,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'Course', name: cour
     </section>
   )}
 
-  {!isAI && course.image && (
+  {course.image && (
     <section class="tool wrap">
       <img class="shot" src={course.image.src} alt={course.image.alt} width={course.image.width} height={course.image.height} loading="lazy" />
       <div>
