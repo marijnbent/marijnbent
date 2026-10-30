@@ -1,0 +1,55 @@
+---
+import '../styles/site.css';
+import { profile } from '../data/profile';
+interface Props { title: string; description: string; schema?: Record<string, unknown>; contact?: { title: string; text: string; email: string };  }
+const { title, description, schema, contact } = Astro.props;
+const canonical = new URL(Astro.url.pathname, profile.website).href;
+const path = Astro.url.pathname;
+const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefined);
+---
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/cow-favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://marijnbent.nl/images/work/booklite.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}
+    <script defer src="https://analytics.cowsandbytes.com/script.js" data-website-id="4effb6d5-fab0-4937-bdbc-3b3e6de7e0a5"></script>
+  </head>
+  <body>
+    <a href="#inhoud" class="skip-link">Naar inhoud</a>
+    <header class="bar wrap">
+      <a href="/" class="wordmark"><img src="/cow-favicon.svg" alt="" width="32" height="32" />Marijn Bent</a>
+      <nav aria-label="Hoofdnavigatie">
+        <a href="/#werk">Werk</a>
+        <a href="/#studiozoek">Studiozoek</a>
+        <a href="/cursussen/" aria-current={current('/cursussen')}>Cursussen</a>
+        <a href={profile.github}>GitHub</a>
+      </nav>
+      <a class="button small" href={profile.phoneHref}>Bel Marijn</a>
+    </header>
+    <main id="inhoud"><slot /></main>
+    <footer class="foot wrap">
+      {contact ? <div class="foot-intro"><img src="/images/site/marijn.webp" alt="Marijn Bent" width="460" height="460" loading="lazy" /><div><h2>{contact.title}</h2><p>{contact.text}</p></div></div> : <h2>Bel of mail me</h2>}
+      <ul class="foot-links">
+        <li><a href={profile.phoneHref}>{profile.phone}</a></li>
+        <li><a href={contact?.email ?? `mailto:${profile.email}`}>{profile.email}</a></li>
+        <li><a href={profile.github}>github.com/marijnbent</a></li>
+        <li><a href="https://studiozoek.nl/">studiozoek.nl</a></li>
+      </ul>
+      <p class="foot-name" aria-hidden="true">Marijn Bent</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { courses, courseFacts } from '../../data/courses';
+import CourseFigure from '../../components/site/CourseFigure.astro';
+import { profile } from '../../data/profile';
+---
+<SiteLayout title="Cursussen AI en blockchain — Marijn Bent" description="Praktische cursussen in AI en blockchain van Marijn Bent. Eén dag, 1 tot 15 deelnemers, bij jullie of online. Je werkt aan je eigen vragen en opdrachten.">
+  <section class="course-top wrap">
+    <h1>Cursussen</h1>
+    <div class="course-intro">
+      <p>Een dag zelf doen in plaats van luisteren. In een kleine groep, met tijd voor jouw vragen en jouw werk.</p>
+      <div class="actions"><a class="button" href={profile.phoneHref}>Bel Marijn</a><a class="text-link" href={`mailto:${profile.email}?subject=${encodeURIComponent('Cursus')}`}>Of mail {profile.email}</a></div>
+    </div>
+    <dl class="facts">
+      {courseFacts.map(fact => <div><dt>{fact.term}</dt><dd>{fact.value}</dd></div>)}
+    </dl>
+  </section>
+  <section class="catalogue wrap">
+    <h2 class="visually-hidden">Kies een cursus</h2>
+    {courses.map(course => (
+      <a class="catalogue-item" href={`/cursussen/${course.slug}/`}>
+        <CourseFigure kind={course.slug === 'blockchain' ? 'fork' : 'export'} /><h3>{course.title}</h3>
+        <p>{course.lead}</p>
+
+        <span class="more">Bekijk het programma</span>
+      </a>
+    ))}
+  </section>
+</SiteLayout>

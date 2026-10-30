@@ -25,3 +25,17 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+.taste-skill/
+
+# Local visual iteration evidence
+iterate/*
+!iterate/log.md
+!iterate/scorecard.md
+!iterate/summary.md
+!iterate/baseline/
+iterate/baseline/*
+!iterate/baseline/judgement.md
+!iterate/round-*/
+iterate/round-*/*
+!iterate/round-*/judgement.md
