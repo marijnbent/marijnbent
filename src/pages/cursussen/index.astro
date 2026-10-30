@@ -1,10 +1,28 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { courses } from '../../data/courses';
+import { courses, courseFacts } from '../../data/courses';
 import { profile } from '../../data/profile';
 ---
-<SiteLayout title="Cursussen AI en blockchain — Marijn Bent" description="Praktische cursussen AI en blockchain van Marijn Bent. Eén dag, 1–15 deelnemers, op locatie of online. Met tijd voor je eigen vragen en opdrachten.">
-  <section class="course-hero frame"><h1>Leren door te doen</h1><div class="course-lead"><p>Praktische cursussen in AI en blockchain. Met een kleine groep en tijd voor jouw vragen.</p><a class="button" href={profile.phoneHref}>Bel Marijn <span aria-hidden="true">↗</span></a></div><p class="training-facts">Eén dag · 1–15 deelnemers · Op locatie of online</p></section>
-  <section class="course-overview light frame"><h2>Kies je cursus</h2>{courses.map(course => <a class="course-row" href={`/cursussen/${course.slug}/`}><h3>{course.title}</h3><p>{course.lead}</p><span aria-hidden="true">↗</span></a>)}</section>
-  <section class="course-result frame"><div><h2>Tijd voor jouw werk</h2><p class="lead">Ik help je zelf iets te maken en te begrijpen wat je doet. Daarom werk ik met maximaal vijftien deelnemers.</p><p>De cursus kan bij jullie op locatie of online. Met een groter team plannen we meerdere dagen. Vooraf bespreken we jullie ervaring en wat jullie willen leren.</p></div><img src="/images/site/whiteboard.webp" alt="Marijn Bent bij een whiteboard" width="1536" height="1024" loading="lazy" /></section>
+<SiteLayout title="Cursussen AI en blockchain — Marijn Bent" description="Praktische cursussen in AI en blockchain van Marijn Bent. Eén dag, 1 tot 15 deelnemers, bij jullie of online. Je werkt aan je eigen vragen en opdrachten.">
+  <section class="course-top wrap">
+    <h1>Cursussen</h1>
+    <div class="course-intro">
+      <p>Een dag zelf doen in plaats van luisteren. In een kleine groep, met tijd voor jouw vragen en jouw werk.</p>
+      <div class="actions"><a class="button" href={profile.phoneHref}>Bel Marijn</a><a class="text-link" href={`mailto:${profile.email}?subject=${encodeURIComponent('Cursus')}`}>Of mail {profile.email}</a></div>
+    </div>
+    <dl class="facts">
+      {courseFacts.map(fact => <div><dt>{fact.term}</dt><dd>{fact.value}</dd></div>)}
+    </dl>
+  </section>
+  <section class="catalogue wrap">
+    <h2 class="visually-hidden">Kies een cursus</h2>
+    {courses.map(course => (
+      <a class="catalogue-item" href={`/cursussen/${course.slug}/`}>
+        <h3>{course.title}</h3>
+        <p>{course.lead}</p>
+        <ol>{course.sessions.map(session => <li>{session.title}</li>)}</ol>
+        <span class="more">Bekijk het programma</span>
+      </a>
+    ))}
+  </section>
 </SiteLayout>

@@ -3,8 +3,10 @@ import '../styles/site.css';
 import { profile } from '../data/profile';
 interface Props { title: string; description: string; lang?: 'nl' | 'en'; schema?: Record<string, unknown>; }
 const { title, description, lang = 'nl', schema } = Astro.props;
+const nl = lang === 'nl';
 const canonical = new URL(Astro.url.pathname, profile.website).href;
-const coursePage = Astro.url.pathname.startsWith('/cursussen');
+const path = Astro.url.pathname;
+const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefined);
 ---
 <!doctype html>
 <html lang={lang}>
@@ -19,30 +21,36 @@ const coursePage = Astro.url.pathname.startsWith('/cursussen');
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content="https://marijnbent.nl/images/site/whiteboard.webp" />
+    <meta property="og:image" content="https://marijnbent.nl/images/work/booklite.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}
     <script defer src="https://analytics.cowsandbytes.com/script.js" data-website-id="4effb6d5-fab0-4937-bdbc-3b3e6de7e0a5"></script>
   </head>
   <body>
-    <a href="#inhoud" class="skip-link">{lang === 'nl' ? 'Naar inhoud' : 'Skip to content'}</a>
-    <header class="site-header frame">
-      <a href="/" class="brand" aria-label="Marijn Bent, home">mb.</a>
-      <nav aria-label={lang === 'nl' ? 'Hoofdnavigatie' : 'Main navigation'}>
-        <a href="/#projecten">{lang === 'nl' ? 'Projecten' : 'Projects'}</a>
-        <a href="/cursussen/" aria-current={coursePage ? 'true' : undefined}>Cursussen</a>
+    <a href="#inhoud" class="skip-link">{nl ? 'Naar inhoud' : 'Skip to content'}</a>
+    <header class="bar wrap">
+      <a href="/" class="wordmark">Marijn Bent</a>
+      <nav aria-label={nl ? 'Hoofdnavigatie' : 'Main navigation'}>
+        <a href="/#werk">{nl ? 'Werk' : 'Work'}</a>
+        <a href="/#studiozoek">Studiozoek</a>
+        <a href="/cursussen/" aria-current={current('/cursussen')}>{nl ? 'Cursussen' : 'Courses'}</a>
         <a href={profile.github}>GitHub</a>
-        <a class="call-link" href={profile.phoneHref}>{lang === 'nl' ? 'Bel Marijn' : 'Call Marijn'} <span aria-hidden="true">↗</span></a>
       </nav>
+      <a class="button small" href={profile.phoneHref}>{nl ? 'Bel Marijn' : 'Call Marijn'}</a>
     </header>
     <main id="inhoud"><slot /></main>
-    <footer class="site-footer frame" id="contact">
-      <div><h2>{lang === 'nl' ? 'Even overleggen?' : 'Let’s talk.'}</h2><a class="email" href={`mailto:${profile.email}`}>{profile.email}</a></div>
-      <div class="footer-links"><a href={profile.phoneHref}>{profile.phone}</a><a href={profile.github}>GitHub</a><span>© {new Date().getFullYear()} Marijn Bent</span></div>
-      <p class="footer-name" aria-hidden="true">Marijn Bent</p>
+    <footer class="foot wrap">
+      <h2>{nl ? 'Bel of mail me' : 'Call or email me'}</h2>
+      <ul class="foot-links">
+        <li><a href={profile.phoneHref}>{profile.phone}</a></li>
+        <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+        <li><a href={profile.github}>github.com/marijnbent</a></li>
+        <li><a href="https://studiozoek.nl/">studiozoek.nl</a></li>
+      </ul>
+      <p class="foot-name" aria-hidden="true">Marijn Bent</p>
     </footer>
   </body>
 </html>
