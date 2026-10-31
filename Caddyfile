@@ -12,28 +12,66 @@
 	}
 }
 
+(security) {
+	header {
+		X-Content-Type-Options nosniff
+		-Server
+	}
+}
+
 :{$PORT:80} {
 	log {
 		format json
 	}
 
-	respond /health 200
+	import security
 
-	header {
-		X-Content-Type-Options nosniff
-		-Server
+	header /_astro/* >Cache-Control "public, max-age=31536000, immutable"
+
+	@www host www.marijnbent.nl
+	redir @www https://marijnbent.nl{uri} 301
+
+	@website path /diensten/* /webshop/* /cms/*
+	redir @website https://studiozoek.nl/website-laten-maken-zzp 301
+
+	@hosting path /webhosting/*
+	redir @hosting https://studiozoek.nl/pakketten 301
+
+	@studiozoek path /portfolio/* /portfolios/* /referenties/* /support/*
+	redir @studiozoek https://studiozoek.nl/ 301
+
+	@belafspraak path /belafspraak/*
+	redir @belafspraak https://studiozoek.nl/belafspraak 301
+
+	@ollie path /vibescribe/*
+	redir @ollie /ollie/ 301
+
+	@yellowStore path /parkside-fans/*
+	redir @yellowStore /yellow-store/ 301
+
+	@gone path /how-to-use-laravel-nova-without-authenticationroutes/* /connect-the-blockchain-with-the-internet/* /feed/* /wp-admin/* /wp-content/* /wp-login.php /sitemap_index.xml /hiredd/* /i-want-to-work-for/* /ik-wil-werken-voor/* /applications/*
+	handle @gone {
+		error 410
 	}
 
-	@applications path /i-want-to-work-for/* /ik-wil-werken-voor/* /applications/*
-	header @applications X-Robots-Tag noindex
+	handle /health {
+		respond 200
+	}
 
 	root * /app/dist
 
-	file_server {
-		hide .git
-		hide .env*
+	handle {
+		encode gzip zstd
+		try_files {path} {path}.html {path}/index.html
+		file_server {
+			hide .git
+			hide .env*
+		}
 	}
 
-	encode gzip zstd
-	try_files {path} {path}.html {path}/index.html /index.html
+	handle_errors 404 410 {
+		import security
+		rewrite * /404.html
+		file_server
+	}
 }

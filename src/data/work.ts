@@ -1,10 +1,20 @@
-export interface Picture { src: string; alt: string; width: number; height: number; }
+import type { ImageMetadata } from 'astro';
+import ollieIcon from '../assets/work/ollie-icon.webp';
+import booklite from '../assets/work/booklite.webp';
+import preppedIcon from '../assets/work/prepped-icon.webp';
+import yellowStore from '../assets/work/yellow-store.webp';
+import obsidianPrint from '../assets/work/obsidian-print.webp';
+import bitcoinSimulator from '../assets/work/bitcoin-simulator.webp';
+import openfront from '../assets/work/openfront.webp';
+import studiozoekShot from '../assets/work/studiozoek.webp';
+
+export interface Picture { src: ImageMetadata; alt: string; }
 
 export interface ProjectDetail {
   name: string; description: string; platform: string; kind: string; reason: string; paragraphs: string[];
   action?: { href: string; label: string }; source?: string; image?: Picture;
   summary?: string; visual?: 'icon';
-  schemaType: 'SoftwareApplication' | 'WebApplication' | 'WebPage';
+  schemaType: 'SoftwareApplication' | 'WebApplication';
 }
 
 export interface WorkItem extends ProjectDetail { slug: string; href: string; }
@@ -27,12 +37,7 @@ const details: Record<string, ProjectDetail> = {
       "href": "https://github.com/marijnbent/ollie",
       "label": "Bekijk de code"
     },
-    "image": {
-      "src": "/images/work/ollie-icon.webp",
-      "alt": "Het appicoon van Ollie: een otter met een steen",
-      "width": 512,
-      "height": 512
-    },
+    "image": { "src": ollieIcon, "alt": "Het appicoon van Ollie: een otter met een steen" },
     "source": "https://github.com/marijnbent/ollie",
     "schemaType": "SoftwareApplication"
   },
@@ -52,12 +57,7 @@ const details: Record<string, ProjectDetail> = {
       "href": "https://github.com/marijnbent/booklite",
       "label": "Bekijk de code"
     },
-    "image": {
-      "src": "/images/work/booklite.webp",
-      "alt": "De bibliotheek van BookLite met boekomslagen, leesstatus en collecties",
-      "width": 1200,
-      "height": 840
-    },
+    "image": { "src": booklite, "alt": "De bibliotheek van BookLite met boekomslagen, leesstatus en collecties" },
     "source": "https://github.com/marijnbent/booklite",
     "schemaType": "SoftwareApplication"
   },
@@ -65,7 +65,7 @@ const details: Record<string, ProjectDetail> = {
     "summary": "Recepten op één plek, koken voor het huishouden.",
     "visual": "icon",
     "name": "Prepped",
-    "image": { "src": "/images/work/prepped-icon.webp", "alt": "Het appicoon van Prepped: een gebakken ei", "width": 512, "height": 512 },
+    "image": { "src": preppedIcon, "alt": "Het appicoon van Prepped: een gebakken ei" },
     "description": "Recepten importeren, porties aanpassen en bijhouden wat je kookt. Voor je huishouden, op je eigen server.",
     "platform": "Browser · Docker",
     "kind": "Webapp · open source",
@@ -98,12 +98,7 @@ const details: Record<string, ProjectDetail> = {
       "href": "https://yellowshop.fans/",
       "label": "Open Yellow Shop"
     },
-    "image": {
-      "src": "/images/work/yellow-store.webp",
-      "alt": "Yellow Shop met zoekveld en actuele Lidl-prijsdalingen",
-      "width": 1200,
-      "height": 840
-    },
+    "image": { "src": yellowStore, "alt": "Yellow Shop met zoekveld en actuele Lidl-prijsdalingen" },
     "schemaType": "WebApplication"
   },
   "obsidian-print": {
@@ -121,12 +116,7 @@ const details: Record<string, ProjectDetail> = {
       "href": "https://github.com/marijnbent/obsidian-print",
       "label": "Bekijk de plugin"
     },
-    "image": {
-      "src": "/images/work/obsidian-print.webp",
-      "alt": "De instellingen van Obsidian Print",
-      "width": 1200,
-      "height": 840
-    },
+    "image": { "src": obsidianPrint, "alt": "De instellingen van Obsidian Print" },
     "source": "https://github.com/marijnbent/obsidian-print",
     "schemaType": "SoftwareApplication"
   },
@@ -145,12 +135,7 @@ const details: Record<string, ProjectDetail> = {
       "href": "https://bitcoinsimulator.cowsandbytes.com/",
       "label": "Open de simulator"
     },
-    "image": {
-      "src": "/images/work/bitcoin-simulator.webp",
-      "alt": "De Bitcoin simulator met een startscherm voor een keten",
-      "width": 1200,
-      "height": 840
-    },
+    "image": { "src": bitcoinSimulator, "alt": "De Bitcoin simulator met een startscherm voor een keten" },
     "schemaType": "WebApplication"
   },
   "openfront-extension": {
@@ -168,58 +153,9 @@ const details: Record<string, ProjectDetail> = {
       "href": "https://github.com/marijnbent/openfront-extension",
       "label": "Bekijk de extensie"
     },
-    "image": {
-      "src": "/images/work/openfront.webp",
-      "alt": "OpenFront met landmarkeringen en sneltoetsen",
-      "width": 1200,
-      "height": 840
-    },
+    "image": { "src": openfront, "alt": "OpenFront met landmarkeringen en sneltoetsen" },
     "source": "https://github.com/marijnbent/openfront-extension",
     "schemaType": "SoftwareApplication"
-  },
-  "hiredd": {
-    "name": "Hiredd",
-    "description": "Sollicitaties, gesprekken, taken en documenten bij elkaar houden.",
-    "platform": "Browser · Docker",
-    "kind": "Zelf gehoste webapp",
-    "reason": "Bij meerdere sollicitaties tegelijk raakte ik het overzicht kwijt.",
-    "paragraphs": [
-      "Hiredd houdt sollicitaties bij per werkruimte. Je bewaart het bedrijf, de functie, de fase en een tijdlijn met notities.",
-      "Gesprekken en taken staan in een planning. Cv’s en brieven bewaar je bij de sollicitaties. De app draait op je eigen server met SQLite als database."
-    ],
-    "schemaType": "WebApplication"
-  },
-  "vibescribe": {
-    "name": "VibeScribe",
-    "description": "Het dicteren uit VibeScribe zit nu in Ollie.",
-    "platform": "macOS",
-    "kind": "Onderdeel van Ollie",
-    "reason": "Een toets indrukken, praten en de tekst invoegen waar je werkt.",
-    "paragraphs": [
-      "VibeScribe begon als een aparte dicteerapp, met de mogelijkheid om de transcriptie door AI op te laten schonen.",
-      "Die functie is nu onderdeel van Ollie, naast de launcher, klembordgeschiedenis, snippets en andere dagelijkse tools."
-    ],
-    "action": {
-      "href": "/ollie/",
-      "label": "Bekijk Ollie"
-    },
-    "schemaType": "WebPage"
-  },
-  "parkside-fans": {
-    "name": "Parkside.fans",
-    "description": "Begonnen met gereedschap. Doorgegroeid naar Yellow Shop.",
-    "platform": "Web",
-    "kind": "Voorganger van Yellow Shop",
-    "reason": "Parkside-gereedschap vergelijken tussen Europese Lidl-winkels.",
-    "paragraphs": [
-      "Ik begon Parkside.fans als prijsvergelijker voor Parkside-gereedschap. Het project groeide uit tot Yellow Shop, met meer Lidl-merken en dagelijkse producten.",
-      "De prijzen, prijsgeschiedenis en volglijst vind je nu bij Yellow Shop."
-    ],
-    "action": {
-      "href": "/yellow-store/",
-      "label": "Bekijk Yellow Shop"
-    },
-    "schemaType": "WebPage"
   }
 };
 
@@ -227,4 +163,4 @@ export const work: WorkItem[] = Object.entries(details).map(([slug, detail]) => 
 
 export const featuredWork = ["ollie", "booklite", "prepped", "yellow-store", "obsidian-print"].flatMap(slug => work.filter(item => item.slug === slug));
 
-export const studiozoek = { href: "https://studiozoek.nl/", image: { src: "/images/work/studiozoek.webp", alt: "De website van Studiozoek met een voorbeeld van een kapsalonwebsite", width: 1200, height: 840 } };
+export const studiozoek = { href: "https://studiozoek.nl/", image: { src: studiozoekShot, alt: "De website van Studiozoek met een voorbeeld van een kapsalonwebsite" } };
