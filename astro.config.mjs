@@ -27,7 +27,5 @@ export default defineConfig({
     }
   ],
 
-  integrations: [sitemap({
-    filter: (page) => !/^\/(i-want-to-work-for|ik-wil-werken-voor|applications)(\/|$)/.test(new URL(page).pathname)
-  })]
+  integrations: [sitemap()]
 });

@@ -156,18 +156,6 @@ const details: Record<string, ProjectDetail> = {
     "image": { "src": openfront, "alt": "OpenFront met landmarkeringen en sneltoetsen" },
     "source": "https://github.com/marijnbent/openfront-extension",
     "schemaType": "SoftwareApplication"
-  },
-  "hiredd": {
-    "name": "Hiredd",
-    "description": "Sollicitaties, gesprekken, taken en documenten bij elkaar houden.",
-    "platform": "Browser · Docker",
-    "kind": "Zelf gehoste webapp",
-    "reason": "Bij meerdere sollicitaties tegelijk raakte ik het overzicht kwijt.",
-    "paragraphs": [
-      "Hiredd houdt sollicitaties bij per werkruimte. Je bewaart het bedrijf, de functie, de fase en een tijdlijn met notities.",
-      "Gesprekken en taken staan in een planning. Cv’s en brieven bewaar je bij de sollicitaties. De app draait op je eigen server met SQLite als database."
-    ],
-    "schemaType": "WebApplication"
   }
 };
 

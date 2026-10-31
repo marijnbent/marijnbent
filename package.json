@@ -10,7 +10,6 @@
     "build": "astro build",
     "preview": "portless marijnbent astro preview --host 127.0.0.1",
     "astro": "astro",
-    "check:applications": "node scripts/check-applications.mjs",
     "watch": "astro dev --host 127.0.0.1",
     "check": "astro check"
   },

@@ -26,9 +26,6 @@
 
 	import security
 
-	@applications path /i-want-to-work-for/* /ik-wil-werken-voor/* /applications/*
-	header @applications X-Robots-Tag noindex
-
 	header /_astro/* >Cache-Control "public, max-age=31536000, immutable"
 
 	@www host www.marijnbent.nl
@@ -52,7 +49,7 @@
 	@yellowStore path /parkside-fans/*
 	redir @yellowStore /yellow-store/ 301
 
-	@gone path /how-to-use-laravel-nova-without-authenticationroutes/* /connect-the-blockchain-with-the-internet/* /feed/* /wp-admin/* /wp-content/* /wp-login.php /sitemap_index.xml
+	@gone path /how-to-use-laravel-nova-without-authenticationroutes/* /connect-the-blockchain-with-the-internet/* /feed/* /wp-admin/* /wp-content/* /wp-login.php /sitemap_index.xml /hiredd/* /i-want-to-work-for/* /ik-wil-werken-voor/* /applications/*
 	handle @gone {
 		error 410
 	}

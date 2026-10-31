@@ -8,7 +8,7 @@ Use this as a source bank, not as text to paste wholesale into an application. C
 
 - Name: Marijn Bent
 - Email: marijn@marijnbent.nl
-- Phone: +31 6 8105 3848
+- Phone: +31 6 3441 7400
 - Website: https://marijnbent.nl
 - GitHub: https://github.com/marijnbent
 - Languages: Dutch and English; no formal proficiency rating assumed.
