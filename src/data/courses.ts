@@ -19,7 +19,7 @@ export const courseFacts = [
   { term: "Duur", value: "Eén dag" },
   { term: "Groep", value: "1 tot 15 deelnemers" },
   { term: "Plek", value: "Bij jullie of online" },
-  { term: "Prijs", value: "Vanaf €1.250 per dag" },
+  { term: "Prijs", value: "Vanaf €1.250 per dag, excl. btw" },
 ];
 
 export const courses: Course[] = [

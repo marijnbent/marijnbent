@@ -9,14 +9,14 @@ interface Props { course: Course }
 const { course } = Astro.props;
 const email = `mailto:${profile.email}?subject=${encodeURIComponent(`Cursus ${course.title}`)}&body=${encodeURIComponent('Hoi Marijn,\n\nIk wil graag een cursusdag plannen.\n\nAantal deelnemers: \nBij ons of online: \nGewenste periode: \nWat we willen leren: \n')}`;
 const person = { '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name, url: profile.website };
-const schema = { '@context': 'https://schema.org', '@type': 'Course', name: course.title, description: course.description, inLanguage: 'nl', provider: person, url: `https://marijnbent.nl/cursussen/${course.slug}/`, hasCourseInstance: { '@type': 'CourseInstance', courseMode: ['Onsite', 'Online'], courseWorkload: 'P1D', instructor: person }, offers: { '@type': 'Offer', category: 'Paid', price: 1250, priceCurrency: 'EUR', url: `https://marijnbent.nl/cursussen/${course.slug}/` } };
+const schema = { '@context': 'https://schema.org', '@type': 'Course', name: course.title, description: course.description, inLanguage: 'nl', provider: person, url: `https://marijnbent.nl/cursussen/${course.slug}/`, hasCourseInstance: { '@type': 'CourseInstance', courseMode: ['Onsite', 'Online'], courseWorkload: 'P1D', instructor: person }, offers: { '@type': 'Offer', category: 'Paid', price: 1250, priceCurrency: 'EUR', priceSpecification: { '@type': 'PriceSpecification', minPrice: 1250, priceCurrency: 'EUR', valueAddedTaxIncluded: false }, url: `https://marijnbent.nl/cursussen/${course.slug}/` } };
 ---
 <SiteLayout title={`${course.title} — cursus van Marijn Bent`} description={course.description} image={course.image?.src} schema={schema} contact={{ title: 'Ik kijk met je mee.', text: 'Ik geef de cursus zelf. Voor een groter team plannen we meerdere sessies. Datum en plek spreken we samen af.', email }}>
   <section class="course-top wrap">
     <a class="back" href="/cursussen/">Alle cursussen</a>
     <h1>{course.title}</h1>
     <div class="course-intro"><p>{course.lead}</p><div class="actions"><a class="button" href={email}>Plan een cursusdag</a><a class="text-link" href={profile.phoneHref}>Of bel Marijn</a></div></div>
-    <ul class="course-format" aria-label="Praktische informatie"><li>Eén dag</li><li>1 tot 15 deelnemers</li><li>Bij jullie of online</li><li>Vanaf €1.250 per dag</li></ul>
+    <ul class="course-format" aria-label="Praktische informatie"><li>Eén dag</li><li>1 tot 15 deelnemers</li><li>Bij jullie of online</li><li>Vanaf €1.250 per dag, excl. btw</li></ul>
   </section>
   <section class="outcome wrap">
     <div><h2>Wat je meeneemt</h2><p>{course.outcome}</p></div>
