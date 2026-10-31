@@ -30,15 +30,14 @@ This file preserves the original implementation brief. The maintenance guide rec
 
 ## Existing website
 
-The inspected main branch uses Astro, React, Tailwind CSS, and the Astro sitemap integration.
+The site uses Astro, plain CSS and the Astro sitemap integration.
 
 Relevant existing files:
 
 - `src/pages/index.astro`: homepage and project list.
-- `src/layouts/Layout.astro`: shared page shell and metadata.
-- `astro.config.mjs`: site URL and integrations.
-- `src/styles/global.css`: global styling.
-- `src/components/ui/`: existing React UI primitives.
+- `src/layouts/SiteLayout.astro`: shared page shell and metadata.
+- `astro.config.mjs`: site URL, fonts and integrations.
+- `src/styles/site.css`: site styling.
 
 Extend this stack. Introduce a dedicated application layout where needed so the editorial page can have its own composition.
 

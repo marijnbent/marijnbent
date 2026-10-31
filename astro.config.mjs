@@ -1,9 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-
-import tailwindcss from '@tailwindcss/vite';
-
-import react from '@astrojs/react';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 
@@ -11,11 +7,27 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://marijnbent.nl',
 
-  vite: {
-    plugins: [tailwindcss()]
-  },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'Schibsted Grotesk',
+      cssVariable: '--font-sans',
+      weights: ['400 800'],
+      styles: ['normal'],
+      fallbacks: ['system-ui', 'sans-serif']
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Caveat',
+      cssVariable: '--font-hand',
+      weights: [500],
+      styles: ['normal'],
+      fallbacks: ['Caveat fallback', 'cursive'],
+      optimizedFallbacks: false
+    }
+  ],
 
-  integrations: [react(), sitemap({
+  integrations: [sitemap({
     filter: (page) => !/^\/(i-want-to-work-for|ik-wil-werken-voor|applications)(\/|$)/.test(new URL(page).pathname)
   })]
 });

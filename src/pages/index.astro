@@ -1,12 +1,27 @@
 ---
+import { Image } from 'astro:assets';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { featuredWork, studiozoek } from '../data/work';
+import { featuredWork, studiozoek, type WorkItem } from '../data/work';
 import { courses } from '../data/courses';
 import { profile } from '../data/profile';
 import Cow from '../components/site/Cow.astro';
 import VanRoute from '../components/site/VanRoute.astro';
+import portrait from '../assets/site/marijn.webp';
 const description = 'Marijn Bent bouwt software, deelt veel ervan als open source, maakt websites met Studiozoek en geeft praktische cursussen in AI en blockchain.';
-const schema = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name, url: profile.website, email: profile.email, telephone: profile.phone, image: 'https://marijnbent.nl/images/site/marijn.webp', description, sameAs: [profile.github] };
+const person = 'https://marijnbent.nl/#person';
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': 'https://marijnbent.nl/#website', url: `${profile.website}/`, name: profile.name, inLanguage: 'nl-NL', publisher: { '@id': person } },
+    { '@type': 'Person', '@id': person, name: profile.name, url: profile.website, email: profile.email, telephone: profile.phone, image: new URL(portrait.src, profile.website).href, description, jobTitle: 'Softwareontwikkelaar en oprichter van Studiozoek', worksFor: { '@type': 'Organization', '@id': 'https://studiozoek.nl/#organization', name: 'Studiozoek', url: 'https://studiozoek.nl/' }, knowsAbout: ['Softwareontwikkeling', 'Webontwikkeling', 'Kunstmatige intelligentie', 'Blockchain', 'Open source'], sameAs: [profile.github] },
+  ],
+};
+const featured = (item: WorkItem) => ['booklite', 'yellow-store'].includes(item.slug);
+const tile = (item: WorkItem) => item.visual === 'icon'
+  ? { widths: [160, 320, 512], sizes: '(max-width: 760px) 70px, 210px' }
+  : featured(item)
+    ? { widths: [480, 800, 1200], sizes: '(max-width: 760px) 100vw, (max-width: 1392px) 50vw, 660px' }
+    : { widths: [176, 480, 800], sizes: '(max-width: 760px) 88px, (max-width: 1392px) 33vw, 432px' };
 ---
 <SiteLayout title="Marijn Bent — software, open source en cursussen" description={description} schema={schema}>
   <section class="hero wrap">
@@ -15,7 +30,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'ht
       <p>Ik bouw software en websites, geef cursussen in AI en blockchain en hou van koeien. Mijn bus bouwde ik zelf.</p>
       <div class="actions"><a class="button" href="#werk">Bekijk mijn werk</a><a class="scribble story-link" href="#buiten">Over die bus…</a></div>
     </div>
-    <div class="hero-person"><img src="/images/site/marijn.webp" alt="Marijn Bent" width="460" height="460" fetchpriority="high" /><Cow /></div>
+    <div class="hero-person"><Image src={portrait} alt="Marijn Bent" widths={[340, 460]} sizes="(max-width: 760px) 340px, 420px" loading="eager" fetchpriority="high" /><Cow /></div>
   </section>
 
   <section class="work wrap" id="werk">
@@ -24,7 +39,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'ht
       <p>Meestal begint het met iets wat ik zelf mis. Als het goed werkt, deel ik de code.</p>
     </div>
     <ul class="work-gallery">
-      {featuredWork.map(item => <li class:list={['work-tile', { 'featured-tile': ['booklite', 'yellow-store'].includes(item.slug), 'icon-tile': item.visual === 'icon' }]}><a href={item.href}>{item.image && <div class="work-picture"><img src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} loading="lazy" /></div>}<div class="work-caption"><h3>{item.name}<span aria-hidden="true">↗</span></h3><p>{item.summary ?? item.description}</p><span class="kind">{item.kind}</span></div></a></li>)}
+      {featuredWork.map(item => <li class:list={['work-tile', { 'featured-tile': featured(item), 'icon-tile': item.visual === 'icon' }]}><a href={item.href}>{item.image && <div class="work-picture"><Image src={item.image.src} alt={item.image.alt} {...tile(item)} /></div>}<div class="work-caption"><h3>{item.name}<span aria-hidden="true">↗</span></h3><p>{item.summary ?? item.description}</p><span class="kind">{item.kind}</span></div></a></li>)}
     </ul>
   </section>
 
@@ -45,7 +60,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'ht
         <p>De software achter Studiozoek bouw ik ook zelf: van contactbeheer tot de controles voordat een website live gaat.</p>
         <a class="button light" href={studiozoek.href}>Naar studiozoek.nl</a>
       </div>
-      <img class="shot" src={studiozoek.image.src} alt={studiozoek.image.alt} width={studiozoek.image.width} height={studiozoek.image.height} loading="lazy" />
+      <Image class="shot" src={studiozoek.image.src} alt={studiozoek.image.alt} widths={[480, 800, 1200]} sizes="(max-width: 760px) 100vw, min(58vw, 780px)" />
     </div>
   </section>
 

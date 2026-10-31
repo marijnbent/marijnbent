@@ -2,18 +2,18 @@
 
 ## Work
 
-The project screenshots are 1200 × 840 WebP images, cropped to 10:7:
+The project screenshots in `src/assets/work/` are 1200 × 840 WebP images, cropped to 10:7. Astro generates the responsive sizes and the JPEG share images:
 
 - `booklite`, `obsidian-print`, `openfront`: GitHub README screenshots.
 - `yellow-store`, `bitcoin-simulator`, `studiozoek`: captured from the live sites through Graze on 30 October 2026.
 
-`public/images/work/ollie-icon.webp` and `prepped-icon.webp` are 512 × 512 conversions of the projects' current app icons. They are icons, not screenshots. Ollie's inherited Tinycast screenshot is not presented as its current interface.
+`src/assets/work/ollie-icon.webp` and `prepped-icon.webp` are 512 × 512 conversions of the projects' current app icons. They are icons, not screenshots. Ollie's inherited Tinycast screenshot is not presented as its current interface.
 
 Retake screenshots when a product changes visibly. Keep the full screenshot on project pages rather than cropping away its content.
 
 ## Portrait
 
-`public/images/site/marijn.webp` comes from `public/images/applications/marijn/github-photo.png`.
+`src/assets/site/marijn.webp` comes from `public/images/applications/marijn/github-photo.png`.
 
 Both generated whiteboard images were rejected and removed at Marijn's request. Use the existing portrait. No replacement whiteboard photo is requested.
 

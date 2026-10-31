@@ -1,4 +1,5 @@
 import type { Picture } from "./work";
+import bitcoinSimulator from "../assets/work/bitcoin-simulator.webp";
 
 export interface Course {
   slug: string;
@@ -92,10 +93,8 @@ export const courses: Course[] = [
     ],
     examples: [],
     image: {
-      src: "/images/work/bitcoin-simulator.webp",
+      src: bitcoinSimulator,
       alt: "De Bitcoin simulator waarin je een eigen keten start of aan een bestaande keten deelneemt",
-      width: 1200,
-      height: 840,
     },
   },
 ];

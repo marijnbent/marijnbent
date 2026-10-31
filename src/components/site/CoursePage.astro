@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import CourseFigure from './CourseFigure.astro';
 import ExportExample from './ExportExample.astro';
@@ -7,9 +8,10 @@ import type { Course } from '../../data/courses';
 interface Props { course: Course }
 const { course } = Astro.props;
 const email = `mailto:${profile.email}?subject=${encodeURIComponent(`Cursus ${course.title}`)}&body=${encodeURIComponent('Hoi Marijn,\n\nIk wil graag een cursusdag plannen.\n\nAantal deelnemers: \nBij ons of online: \nGewenste periode: \nWat we willen leren: \n')}`;
-const schema = { '@context': 'https://schema.org', '@type': 'Course', name: course.title, description: course.description, inLanguage: 'nl', provider: { '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name }, url: `https://marijnbent.nl/cursussen/${course.slug}/` };
+const person = { '@type': 'Person', '@id': 'https://marijnbent.nl/#person', name: profile.name, url: profile.website };
+const schema = { '@context': 'https://schema.org', '@type': 'Course', name: course.title, description: course.description, inLanguage: 'nl', provider: person, url: `https://marijnbent.nl/cursussen/${course.slug}/`, hasCourseInstance: { '@type': 'CourseInstance', courseMode: ['Onsite', 'Online'], courseWorkload: 'P1D', instructor: person } };
 ---
-<SiteLayout title={`${course.title} — cursus van Marijn Bent`} description={course.description} schema={schema} contact={{ title: 'Ik kijk met je mee.', text: 'Ik geef de cursus zelf. Voor een groter team plannen we meerdere sessies. Datum, plek en prijs spreken we samen af.', email }}>
+<SiteLayout title={`${course.title} — cursus van Marijn Bent`} description={course.description} image={course.image?.src} schema={schema} contact={{ title: 'Ik kijk met je mee.', text: 'Ik geef de cursus zelf. Voor een groter team plannen we meerdere sessies. Datum, plek en prijs spreken we samen af.', email }}>
   <section class="course-top wrap">
     <a class="back" href="/cursussen/">Alle cursussen</a>
     <h1>{course.title}</h1>
@@ -25,6 +27,6 @@ const schema = { '@context': 'https://schema.org', '@type': 'Course', name: cour
     <ol class="steps">{course.sessions.map(session => <li><h3>{session.title}</h3><p>{session.body}</p></li>)}</ol>
   </section>
   {course.examples.length > 0 && <section class="ideas wrap"><div><h2>Jouw eigen taak</h2><p>Een klus die je elke week doet is genoeg om mee te beginnen.</p></div><ul>{course.examples.map(example => <li><h3>{example.title}</h3><p>{example.body}</p></li>)}</ul></section>}
-  {course.image && <section class="tool wrap"><img class="shot" src={course.image.src} alt={course.image.alt} width={course.image.width} height={course.image.height} loading="lazy" /><div><h2>De simulator</h2><p>Ik bouwde de Bitcoin simulator voor deze cursus. Iedereen werkt op dezelfde keten, dus je ziet direct wat de anderen doen.</p><a class="text-link" href="https://bitcoinsimulator.cowsandbytes.com/">Probeer hem zelf</a></div></section>}
+  {course.image && <section class="tool wrap"><Image class="shot" src={course.image.src} alt={course.image.alt} widths={[600, 900, 1200]} sizes="(max-width: 760px) 100vw, min(58vw, 780px)" /><div><h2>De simulator</h2><p>Ik bouwde de Bitcoin simulator voor deze cursus. Iedereen werkt op dezelfde keten, dus je ziet direct wat de anderen doen.</p><a class="text-link" href="https://bitcoinsimulator.cowsandbytes.com/">Probeer hem zelf</a></div></section>}
   <section class="fit wrap"><div><h2>Voor wie</h2><p>{course.audience}</p></div><div><h2>Vooraf</h2><p>{course.preparation}</p></div></section>
 </SiteLayout>

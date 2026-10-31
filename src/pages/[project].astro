@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { work, featuredWork, type WorkItem } from '../data/work';
 import { profile } from '../data/profile';
@@ -7,19 +8,19 @@ interface Props { project: WorkItem }
 const { project } = Astro.props;
 const position = featuredWork.findIndex(item => item.slug === project.slug);
 const next = featuredWork[(position + 1) % featuredWork.length];
-const schema = { '@context': 'https://schema.org', '@type': project.schemaType, '@id': `${profile.website}${project.href}#${project.schemaType === 'WebPage' ? 'page' : 'app'}`, name: project.name, url: project.action?.href.startsWith('https:') ? project.action.href : `${profile.website}${project.href}`, description: project.description, inLanguage: 'nl', ...(project.schemaType !== 'WebPage' ? { operatingSystem: project.platform, applicationCategory: project.slug === 'bitcoin-simulator' ? 'EducationalApplication' : 'ProductivityApplication' } : {}), author: { '@type': 'Person', '@id': `${profile.website}/#person`, name: profile.name } };
+const schema = { '@context': 'https://schema.org', '@type': project.schemaType, '@id': `${profile.website}${project.href}#app`, name: project.name, url: project.action?.href.startsWith('https:') ? project.action.href : `${profile.website}${project.href}`, description: project.description, inLanguage: 'nl', operatingSystem: project.platform, applicationCategory: project.slug === 'bitcoin-simulator' ? 'EducationalApplication' : 'ProductivityApplication', author: { '@type': 'Person', '@id': `${profile.website}/#person`, name: profile.name } };
 ---
-<SiteLayout title={`${project.name} — Marijn Bent`} description={project.description} schema={schema}>
+<SiteLayout title={`${project.name} — Marijn Bent`} description={project.description} image={project.image?.src} schema={schema}>
   <article class:list={['project', 'wrap', { 'icon-project': project.visual === 'icon' }]}>
     <a class="back" href="/#werk">Alle projecten</a>
     <header class="project-heading">
-      {project.visual === 'icon' && project.image && <img class="project-logo" src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} />}<h1>{project.name}</h1>
+      {project.visual === 'icon' && project.image && <Image class="project-logo" src={project.image.src} alt={project.image.alt} width={128} densities={[1, 2]} loading="eager" />}<h1>{project.name}</h1>
       <div><p class="project-lead">{project.description}</p>{project.action && <a class="button" href={project.action.href}>{project.action.label}</a>}</div>
     </header>
     <ul class="project-facts" aria-label="Projectgegevens"><li>{project.kind}</li><li>{project.platform}</li></ul>
     <div class:list={['project-story', { 'with-image': !!project.image && project.visual !== 'icon' }]}>
       <div class="project-body"><p class="project-reason scribble">{project.reason}</p><div class="project-prose">{project.paragraphs.map(paragraph => <p>{paragraph}</p>)}</div></div>
-      {project.image && project.visual !== 'icon' ? <figure class:list={['project-evidence', { 'app-icon': project.slug === 'ollie' }]}><img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} /></figure> : null}
+      {project.image && project.visual !== 'icon' ? <figure class:list={['project-evidence', { 'app-icon': project.slug === 'ollie' }]}><Image src={project.image.src} alt={project.image.alt} widths={[600, 900, 1200]} sizes="(max-width: 760px) 100vw, min(58vw, 780px)" loading="eager" /></figure> : null}
     </div>
     {next && <nav class="project-next" aria-label="Verder kijken"><a href={next.href}><span>Volgend project</span><strong>{next.name}</strong><span aria-hidden="true">↗</span></a></nav>}
   </article>

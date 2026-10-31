@@ -1,9 +1,14 @@
 ---
 import '../styles/site.css';
+import type { ImageMetadata } from 'astro';
+import { Font, Image, getImage } from 'astro:assets';
 import { profile } from '../data/profile';
-interface Props { title: string; description: string; schema?: Record<string, unknown>; contact?: { title: string; text: string; email: string };  }
-const { title, description, schema, contact } = Astro.props;
+import portrait from '../assets/site/marijn.webp';
+interface Props { title: string; description: string; image?: ImageMetadata; index?: boolean; schema?: Record<string, unknown>; contact?: { title: string; text: string; email: string } }
+const { title, description, image = portrait, index = true, schema, contact } = Astro.props;
 const canonical = new URL(Astro.url.pathname, profile.website).href;
+const share = await getImage({ src: image, width: Math.min(image.width, 1200), format: 'jpg', background: '#f3f3f0' });
+const shareUrl = new URL(share.src, profile.website).href;
 const path = Astro.url.pathname;
 const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefined);
 ---
@@ -14,17 +19,20 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {index ? <link rel="canonical" href={canonical} /> : <meta name="robots" content="noindex" />}
     <link rel="icon" href="/cow-favicon.svg" type="image/svg+xml" />
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-hand" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:site_name" content={profile.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content="https://marijnbent.nl/images/work/booklite.webp" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    {index && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={shareUrl} />
+    <meta property="og:image:width" content={String(share.attributes.width)} />
+    <meta property="og:image:height" content={String(share.attributes.height)} />
+    <meta name="twitter:card" content={image.width > image.height ? 'summary_large_image' : 'summary'} />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}
     <script defer src="https://analytics.cowsandbytes.com/script.js" data-website-id="4effb6d5-fab0-4937-bdbc-3b3e6de7e0a5"></script>
   </head>
@@ -42,7 +50,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
     </header>
     <main id="inhoud"><slot /></main>
     <footer class="foot wrap">
-      {contact ? <div class="foot-intro"><img src="/images/site/marijn.webp" alt="Marijn Bent" width="460" height="460" loading="lazy" /><div><h2>{contact.title}</h2><p>{contact.text}</p></div></div> : <h2>Bel of mail me</h2>}
+      {contact ? <div class="foot-intro"><Image src={portrait} alt="Marijn Bent" width={120} densities={[1, 2]} /><div><h2>{contact.title}</h2><p>{contact.text}</p></div></div> : <h2>Bel of mail me</h2>}
       <ul class="foot-links">
         <li><a href={profile.phoneHref}>{profile.phone}</a></li>
         <li><a href={contact?.email ?? `mailto:${profile.email}`}>{profile.email}</a></li>
