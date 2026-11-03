@@ -10,6 +10,8 @@ export interface Course {
   outcome: string;
   audience: string;
   preparation: string;
+  credential?: string;
+  literacy?: string;
   sessions: { title: string; body: string }[];
   examples: { title: string; body: string }[];
   image?: Picture;
@@ -28,7 +30,7 @@ export const courses: Course[] = [
     title: "AI op de werkvloer",
     short: "Bouw met Codex en Claude een automatisering voor je eigen werk.",
     description:
-      "Praktische AI-cursus van één dag met Codex van OpenAI en Claude van Anthropic. Je bouwt een automatisering voor je eigen werk. Voor 1 tot 15 deelnemers, bij jullie of online.",
+      "Praktische AI-cursus van één dag met Codex van OpenAI en Claude van Anthropic. Je bouwt een automatisering voor je eigen werk. Telt mee voor AI-geletterdheid. Voor 1 tot 15 deelnemers, bij jullie of online.",
     lead: "Je werkt een dag met Codex van OpenAI en Claude van Anthropic aan een taak uit je eigen werk. Aan het eind draait er een automatisering die je zelf hebt gebouwd.",
     outcome:
       "Je neemt een werkende automatisering mee. Je weet hoe je de uitkomst controleert en de oplossing later zelf aanpast.",
@@ -36,6 +38,9 @@ export const courses: Course[] = [
       "Voor professionals en teams die AI echt willen gebruiken in hun werk. Je hoeft niet te kunnen programmeren. We kiezen een opdracht die past bij wat je al kunt.",
     preparation:
       "Neem je laptop mee en een taak die je vaak doet. Vooraf regelen we toegang tot Codex en Claude en bespreken we eventuele accountkosten. We werken met gegevens die je mag gebruiken.",
+    credential: "Bewijs van deelname",
+    literacy:
+      "Organisaties die AI gebruiken, moeten zorgen dat hun mensen er verantwoord mee werken. Dat staat in artikel 4 van de AI-verordening. Deze cursus telt daarvoor mee. Een certificaat is niet verplicht. Met het bewijs van deelname leg je vast wat jullie hebben gedaan.",
     sessions: [
       {
         title: "Kies een taak die je vaak doet",
