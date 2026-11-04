@@ -1,0 +1,29 @@
+---
+import type { Article, Business } from '@sitehub/site-client';
+import { courses } from '../../data/courses';
+import { guidesPrefix, renderGuide } from '../../lib/sitehub';
+interface Props { article: Article; businesses: Business[] }
+const { article, businesses } = Astro.props;
+const html = await renderGuide(article, businesses);
+const changed = article.modifiedAt ?? article.updatedAt;
+const date = (value: string) => new Date(value).toLocaleDateString('nl-NL', { dateStyle: 'long' });
+const course = courses.find(item => item.slug === 'ai-op-de-werkvloer')!;
+---
+<article class="guide wrap">
+  <a class="back" href={guidesPrefix}>Alle gidsen</a>
+  <h1>{article.meta.title}</h1>
+  <p class="guide-meta">Bijgewerkt op <time datetime={changed}>{date(changed)}</time></p>
+  <div class="guide-body" set:html={html} />
+  {article.sources.length > 0 && (
+    <section class="guide-sources" aria-labelledby="guide-bronnen">
+      <h2 id="guide-bronnen">Bronnen</h2>
+      <ul>{article.sources.map(source => <li><a href={source.url} rel="noreferrer">{source.title}</a> · {date(source.checkedAt)}</li>)}</ul>
+      {article.media.map(media => <p>{'author' in media.rights ? <><a href={media.rights.sourcePage} rel="noreferrer">{media.rights.author}</a> · <a href={media.rights.licenseUrl} rel="noreferrer">{media.rights.license}</a></> : media.rights.operatorReference}</p>)}
+    </section>
+  )}
+  <aside class="guide-course">
+    <h2>{course.title}</h2>
+    <p>{course.short}</p>
+    <a class="button" href={`/cursussen/${course.slug}/`}>Bekijk de cursus</a>
+  </aside>
+</article>

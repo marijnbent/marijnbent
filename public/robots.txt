@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /_sitehub/
+Disallow: /sitehub.json
 
 Sitemap: https://marijnbent.nl/sitemap-index.xml

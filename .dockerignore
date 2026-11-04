@@ -1,0 +1,8 @@
+.git
+.astro
+.sitehub
+.env
+.env.*
+dist
+node_modules
+iterate

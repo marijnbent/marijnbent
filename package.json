@@ -8,14 +8,17 @@
   "scripts": {
     "dev": "portless marijnbent npm run watch",
     "build": "astro build",
-    "preview": "portless marijnbent astro preview --host 127.0.0.1",
+    "preview": "portless marijnbent npm run start",
     "astro": "astro",
     "watch": "astro dev --host 127.0.0.1",
-    "check": "astro check"
+    "check": "astro check",
+    "start": "node server.mjs"
   },
   "dependencies": {
+    "@astrojs/node": "^10.1.4",
     "@astrojs/sitemap": "^3.7.1",
-    "astro": "^6.0.8"
+    "@sitehub/site-client": "file:vendor/site-client",
+    "astro": "^6.4.8"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
