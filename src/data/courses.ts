@@ -1,5 +1,6 @@
 import type { Picture } from "./work";
 import bitcoinSimulator from "../assets/work/bitcoin-simulator.webp";
+import { profile } from "./profile";
 
 export interface Course {
   slug: string;
@@ -103,3 +104,27 @@ export const courses: Course[] = [
     },
   },
 ];
+
+export function courseSchema(course: Course, path: string, name: string, description: string) {
+  const person = { "@type": "Person", "@id": "https://marijnbent.nl/#person", name: profile.name, url: profile.website };
+  const url = `https://marijnbent.nl${path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name,
+    description,
+    inLanguage: "nl",
+    provider: person,
+    url,
+    hasCourseInstance: { "@type": "CourseInstance", courseMode: ["Onsite", "Online"], courseWorkload: "P1D", instructor: person },
+    ...(course.credential && { educationalCredentialAwarded: course.credential }),
+    offers: {
+      "@type": "Offer",
+      category: "Paid",
+      price: 1250,
+      priceCurrency: "EUR",
+      priceSpecification: { "@type": "PriceSpecification", minPrice: 1250, priceCurrency: "EUR", valueAddedTaxIncluded: false },
+      url,
+    },
+  };
+}
