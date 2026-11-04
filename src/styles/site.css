@@ -1231,8 +1231,8 @@ body:has(.foot-intro) .foot-links {
 
 .guide h1,
 .guides h1 {
-  max-width: 20ch;
-  font-size: clamp(2.5rem, 1rem + 5vw, 5.5rem);
+  max-width: 18ch;
+  font-size: clamp(2.5rem, 1rem + 4.5vw, 4.75rem);
 }
 
 .guide-meta {
@@ -1250,7 +1250,13 @@ body:has(.foot-intro) .foot-links {
 
 .guide-body {
   display: grid;
-  gap: 20px;
+  gap: clamp(40px, 5vw, 56px);
+}
+
+.guide-body > section {
+  display: grid;
+  gap: 18px;
+  align-content: start;
 }
 
 .guide-body h2,
@@ -1259,14 +1265,26 @@ body:has(.foot-intro) .foot-links {
   line-height: 1.05;
 }
 
-.guide-body h2 {
-  margin-top: 24px;
-}
-
 .guide-body :is(ul, ol) {
   display: grid;
-  gap: 8px;
-  padding-left: 1.25em;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+.guide-body li::marker {
+  color: var(--soft);
+}
+
+.guide-body ol > li::marker {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.guide-body cite {
+  color: var(--soft);
+  font-size: 0.875em;
+  font-style: normal;
 }
 
 .guide-body ul {
@@ -1299,6 +1317,11 @@ body:has(.foot-intro) .foot-links {
   display: block;
   overflow-x: auto;
   border-collapse: collapse;
+}
+
+.guide-body thead th {
+  border-bottom-color: var(--ink);
+  font-size: var(--small);
 }
 
 .guide-body :is(th, td) {
@@ -1344,9 +1367,18 @@ body:has(.foot-intro) .foot-links {
   font-size: var(--h3);
 }
 
+.guide-sources ul {
+  display: grid;
+  gap: 8px;
+}
+
 .guide-sources :is(li, p) {
   color: var(--soft);
   font-size: var(--small);
+}
+
+.guide-sources time {
+  white-space: nowrap;
 }
 
 .guide-course {
@@ -1369,4 +1401,11 @@ body:has(.foot-intro) .foot-links {
 
 .guides-list h2 {
   font-size: var(--h3);
+}
+
+@media (max-width: 760px) {
+  .guide-body :is(th, td) {
+    padding-right: 12px;
+    font-size: var(--small);
+  }
 }
