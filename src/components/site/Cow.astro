@@ -1,8 +1,39 @@
 <div class="cow" data-cow>
-  <button type="button" class="cow-button" aria-label="Aai de koe" aria-pressed="false" hidden>
-    <img src="/cow.svg" width="220" height="220" alt="" />
-  </button>
-  <noscript><img src="/cow.svg" width="220" height="220" alt="Een getekende koe" /></noscript>
+  <svg class="cow-art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none" role="img" aria-label="Een getekende koe">
+    <defs><clipPath id="cow-head"><path d="M62 66C62 38 82 26 110 26s48 12 48 40l-6 62c-1 10-5 18-10 22H78c-5-4-9-12-10-22Z"/></clipPath></defs>
+    <g stroke="var(--ink)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M66 74C46 58 18 60 10 78c16 18 40 20 60 12Z" fill="var(--ink)"/>
+      <path d="M154 74c20-16 48-14 56 4-16 18-40 20-60 12Z" fill="var(--paper)"/>
+    </g>
+    <path d="M160 78c16-11 36-10 42 1-12 12-30 14-44 7Z" fill="var(--tone)"/>
+    <path d="M62 66C62 38 82 26 110 26s48 12 48 40l-6 62c-1 10-5 18-10 22H78c-5-4-9-12-10-22Z" fill="var(--paper)"/>
+    <g clip-path="url(#cow-head)" fill="var(--ink)">
+      <path d="M50 58c18-10 46-6 52 18 6 24-6 46-30 50-12 2-22-4-26-10Z"/>
+      <path d="M124 18c24-6 48 8 46 34-12 10-30 6-38-4-8-8-12-20-8-30Z"/>
+    </g>
+    <path d="M62 66C62 38 82 26 110 26s48 12 48 40l-6 62c-1 10-5 18-10 22H78c-5-4-9-12-10-22Z" stroke="var(--ink)" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M95 32c-6-12 8-20 15-10 6-11 22-6 18 6" stroke="var(--ink)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <g class="cow-eyes">
+      <path d="M73 94a11 11 0 0 0 22 0Z" fill="var(--paper)"/>
+      <circle cx="87" cy="99" r="4.5" fill="var(--ink)"/>
+      <path d="M125 94a11 11 0 0 0 22 0Z" fill="var(--paper)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="139" cy="99" r="4.5" fill="var(--ink)"/>
+      <circle cx="88.6" cy="97.6" r="1.4" fill="var(--paper)"/>
+      <circle cx="140.6" cy="97.6" r="1.4" fill="var(--paper)"/>
+    </g>
+    <path d="M71 94h26M123 94h26" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M60 162c0-22 20-32 50-32s50 10 50 32c0 26-20 40-50 40s-50-14-50-40Z" fill="var(--tone)" stroke="var(--ink)" stroke-width="6"/>
+    <g fill="var(--ink)">
+      <ellipse cx="88" cy="158" rx="6" ry="9" transform="rotate(-18 88 158)"/>
+      <ellipse cx="132" cy="158" rx="6" ry="9" transform="rotate(18 132 158)"/>
+    </g>
+    <path d="M100 186q10 4 20 0" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M182 88v8" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+    <rect x="170" y="95" width="24" height="30" rx="6" fill="var(--accent)" stroke="var(--ink)" stroke-width="4"/>
+    <circle cx="182" cy="104" r="3" fill="var(--paper)"/>
+    <path d="M177 115h10" stroke="var(--paper)" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  </svg>
+  <button type="button" class="cow-button" aria-label="Aai de koe" aria-pressed="false" hidden></button>
   <span class="cow-reply scribble" role="status" aria-live="polite"></span>
 </div>
 <script>
@@ -18,3 +49,10 @@
     });
   }
 </script>
+<style>
+  .cow-eyes { transform-box: fill-box; transform-origin: top; }
+  @media (prefers-reduced-motion: no-preference) {
+    .cow-eyes { animation: blink 6s ease-in-out 2s infinite; }
+  }
+  @keyframes blink { 0%, 94%, 100% { scale: 1 1; } 97% { scale: 1 .1; } }
+</style>

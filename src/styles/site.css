@@ -10,9 +10,11 @@
 :root {
   --ground: #f3f3f0;
   --tone: #e5e6e1;
+  --paper: #fbfbf7;
   --ink: #131416;
   --soft: #4c4f55;
-  --accent: #1442f5;
+  --accent: #1d5a3d;
+  --accent-tint: #cfe0d1;
   --on-dark: #f3f3f0;
   --margin: clamp(16px, 3.2vw, 48px);
   --section: clamp(64px, 7vw, 112px);
@@ -462,7 +464,7 @@ dd {
 
 .foot {
   margin-top: var(--section);
-  padding-top: clamp(56px, 7vw, 96px);
+  padding-block: clamp(56px, 7vw, 96px);
   background: var(--tone);
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -488,17 +490,6 @@ dd {
 
 .foot-links a:hover {
   color: var(--accent);
-}
-
-.foot-name {
-  grid-column: 1 / -1;
-  font-size: clamp(4rem, 17.6vw, 15rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.06em;
-  white-space: nowrap;
-  margin-top: clamp(24px, 4vw, 64px);
-  padding-bottom: 0.15em;
 }
 
 .course-top {
@@ -858,24 +849,26 @@ dd {
   width: 140px;
 }
 
+.cow-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: rotate(-9deg);
+  transition: transform 180ms ease;
+}
+
 .cow-button {
   appearance: none;
+  position: absolute;
+  inset: 0;
   border: 0;
   padding: 0;
   background: transparent;
   cursor: pointer;
-  width: 100%;
-  transform: rotate(-9deg);
-  transition: transform 180ms ease;
   -webkit-tap-highlight-color: transparent;
 }
 
-.cow-button img {
-  width: 100%;
-}
-
-.cow-button:hover,
-.cow-button[aria-pressed="true"] {
+.cow:has(.cow-button:hover, .cow-button[aria-pressed="true"]) .cow-art {
   transform: rotate(8deg) translateY(-6px);
 }
 
@@ -908,8 +901,9 @@ dd {
   height: auto;
 }
 
-.van-route text {
-  font-family: inherit;
+.van-route text,
+.course-figure text {
+  font-family: var(--font-sans);
 }
 
 @media (prefers-reduced-motion: reduce) {
