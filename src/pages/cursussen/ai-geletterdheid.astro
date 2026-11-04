@@ -1,0 +1,31 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { courses, courseSchema } from '../../data/courses';
+import { profile } from '../../data/profile';
+const course = courses.find(item => item.slug === 'ai-op-de-werkvloer')!;
+const description = 'Training AI-geletterdheid van één dag. Je team werkt met Codex en Claude aan eigen taken en leert welke gegevens het mag delen en hoe het de uitkomst controleert. Met bewijs van deelname.';
+const email = `mailto:${profile.email}?subject=${encodeURIComponent('Training AI-geletterdheid')}&body=${encodeURIComponent('Hoi Marijn,\n\nWe willen een training AI-geletterdheid plannen.\n\nAantal deelnemers: \nBij ons of online: \nGewenste periode: \nWaar we AI voor gebruiken: \n')}`;
+const schema = courseSchema(course, '/cursussen/ai-geletterdheid/', 'Training AI-geletterdheid', description);
+const skills = [
+  { title: 'Waar AI helpt', body: 'Je team kiest een taak uit het eigen werk en spreekt af hoe een goed resultaat eruitziet.' },
+  { title: 'Wat je deelt', body: 'We bespreken welke gegevens je wel en niet aan Codex en Claude geeft. Op de dag werken we alleen met gegevens die jullie mogen gebruiken.' },
+  { title: 'Goede opdrachten', body: 'Je leert een opdracht op te knippen, voorbeelden en context mee te geven en de tools stap voor stap te laten werken.' },
+  { title: 'De uitkomst controleren', body: 'Je test het resultaat op echte voorbeelden, zoekt de fouten en legt vast hoe je het opnieuw gebruikt.' },
+];
+---
+<SiteLayout title="Training AI-geletterdheid voor je team — Marijn Bent" description={description} schema={schema} contact={{ title: 'Ik kijk met je mee.', text: 'Ik geef de training zelf. Voor een groter team plannen we meerdere sessies. Datum en plek spreken we samen af.', email }}>
+  <section class="course-top wrap">
+    <a class="back" href="/cursussen/">Alle cursussen</a>
+    <h1>Training AI-geletterdheid</h1>
+    <div class="course-intro"><p>Volgens artikel 4 van de AI-verordening moet je organisatie zorgen dat medewerkers verantwoord met AI werken. In de cursus {course.title} leert je team dat door het te doen: een dag met Codex en Claude aan het eigen werk.</p><div class="actions"><a class="button" href={email}>Plan een training</a><a class="text-link" href={`/cursussen/${course.slug}/`}>Bekijk het programma</a></div></div>
+    <ul class="course-format" aria-label="Praktische informatie"><li>Eén dag</li><li>1 tot 15 deelnemers</li><li>Bij jullie of online</li><li>Vanaf €1.250 per dag, excl. btw</li><li>{course.credential}</li></ul>
+  </section>
+  <section class="day wrap">
+    <h2>Wat je team leert</h2>
+    <ol class="steps">{skills.map(skill => <li><h3>{skill.title}</h3><p>{skill.body}</p></li>)}</ol>
+  </section>
+  <section class="fit wrap">
+    <div><h2>Verplicht?</h2><p>Organisaties die AI gebruiken, moeten zorgen dat hun mensen er verantwoord mee werken. Een certificaat is niet verplicht. Met het bewijs van deelname leg je vast wat jullie hebben gedaan.</p></div>
+    <div><h2>Voor wie</h2><p>{course.audience}</p><a class="text-link" href={`/cursussen/${course.slug}/`}>Naar {course.title}</a></div>
+  </section>
+</SiteLayout>
