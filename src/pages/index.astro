@@ -17,7 +17,8 @@ const schema = {
   ],
 };
 const featured = (item: WorkItem) => ['booklite', 'yellow-store'].includes(item.slug);
-const tile = (item: WorkItem) => item.visual === 'icon'
+const picture = (item: WorkItem) => featured(item) ? item.image : item.icon ?? item.image;
+const tile = (item: WorkItem) => item.icon && !featured(item)
   ? { widths: [160, 320, 512], sizes: '(max-width: 760px) 70px, 210px' }
   : featured(item)
     ? { widths: [480, 800, 1200], sizes: '(max-width: 760px) 100vw, (max-width: 1392px) 50vw, 660px' }
@@ -34,19 +35,16 @@ const tile = (item: WorkItem) => item.visual === 'icon'
   </section>
 
   <section class="work wrap" id="werk">
-    <div class="work-head">
-      <h2>Wat ik maak</h2>
-      <p>Meestal begint het met iets wat ik zelf mis. Als het goed werkt, deel ik de code.</p>
-    </div>
+    <h2 class="work-head">Wat ik maak</h2>
     <ul class="work-gallery">
-      {featuredWork.map(item => <li class:list={['work-tile', { 'featured-tile': featured(item), 'icon-tile': item.visual === 'icon' }]}><a href={item.href}>{item.image && <div class="work-picture"><Image src={item.image.src} alt={item.image.alt} {...tile(item)} /></div>}<div class="work-caption"><h3>{item.name}<span aria-hidden="true">↗</span></h3><p>{item.summary ?? item.description}</p><span class="kind">{item.kind}</span></div></a></li>)}
+      {featuredWork.map(item => <li class:list={['work-tile', { 'featured-tile': featured(item), 'icon-tile': !!item.icon && !featured(item) }]}><a href={item.href}>{picture(item) && <div class="work-picture"><Image src={picture(item)!.src} alt={picture(item)!.alt} {...tile(item)} /></div>}<div class="work-caption"><h3>{item.name}<span aria-hidden="true">↗</span></h3><p>{item.summary ?? item.description}</p><span class="kind">{item.kind}</span></div></a></li>)}
     </ul>
   </section>
 
   <section class="outside wrap" id="buiten">
     <div class="outside-story">
       <h2>Richting<br />Kirgizië</h2>
-      <p>Ik bouwde mijn eigen bus en ging ermee op reis richting Kirgizië. In Armenië sprong ik weg voor een hond die op me afstormde. Daarbij brak ik mijn been.</p>
+      <p>Van een Ford Transit bouwde ik zelf een camper, met een volwaardig bed, een keuken, een oventje en een wc. Daarmee ging ik op reis richting Kirgizië. In Armenië sprong ik weg voor een hond die op me afstormde. Daarbij brak ik mijn been.</p>
       <p class="scribble">Dat stond niet op de route.</p>
     </div>
     <VanRoute />
