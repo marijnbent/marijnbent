@@ -1,26 +1,131 @@
-<svg class="van-route" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" fill="none" role="img" aria-labelledby="a-route-title">
-  <title id="a-route-title">Schematische bus met de route richting Kirgizië, die in Armenië werd onderbroken.</title>
-  <path d="M20 222H290" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
-  <path d="M30 196V104q0-16 16-16h150q10 0 16 8l28 40q14 4 14 18v42Z" fill="var(--ink)"/>
-  <path d="M200 100h4l26 36h-30Z" fill="var(--ground)"/>
-  <rect x="52" y="106" width="58" height="30" rx="5" fill="var(--ground)"/>
-  <rect x="122" y="106" width="58" height="30" rx="5" fill="var(--ground)"/>
-  <path d="M190 102v80" stroke="var(--ground)" stroke-width="3" opacity=".45"/>
-  <path d="M30 164h224" stroke="var(--accent)" stroke-width="8"/>
-  <circle cx="84" cy="196" r="30" fill="var(--ground)"/>
-  <circle cx="208" cy="196" r="30" fill="var(--ground)"/>
-  <circle cx="84" cy="196" r="22" fill="var(--ink)"/>
-  <circle cx="208" cy="196" r="22" fill="var(--ink)"/>
-  <circle cx="84" cy="196" r="7" fill="var(--ground)"/>
-  <circle cx="208" cy="196" r="7" fill="var(--ground)"/>
-  <path d="M276 164c50 0 70-60 120-60s50 50 76 50" stroke="var(--accent)" stroke-width="8" stroke-linecap="round"/>
-  <path d="M478 150l20 20m0-20-20 20" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"/>
-  <path d="M512 150c40-20 70-60 118-58" stroke="var(--soft)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 14"/>
-  <circle cx="652" cy="92" r="14" stroke="var(--ink)" stroke-width="5" fill="var(--ground)"/>
-  <g font-family="Schibsted Grotesk, system-ui, sans-serif" font-weight="700" font-size="26" fill="var(--ink)">
-    <text class="l" x="28" y="56">Zelf gebouwd</text>
-    <text class="l" x="487" y="216" text-anchor="middle">Armenië</text>
-    <text class="l" x="704" y="56" text-anchor="end">Kirgizië</text>
-  <text class="l" x="487" y="258" text-anchor="middle">been gebroken</text>
+<svg class="van-route" data-van xmlns="http://www.w3.org/2000/svg" viewBox="0 36 720 300" fill="none" role="img" aria-labelledby="van-title">
+  <title id="van-title">Een zelfgebouwde bus op weg naar Kirgizië. In Armenië brak de reis af: een hond stormde op me af en ik brak mijn been.</title>
+  <defs>
+    <clipPath id="van-body"><path d="M6 112V30q0-16 16-16h156q12 0 19 9l29 41q22 5 24 28v20q0 8-8 8H14q-8 0-8-8Z"/></clipPath>
+  </defs>
+  <path d="M240 238c40-44 96-60 146-52s84-36 134-40 124 36 200 92Z" fill="#dfe8de"/>
+  <path d="M320 238c44-24 104-30 164-18s116 0 216 18Z" fill="#cbdccd"/>
+  <path d="M12 238h268" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+  <path class="trip" pathLength="1" d="M280 238h20c20 0 26-22 46-22s26 22 46 22h22" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g class="rest">
+    <path d="M450 238h132" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12" opacity=".55"/>
+    <g class="peak">
+      <path d="M588 238l58-86 22 30 20-22 30 78Z" fill="#9dbca4" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M633 171l13-19 11 15-6 5-5-5-6 5Z" fill="var(--paper)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <path d="M582 238h132" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+    <text class="l" font-weight="700" font-size="26" fill="var(--ink)" x="716" y="130" text-anchor="end">Kirgizië</text>
+  </g>
+  <g class="van" transform="translate(28 116) scale(.86)">
+    <g class="puffs" stroke="var(--soft)" stroke-width="3"><circle class="puff" cx="-12" cy="110" r="6"/><circle class="puff" cx="-30" cy="102" r="8"/></g>
+    <g class="van-body">
+      <path d="M38 13V5M140 13V5" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+      <rect x="26" y="0" width="128" height="7" rx="3.5" fill="var(--ink)"/>
+      <g clip-path="url(#van-body)">
+        <rect x="0" y="0" width="260" height="130" fill="var(--paper)"/>
+        <rect x="0" y="80" width="260" height="50" fill="var(--accent)"/>
+        <path d="M0 80h260" stroke="var(--ink)" stroke-width="3"/>
+      </g>
+      <rect x="24" y="30" width="52" height="32" rx="6" fill="var(--accent-tint)" stroke="var(--ink)" stroke-width="4"/>
+      <rect x="88" y="30" width="48" height="32" rx="6" fill="var(--accent-tint)" stroke="var(--ink)" stroke-width="4"/>
+      <path d="M33 52l12-14M97 52l12-14" stroke="var(--paper)" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+      <path d="M184 30h6q5 0 8 4l22 32h-36Z" fill="var(--accent-tint)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M150 20v94M178 22v92" stroke="var(--ink)" stroke-width="3"/>
+      <rect x="156" y="86" width="12" height="5" rx="2.5" fill="var(--paper)"/>
+      <rect x="210" y="56" width="9" height="14" rx="3" fill="var(--ink)"/>
+      <path d="M6 112V30q0-16 16-16h156q12 0 19 9l29 41q22 5 24 28v20q0 8-8 8H14q-8 0-8-8Z" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>
+      <circle cx="241" cy="84" r="5" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+      <rect x="230" y="108" width="26" height="11" rx="5" fill="var(--ink)"/>
+      <rect x="0" y="108" width="20" height="11" rx="5" fill="var(--ink)"/>
+    </g>
+    <g fill="var(--ground)"><circle cx="58" cy="120" r="29"/><circle cx="198" cy="120" r="29"/></g>
+    <g class="wheel">
+      <circle cx="58" cy="120" r="22" fill="var(--ink)"/><circle cx="58" cy="120" r="10" fill="var(--paper)"/>
+      <circle cx="58" cy="120" r="3" fill="var(--ink)"/><circle cx="58" cy="114" r="1.6" fill="var(--ink)"/><circle cx="63.2" cy="123" r="1.6" fill="var(--ink)"/><circle cx="52.8" cy="123" r="1.6" fill="var(--ink)"/>
+    </g>
+    <g class="wheel">
+      <circle cx="198" cy="120" r="22" fill="var(--ink)"/><circle cx="198" cy="120" r="10" fill="var(--paper)"/>
+      <circle cx="198" cy="120" r="3" fill="var(--ink)"/><circle cx="198" cy="114" r="1.6" fill="var(--ink)"/><circle cx="203.2" cy="123" r="1.6" fill="var(--ink)"/><circle cx="192.8" cy="123" r="1.6" fill="var(--ink)"/>
+    </g>
+  </g>
+  <g class="stop">
+    <circle cx="430" cy="238" r="16" fill="var(--ground)" stroke="var(--accent)" stroke-width="5"/>
+    <path d="M423 231l14 14m0-14-14 14" stroke="var(--ink)" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+  <path class="burst" d="M409 214l-6-8M430 209v-10M451 214l6-8" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+  <g class="dog-size">
+  <g class="dog" transform="translate(472 196) scale(1.15) rotate(-6 32 20)">
+    <path class="tail" d="M53 12c7-1 11-5 13-12" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M20 20L6 26M24 22l-8 13M47 21l14 4M43 23l6 12" stroke="var(--ink)" stroke-width="4.6" stroke-linecap="round"/>
+    <path d="M22 8c8-3 20-3 28 0q7 3 6 9t-8 8c-8 2-18 2-25 0q-8-3-8-9t7-8Z" fill="var(--paper)" stroke="var(--ink)" stroke-width="3.6" stroke-linejoin="round"/>
+    <path d="M17 -2q9 1 11 10t-7 11l-12 1q-9 0-10-4t5-7l3-6q3-5 10-5Z" fill="var(--paper)" stroke="var(--ink)" stroke-width="3.6" stroke-linejoin="round"/>
+    <path d="M18 -1l3-11 7 11" fill="var(--ink)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M3 15l6 1 3-2" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M25 6l-3 15" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="14" cy="5" r="2" fill="var(--ink)"/><circle cx="-1" cy="10" r="2.4" fill="var(--ink)"/>
+    <path d="M70 2q6 2 8 8M70 15q5 1 7 5" stroke="var(--soft)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  </g>
+  <g class="arrive">
+    <text class="l" font-weight="700" font-size="26" fill="var(--ink)" x="430" y="284" text-anchor="middle">Armenië</text>
+    <text class="note" x="430" y="316" text-anchor="middle" font-size="30" fill="var(--accent)">been gebroken</text>
+  </g>
+  <g class="note-built">
+    <text class="note" x="236" y="78" font-size="30" fill="var(--accent)">zelf gebouwd</text>
+    <path d="M230 72c-20 2-32 10-38 24m0 0-6-10m6 10 10-6" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 </svg>
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for (const van of document.querySelectorAll<SVGElement>('[data-van]')) {
+    if (reduce || !('IntersectionObserver' in window)) continue;
+    van.classList.add('is-ready');
+    const seen = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      van.classList.add('is-playing');
+      seen.disconnect();
+    }, { threshold: 0.5 });
+    seen.observe(van);
+  }
+</script>
+<style>
+  .note { font-family: var(--font-hand); font-weight: 500; }
+  .van-body, .wheel, .stop, .burst, .dog, .tail, .puff { transform-box: fill-box; transform-origin: center; }
+  .van-body { transform-origin: bottom; }
+  .tail { transform-origin: left bottom; }
+  .is-ready .van { translate: -330px 0; }
+  .is-ready .trip { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .is-ready :is(.stop, .burst, .dog, .arrive, .rest, .note-built) { opacity: 0; }
+  .puff { opacity: 0; }
+  .is-playing .van { animation: arrive 1.3s cubic-bezier(.15, .6, .2, 1) forwards; }
+  .is-playing .wheel { animation: roll 1.3s cubic-bezier(.15, .6, .2, 1); }
+  .is-playing .van-body { animation: settle .5s ease-out 1.2s; }
+  .is-playing .puff { animation: puff .7s ease-out 1.15s; }
+  .is-playing .puff + .puff { animation-delay: 1.3s; }
+  .is-playing .note-built { animation: fade .4s ease 1.2s forwards; }
+  .is-playing .trip { animation: draw 1s cubic-bezier(.4, 0, .3, 1) 1s forwards; }
+  .is-playing .dog { animation: dash .45s cubic-bezier(.2, .8, .3, 1) 1.7s both; }
+  .is-playing .stop { animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) 2s forwards; }
+  .is-playing .burst { animation: pop .35s cubic-bezier(.3, 1.6, .5, 1) 2.15s forwards; }
+  .is-playing .arrive { animation: fade .4s ease 2.25s forwards; }
+  .is-playing .rest { animation: fade .3s ease 2.45s forwards; }
+  .is-playing .peak { animation: rise .7s cubic-bezier(.2, .8, .3, 1) 2.45s both; }
+  .is-playing .tail { animation: wag .3s ease-in-out 2.2s 6 alternate; }
+  @keyframes arrive { to { translate: 0 0; } }
+  @keyframes roll { from { rotate: -960deg; } }
+  @keyframes puff { 30% { opacity: .7; } to { opacity: 0; translate: -14px -6px; scale: 1.4; } }
+  @keyframes settle { 40% { scale: 1 .97; } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes dash { from { opacity: 0; translate: 40px 0; } to { opacity: 1; translate: 0 0; } }
+  @keyframes pop { from { opacity: 0; scale: .4; } to { opacity: 1; scale: 1; } }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes rise { from { translate: 0 18px; } }
+  @keyframes wag { to { rotate: -18deg; } }
+  @media (max-width: 760px) {
+    .note { font-size: 44px; }
+    .van-route .l { font-size: 36px; }
+    .stop, .burst { transform: scale(1.25); }
+    .dog-size { transform-box: fill-box; transform-origin: left center; transform: scale(1.25); }
+    .arrive { translate: 0 4px; }
+  }
+</style>

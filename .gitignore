@@ -32,6 +32,8 @@ pnpm-debug.log*
 iterate/*
 !iterate/log.md
 !iterate/scorecard.md
+!iterate/svg-log.md
+!iterate/svg-scorecard.md
 !iterate/summary.md
 !iterate/baseline/
 iterate/baseline/*

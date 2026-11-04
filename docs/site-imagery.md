@@ -19,12 +19,12 @@ Both generated whiteboard images were rejected and removed at Marijn's request. 
 
 ## Illustrations
 
-The selected cow, favicon and van are the original flat SVG family from the Opus consultation. `public/cow.svg` is the homepage cow; `public/cow-favicon.svg` is the favicon and small header mark.
+The cow, favicon, van and course figures share one outlined style: ink strokes, paper fills and dark green tints. No blue. `src/components/site/Cow.astro` holds the inline homepage cow; `public/cow-favicon.svg` is the favicon and small header mark, simplified to read at 32px.
 
-The cow uses a native button with a silent text response, keyboard support, a pressed state and a static no-JavaScript fallback.
+The cow uses a native button with a silent text response, keyboard support and a pressed state. Without JavaScript it stays a labelled image.
 
-`src/components/site/VanRoute.astro` is a schematic van and journey, not a rendering of Marijn's actual van or a geographic map. He built his van and broke his leg in Armenia while jumping away from a charging dog, on a trip towards Kyrgyzstan.
+`src/components/site/VanRoute.astro` is an illustrated van and journey that plays once when scrolled into view (the van drives in, the dog charges, the X pops). Reduced motion and no-JavaScript show the final state. It is not a rendering of Marijn's actual van or a geographic map. He built his van and broke his leg in Armenia while jumping away from a charging dog, on a trip towards Kyrgyzstan.
 
-The inline course figures in `src/components/site/figures/` use the same ink/blue palette. Their labels inherit the site typeface. The export table is illustrative course material, not a client result.
+The inline course figures in `src/components/site/figures/` use the same palette. Their labels are handwritten in Caveat, like the van notes. The export table is illustrative course material, not a client result.
 
-Marginal notes use Caveat alongside Schibsted Grotesk. See `iterate/summary.md` for the retained design and the rejected alternatives.
+Marginal notes use Caveat alongside Schibsted Grotesk. See `iterate/summary.md` for the retained design and `iterate/svg-log.md` for the SVG rounds.
