@@ -42,3 +42,5 @@ curl -s https://marijnbent.nl/sitemap-gidsen.xml
 ```
 
 After a publish, run `publish_verify` in Sitehub.
+
+Snapshot reads use the last verified disk cache during one shared background refresh. Publication markers wait for persistence. Cold failures return retryable 503s, and previews omit analytics. Run `npm test` after building to exercise publication, sitemap, legacy routes and offline recovery against synthetic data. The reader credential is `op://Agent/brgjnlnqt6qoqxgtrykjg7sft4/credential` (`marijnbent | sitehub | snapshot-reader | global`).

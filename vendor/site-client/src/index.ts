@@ -156,6 +156,7 @@ async function checked(value: unknown, site: string): Promise<Snapshot> {
 export class SiteClient {
   private snapshot: Snapshot | null = null;
   private nextPoll = 0;
+  private initialized: Promise<void> | null = null;
   private inFlight: Promise<Snapshot> | null = null;
   private timer: ReturnType<typeof setInterval> | null = null;
   constructor(readonly config: SiteClientConfig) {
@@ -182,12 +183,32 @@ export class SiteClient {
     this.timer = null;
   }
   async getSnapshot(): Promise<Snapshot> {
+    this.initialized ??= this.loadCache();
+    await this.initialized;
     if (this.snapshot && Date.now() < this.nextPoll) return this.snapshot;
-    if (this.inFlight) return this.inFlight;
-    this.inFlight = this.refresh().finally(() => {
+    this.inFlight ??= this.refresh().finally(() => {
       this.inFlight = null;
     });
+    if (this.snapshot) {
+      void this.inFlight.catch(() => {});
+      return this.snapshot;
+    }
     return this.inFlight;
+  }
+  private async loadCache() {
+    try {
+      this.snapshot = await checked(
+        JSON.parse(await readFile(this.config.cachePath, "utf8")),
+        this.config.site,
+      );
+    } catch {}
+    if (!this.snapshot && this.config.seedPath) {
+      this.snapshot = await checked(
+        JSON.parse(await readFile(this.config.seedPath, "utf8")),
+        this.config.site,
+      );
+      await this.save(this.snapshot).catch(() => {});
+    }
   }
   private async request(path: string) {
     const response = await fetch(
@@ -203,21 +224,6 @@ export class SiteClient {
     return response.json() as Promise<unknown>;
   }
   private async refresh() {
-    if (!this.snapshot) {
-      try {
-        this.snapshot = await checked(
-          JSON.parse(await readFile(this.config.cachePath, "utf8")),
-          this.config.site,
-        );
-      } catch {}
-      if (!this.snapshot && this.config.seedPath) {
-        this.snapshot = await checked(
-          JSON.parse(await readFile(this.config.seedPath, "utf8")),
-          this.config.site,
-        );
-        await this.save(this.snapshot).catch(() => {});
-      }
-    }
     try {
       const marker = await this.request("snapshot/version");
       if (
@@ -251,7 +257,8 @@ export class SiteClient {
     await rename(path, this.config.cachePath);
   }
   async marker() {
-    const { id, digest } = await this.getSnapshot();
+    await this.getSnapshot();
+    const { id, digest } = (await this.inFlight) ?? this.snapshot!;
     return { id, digest };
   }
   async preview(token: string): Promise<Preview> {

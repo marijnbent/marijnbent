@@ -1,0 +1,1 @@
+Vendored from `marijnbent/sitehub` `packages/site-client` at `19a0dc48178883a973c47e9bb10c05177506fd4e`. Keep `src/index.ts` in sync with the upstream package. Cached readers use the last verified snapshot while one shared refresh runs; publication markers wait for persistence.
