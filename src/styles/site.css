@@ -575,8 +575,8 @@ dd {
 .day {
   padding-top: var(--section);
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  gap: 40px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 5vw, 80px);
 }
 
 .steps {
@@ -631,12 +631,12 @@ dd {
 }
 
 .tool .shot {
-  aspect-ratio: auto;
+  aspect-ratio: 10 / 7;
   object-fit: contain;
 }
 
 .fit {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
 }
 
 .fit h2 {
@@ -652,9 +652,14 @@ dd {
 
 .catalogue-item {
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  gap: 24px;
-  align-content: start;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 24px;
+}
+
+.catalogue-item .course-drawing {
+  display: grid;
+  place-items: center;
 }
 
 .catalogue-item h3 {
@@ -1085,6 +1090,10 @@ dd {
 
   .course-drawing {
     padding: 12px 0;
+  }
+
+  .catalogue {
+    row-gap: 56px;
   }
 }
 
