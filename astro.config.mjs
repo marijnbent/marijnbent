@@ -1,11 +1,12 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 
-import sitemap from '@astrojs/sitemap';
+import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://marijnbent.nl',
+  adapter: node({ mode: 'standalone' }),
 
   fonts: [
     {
@@ -27,5 +28,10 @@ export default defineConfig({
     }
   ],
 
-  integrations: [sitemap()]
+  integrations: [{
+    name: 'sitehub-preview',
+    hooks: {
+      'astro:config:setup': ({ injectRoute }) => injectRoute({ pattern: '/_sitehub/preview/[token]', entrypoint: './src/preview.astro', prerender: false })
+    }
+  }]
 });

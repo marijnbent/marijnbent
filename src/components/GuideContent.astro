@@ -1,0 +1,11 @@
+---
+import type { Article } from '@sitehub/site-client';
+interface Props { article: Article; html: string }
+const { article, html } = Astro.props;
+---
+<h1>{article.meta.title}</h1>
+<p class="project-lead">{article.meta.description}</p>
+<time datetime={article.modifiedAt ?? article.updatedAt}>{new Date(article.modifiedAt ?? article.updatedAt).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+<div class="guide-body" set:html={html} />
+{(article.sources.length > 0 || article.media.some(media => 'author' in media.rights)) && <aside class="guide-sources" aria-label="Bronnen"><h2>Bronnen</h2><ul>{article.sources.map(source => <li><a href={source.url}>{source.title}</a> · {source.checkedAt.slice(0, 10)}</li>)}</ul>{article.media.map(media => 'author' in media.rights && <p><a href={media.rights.sourcePage}>{media.rights.author}</a> · <a href={media.rights.licenseUrl}>{media.rights.license}</a></p>)}</aside>}
+<style>.guide-body{margin-top:2rem;line-height:1.7;overflow-wrap:anywhere}.guide-body :global(img){max-width:100%;height:auto}.guide-body :global(pre),.guide-body :global(table){display:block;overflow-x:auto}.guide-body :global(h2){margin-top:2.5rem}.guide-sources{margin-top:3rem;font-size:.9rem;overflow-wrap:anywhere}</style>

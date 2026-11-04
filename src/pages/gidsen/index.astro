@@ -1,0 +1,20 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { sitehub, articles } from '../../lib/sitehub';
+export const prerender = false;
+let items: import('@sitehub/site-client').Article[] = [];
+let unavailable = false;
+try { items = articles(await sitehub().getSnapshot()); } catch { unavailable = true; }
+if (unavailable) {
+  Astro.response.status = 503;
+  Astro.response.headers.set('Retry-After', '60');
+}
+Astro.response.headers.set('Cache-Control', 'no-store');
+---
+<SiteLayout title="Gidsen — Marijn Bent" description="Artikelen van Marijn Bent." index={!unavailable && items.length > 0}>
+  <section class="wrap project">
+    <h1>Gidsen</h1>
+    {unavailable ? <p>Tijdelijk niet beschikbaar. Probeer het straks opnieuw.</p> : items.length ? <ul class="guide-list">{items.map(article => <li><a href={`${article.meta.route}/`}>{article.meta.title}</a></li>)}</ul> : <p>Er zijn nog geen gidsen.</p>}
+  </section>
+</SiteLayout>
+<style>.guide-list{list-style:none;padding:0}.guide-list li{padding:1rem 0;border-bottom:1px solid currentColor}.guide-list a{font-size:1.4rem}</style>

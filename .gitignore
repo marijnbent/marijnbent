@@ -39,3 +39,5 @@ iterate/baseline/*
 !iterate/round-*/
 iterate/round-*/*
 !iterate/round-*/judgement.md
+
+.sitehub/
