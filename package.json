@@ -15,10 +15,10 @@
     "start": "node server.mjs"
   },
   "dependencies": {
-    "@astrojs/node": "^10.1.4",
-    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/node": "^11.1.9",
+    "@astrojs/sitemap": "^3.7.4",
     "@sitehub/site-client": "file:vendor/site-client",
-    "astro": "^6.4.8"
+    "astro": "^7.4.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
