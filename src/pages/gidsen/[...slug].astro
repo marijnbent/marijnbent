@@ -1,0 +1,53 @@
+---
+import type { Snapshot } from '@sitehub/site-client';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Guide from '../../components/site/Guide.astro';
+import NotFound from '../../components/site/NotFound.astro';
+import { profile } from '../../data/profile';
+import { guides, guideUrl, guidesPrefix, sitehub } from '../../lib/sitehub';
+export const prerender = false;
+const path = Astro.url.pathname;
+if (path.endsWith('/')) return Astro.redirect(`${path.replace(/\/+$/, '')}${Astro.url.search}`, 301);
+let snapshot: Snapshot | undefined;
+try {
+  snapshot = await sitehub().getSnapshot();
+} catch {
+  Astro.response.status = 503;
+  Astro.response.headers.set('Retry-After', '60');
+}
+const published = snapshot ? guides(snapshot) : [];
+const index = path === guidesPrefix;
+const guide = published.find(item => item.meta.route === path);
+if (snapshot && !index && !guide) Astro.response.status = 404;
+const person = { '@type': 'Person', '@id': `${profile.website}/#person`, name: profile.name, url: profile.website };
+const schema = guide && {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.meta.title,
+  description: guide.meta.description,
+  datePublished: guide.publishedAt,
+  dateModified: guide.modifiedAt ?? guide.updatedAt,
+  inLanguage: 'nl',
+  mainEntityOfPage: guideUrl(guide.meta.route),
+  author: person,
+  publisher: person,
+};
+---
+{!snapshot ? (
+  <SiteLayout title="Tijdelijk niet beschikbaar — Marijn Bent" description="Deze pagina is tijdelijk niet beschikbaar." index={false}>
+    <section class="guides wrap"><h1>Even niet beschikbaar</h1><p>Probeer het over een minuut opnieuw.</p></section>
+  </SiteLayout>
+) : guide ? (
+  <SiteLayout title={`${guide.meta.title} — Marijn Bent`} description={guide.meta.description} schema={schema}>
+    <Guide article={guide} businesses={snapshot.businesses} />
+  </SiteLayout>
+) : index ? (
+  <SiteLayout title="Gidsen over AI op het werk — Marijn Bent" description="Gidsen van Marijn Bent over werken met AI." index={published.length > 0}>
+    <section class="guides wrap">
+      <h1>Gidsen</h1>
+      {published.length ? (
+        <ul class="guides-list">{published.map(item => <li><a href={item.meta.route}><h2>{item.meta.title}</h2><p>{item.meta.description}</p></a></li>)}</ul>
+      ) : <p>Nog geen gidsen.</p>}
+    </section>
+  </SiteLayout>
+) : <NotFound />}

@@ -1,0 +1,10 @@
+---
+import NotFound from '../components/site/NotFound.astro';
+import { isGone, legacyRedirect } from '../lib/legacy';
+export const prerender = false;
+const path = Astro.url.pathname;
+const target = legacyRedirect(path);
+if (target) return Astro.redirect(target, 301);
+Astro.response.status = isGone(path) ? 410 : 404;
+---
+<NotFound />

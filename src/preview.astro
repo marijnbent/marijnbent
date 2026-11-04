@@ -1,0 +1,18 @@
+---
+import type { Preview } from '@sitehub/site-client';
+import SiteLayout from './layouts/SiteLayout.astro';
+import Guide from './components/site/Guide.astro';
+import { sitehub } from './lib/sitehub';
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+Astro.response.headers.set('Cache-Control', 'no-store');
+Astro.response.headers.set('Referrer-Policy', 'no-referrer');
+let preview: Preview | undefined;
+try {
+  preview = await sitehub().preview(Astro.params.token ?? '');
+} catch {
+  Astro.response.status = 404;
+}
+---
+<SiteLayout title={`${preview?.article.meta.title ?? 'Voorbeeld niet beschikbaar'} — Marijn Bent`} description={preview?.article.meta.description ?? 'Voorbeeld'} index={false}>
+  {preview ? <Guide article={preview.article} businesses={preview.businesses} /> : <section class="guides wrap"><h1>Voorbeeld niet beschikbaar</h1></section>}
+</SiteLayout>

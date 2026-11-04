@@ -1,0 +1,9 @@
+{
+  "name": "@sitehub/site-client",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}
