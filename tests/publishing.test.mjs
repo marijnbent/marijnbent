@@ -17,20 +17,25 @@ const article = {
 const body = { articles: [article], businesses: [] };
 const snapshot = { id: 'fixture', site: 'marijnbent', digest: createHash('sha256').update(JSON.stringify(body)).digest('hex'), ...body, createdAt: '2026-11-04' };
 async function application(hubUrl, cachePath) {
+  const reservation = createServer();
+  reservation.listen(0, '127.0.0.1');
+  await once(reservation, 'listening');
+  const port = reservation.address().port;
+  await new Promise(resolve => reservation.close(resolve));
+  const origin = `http://127.0.0.1:${port}`;
   const child = spawn(process.execPath, ['server.mjs'], {
-    env: { ...process.env, HOST: '127.0.0.1', PORT: '0', SITEHUB_URL: hubUrl, SITEHUB_SITE: 'marijnbent', SITEHUB_SITE_TOKEN: 'fixture', SITEHUB_CACHE_PATH: cachePath },
+    env: { ...process.env, HOST: '127.0.0.1', PORT: String(port), SITEHUB_URL: hubUrl, SITEHUB_SITE: 'marijnbent', SITEHUB_SITE_TOKEN: 'fixture', SITEHUB_CACHE_PATH: cachePath },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
   let log = '';
   child.stderr.on('data', value => { log += value; });
-  const origin = await new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => { child.kill(); reject(new Error(`Startup timed out: ${log}`)); }, 10000);
-    child.once('exit', code => { clearTimeout(timeout); reject(new Error(`Startup failed (${code}): ${log}`)); });
-    child.stdout.on('data', value => {
-      const match = value.toString().match(/Listening on (\d+)/);
-      if (match) { clearTimeout(timeout); resolve(`http://127.0.0.1:${match[1]}`); }
-    });
-  });
+  const deadline = Date.now() + 10000;
+  while (true) {
+    if (child.exitCode !== null) throw new Error(`Startup failed: ${log}`);
+    try { if ((await fetch(origin + '/health')).ok) break; } catch {}
+    if (Date.now() > deadline) { child.kill(); throw new Error(`Startup timed out: ${log}`); }
+    await new Promise(resolve => setTimeout(resolve, 20));
+  }
   return { origin, async close() { const exited = once(child, 'exit'); child.kill('SIGTERM'); await exited; } };
 }
 
@@ -71,14 +76,16 @@ test('built site supports publication, signed previews, legacy URLs and offline 
       const guide = await fetch(app.origin + '/gidsen/testgids/');
       assert.equal(guide.status, 200);
       const html = await guide.text();
-      assert.match(html, /rel="canonical" href="https:\/\/marijnbent.nl\/gidsen\/testgids\/"/);
+      assert.match(html, /rel="canonical" href="https:\/\/marijnbent.nl\/gidsen\/testgids"/);
       assert.match(html, /content="article"/); assert.match(html, /dateModified/); assert.match(html, /Testbron/);
       assert.match(await (await fetch(app.origin + '/gidsen/')).text(), /Testgids/);
       const missing = await fetch(app.origin + '/gidsen/ontbreekt/');
       assert.equal(missing.status, 404); assert.match(await missing.text(), /noindex/);
-      const sitemap = await fetch(app.origin + '/sitemap-0.xml');
+      const sitemap = await fetch(app.origin + '/sitemap-gidsen.xml');
       assert.equal(sitemap.status, 200); const xml = await sitemap.text();
-      for (const route of ['/gidsen/testgids/', '/cursussen/ai-geletterdheid/', '/ollie/']) assert.ok(xml.includes(`https://marijnbent.nl${route}`));
+      assert.ok(xml.includes('https://marijnbent.nl/gidsen/testgids'));
+      const staticXml = await (await fetch(app.origin + '/sitemap-0.xml')).text();
+      for (const route of ['/cursussen/ai-geletterdheid/', '/ollie/']) assert.ok(staticXml.includes(`https://marijnbent.nl${route}`));
       const preview = await fetch(app.origin + '/_sitehub/preview/valid');
       assert.equal(preview.status, 200); assert.equal(preview.headers.get('Cache-Control'), 'no-store');
       assert.match(preview.headers.get('X-Robots-Tag'), /noindex/);
@@ -99,7 +106,7 @@ test('built site supports publication, signed previews, legacy URLs and offline 
     await writeFile(cachePath, 'invalid');
     app = await application(hubUrl, cachePath);
     await t.test('without a usable snapshot the guides and sitemap return retryable 503', async () => {
-      for (const path of ['/gidsen/', '/gidsen/testgids/', '/sitemap-0.xml', '/sitehub.json']) {
+      for (const path of ['/gidsen', '/gidsen/testgids', '/sitemap-gidsen.xml', '/sitehub.json']) {
         const response = await fetch(app.origin + path);
         assert.equal(response.status, 503, path); assert.equal(response.headers.get('Cache-Control'), 'no-store'); assert.equal(response.headers.get('Retry-After'), '60');
       }

@@ -4,8 +4,8 @@ import type { ImageMetadata } from 'astro';
 import { Font, Image, getImage } from 'astro:assets';
 import { profile } from '../data/profile';
 import portrait from '../assets/site/marijn.webp';
-interface Props { title: string; description: string; image?: ImageMetadata; article?: boolean; analytics?: boolean; index?: boolean; schema?: Record<string, unknown>; contact?: { title: string; text: string; email: string } }
-const { title, description, image = portrait, index = true, schema, contact, article = false, analytics = true } = Astro.props;
+interface Props { title: string; description: string; image?: ImageMetadata; article?: boolean; index?: boolean; schema?: Record<string, unknown>; contact?: { title: string; text: string; email: string } }
+const { title, description, image = portrait, index = true, schema, contact, article = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, profile.website).href;
 const share = await getImage({ src: image, width: Math.min(image.width, 1200), format: 'jpg', background: '#f3f3f0' });
 const shareUrl = new URL(share.src, profile.website).href;
@@ -34,7 +34,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
     <meta property="og:image:height" content={String(share.attributes.height)} />
     <meta name="twitter:card" content={image.width > image.height ? 'summary_large_image' : 'summary'} />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />}
-    {analytics && <script is:inline defer src="https://analytics.cowsandbytes.com/script.js" data-website-id="4effb6d5-fab0-4937-bdbc-3b3e6de7e0a5"></script>}
+    {index && <script is:inline defer src="https://analytics.cowsandbytes.com/script.js" data-website-id="4effb6d5-fab0-4937-bdbc-3b3e6de7e0a5"></script>}
   </head>
   <body>
     <a href="#inhoud" class="skip-link">Naar inhoud</a>
@@ -44,7 +44,7 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
         <a href="/#werk">Werk</a>
         <a href="/#studiozoek">Studiozoek</a>
         <a href="/cursussen/" aria-current={current('/cursussen')}>Cursussen</a>
-        <a href="/gidsen/" aria-current={current('/gidsen')}>Gidsen</a>
+        <a href={profile.github}>GitHub</a>
       </nav>
       <a class="button small" href={profile.phoneHref}>Bel Marijn</a>
     </header>

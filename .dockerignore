@@ -1,7 +1,8 @@
-node_modules
-dist
-.astro
 .git
-.env*
+.astro
 .sitehub
-.review
+.env
+.env.*
+dist
+node_modules
+iterate

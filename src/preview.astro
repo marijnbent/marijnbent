@@ -1,21 +1,18 @@
 ---
+import type { Preview } from '@sitehub/site-client';
 import SiteLayout from './layouts/SiteLayout.astro';
-import GuideContent from './components/GuideContent.astro';
-import { sitehub, renderArticle, articles } from './lib/sitehub';
-export const prerender = false;
+import Guide from './components/site/Guide.astro';
+import { sitehub } from './lib/sitehub';
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow');
 Astro.response.headers.set('Cache-Control', 'no-store');
 Astro.response.headers.set('Referrer-Policy', 'no-referrer');
-Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow');
-let preview: import('@sitehub/site-client').Preview | undefined;
-let html = '';
+let preview: Preview | undefined;
 try {
   preview = await sitehub().preview(Astro.params.token ?? '');
-  const snapshot = { id: 'preview', digest: 'preview', site: 'marijnbent', articles: [preview.article], businesses: preview.businesses, createdAt: '' };
-  if (!articles(snapshot).length) throw new Error('Invalid preview route');
-  html = await renderArticle(preview.article, snapshot);
-} catch { preview = undefined; Astro.response.status = 404; }
+} catch {
+  Astro.response.status = 404;
+}
 ---
-<SiteLayout title={preview?.article.meta.title ?? 'Preview niet beschikbaar'} description={preview?.article.meta.description ?? 'Deze preview is niet beschikbaar.'} index={false} analytics={false} article={!!preview}>
-  <article class="wrap project guide">{preview ? <GuideContent article={preview.article} html={html} /> : <h1>Preview niet beschikbaar</h1>}</article>
+<SiteLayout title={`${preview?.article.meta.title ?? 'Voorbeeld niet beschikbaar'} — Marijn Bent`} description={preview?.article.meta.description ?? 'Voorbeeld'} index={false}>
+  {preview ? <Guide article={preview.article} businesses={preview.businesses} /> : <section class="guides wrap"><h1>Voorbeeld niet beschikbaar</h1></section>}
 </SiteLayout>
-<style>.guide{max-width:52rem;gap:2rem}</style>
