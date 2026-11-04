@@ -18,4 +18,4 @@ try {
 <SiteLayout title={preview?.article.meta.title ?? 'Preview niet beschikbaar'} description={preview?.article.meta.description ?? 'Deze preview is niet beschikbaar.'} index={false} analytics={false} article={!!preview}>
   <article class="wrap project guide">{preview ? <GuideContent article={preview.article} html={html} /> : <h1>Preview niet beschikbaar</h1>}</article>
 </SiteLayout>
-<style>.guide{max-width:52rem}</style>
+<style>.guide{max-width:52rem;gap:2rem}</style>
