@@ -4,6 +4,7 @@ import booklite from '../assets/work/booklite.webp';
 import preppedIcon from '../assets/work/prepped-icon.webp';
 import yellowStore from '../assets/work/yellow-store.webp';
 import obsidianPrint from '../assets/work/obsidian-print.webp';
+import obsidianPrintIcon from '../assets/work/obsidian-print-icon.webp';
 import bitcoinSimulator from '../assets/work/bitcoin-simulator.webp';
 import openfront from '../assets/work/openfront.webp';
 import studiozoekShot from '../assets/work/studiozoek.webp';
@@ -13,7 +14,7 @@ export interface Picture { src: ImageMetadata; alt: string; }
 export interface ProjectDetail {
   name: string; description: string; platform: string; kind: string; reason: string; paragraphs: string[];
   action?: { href: string; label: string }; source?: string; image?: Picture;
-  summary?: string; visual?: 'icon';
+  summary?: string; icon?: Picture;
   schemaType: 'SoftwareApplication' | 'WebApplication';
 }
 
@@ -22,7 +23,6 @@ export interface WorkItem extends ProjectDetail { slug: string; href: string; }
 const details: Record<string, ProjectDetail> = {
   "ollie": {
     "summary": "Mijn dagelijkse Mac-tools, bij elkaar.",
-    "visual": "icon",
     "name": "Ollie",
     "description": "Mijn gereedschapskist voor de Mac. Apps openen, dicteren, klembordgeschiedenis en vensters wisselen in één app.",
     "platform": "macOS 26+",
@@ -37,7 +37,7 @@ const details: Record<string, ProjectDetail> = {
       "href": "https://github.com/marijnbent/ollie",
       "label": "Bekijk de code"
     },
-    "image": { "src": ollieIcon, "alt": "Het appicoon van Ollie: een otter met een steen" },
+    "icon": { "src": ollieIcon, "alt": "Het appicoon van Ollie: een otter met een steen" },
     "source": "https://github.com/marijnbent/ollie",
     "schemaType": "SoftwareApplication"
   },
@@ -63,9 +63,8 @@ const details: Record<string, ProjectDetail> = {
   },
   "prepped": {
     "summary": "Recepten op één plek, koken voor het huishouden.",
-    "visual": "icon",
     "name": "Prepped",
-    "image": { "src": preppedIcon, "alt": "Het appicoon van Prepped: een gebakken ei" },
+    "icon": { "src": preppedIcon, "alt": "Het appicoon van Prepped: een gebakken ei" },
     "description": "Recepten importeren, porties aanpassen en bijhouden wat je kookt. Voor je huishouden, op je eigen server.",
     "platform": "Browser · Docker",
     "kind": "Webapp · open source",
@@ -116,6 +115,7 @@ const details: Record<string, ProjectDetail> = {
       "href": "https://github.com/marijnbent/obsidian-print",
       "label": "Bekijk de plugin"
     },
+    "icon": { "src": obsidianPrintIcon, "alt": "Het appicoon van Obsidian Print: een printer" },
     "image": { "src": obsidianPrint, "alt": "De instellingen van Obsidian Print" },
     "source": "https://github.com/marijnbent/obsidian-print",
     "schemaType": "SoftwareApplication"
