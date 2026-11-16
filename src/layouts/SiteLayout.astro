@@ -44,7 +44,8 @@ const current = (prefix: string) => (path.startsWith(prefix) ? 'page' : undefine
         <a href="/#werk">Werk</a>
         <a href="/#studiozoek">Studiozoek</a>
         <a href="/cursussen/" aria-current={current('/cursussen')}>Cursussen</a>
-        <a href={profile.github}>GitHub</a>
+        <a href="/gidsen" aria-current={current('/gidsen')}>Gidsen</a>
+        <a class="wide-only" href={profile.github}>GitHub</a>
       </nav>
       <a class="button small" href={profile.phoneHref}>Bel Marijn</a>
     </header>
