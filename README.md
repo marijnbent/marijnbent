@@ -2,20 +2,22 @@
 
 Personal portfolio and Dutch AI and blockchain course pages. Built with Astro and TypeScript. Pages in this repo are prerendered. Guides come from Sitehub and render on demand under `/gidsen`.
 
+Use Node 22.23.4 and Bun 1.4.4.
+
 ```sh
-npm ci
-npm run dev
+bun install --frozen-lockfile
+bun run dev
 ```
 
 Development runs through Portless at https://marijnbent.localhost, with Astro bound to 127.0.0.1. The HTTPS proxy must be running.
 
 ```sh
-npm run check
-npm run build
-npm run preview
+bun run check
+bun run build
+bun run preview
 ```
 
-`preview` runs the built server (`server.mjs`) through the same Portless URL. Stop development before starting preview. `npm start` runs it directly on `PORT` (default 3000).
+`preview` runs the built server (`server.mjs`) through the same Portless URL. Stop development before starting preview. `bun run start` runs it directly on `PORT` (default 3000).
 
 Projects: `src/data/work.ts`. Courses: `src/data/courses.ts`. Contact: `src/data/profile.ts`. Public site layout: `src/layouts/SiteLayout.astro`. Legacy redirects and 410s: `src/lib/legacy.ts`.
 
@@ -43,4 +45,4 @@ curl -s https://marijnbent.nl/sitemap-gidsen.xml
 
 After a publish, run `publish_verify` in Sitehub.
 
-Snapshot reads use the last verified disk cache during one shared background refresh. Publication markers wait for persistence. Cold failures return retryable 503s, and previews omit analytics. Run `npm test` after building to exercise publication, sitemap, legacy routes and offline recovery against synthetic data. The reader credential is `op://Agent/brgjnlnqt6qoqxgtrykjg7sft4/credential` (`marijnbent | sitehub | snapshot-reader | global`).
+Snapshot reads use the last verified disk cache during one shared background refresh. Publication markers wait for persistence. Cold failures return retryable 503s, and previews omit analytics. Run `bun run test` after building to exercise publication, sitemap, legacy routes and offline recovery against synthetic data. The reader credential is `op://Agent/brgjnlnqt6qoqxgtrykjg7sft4/credential` (`marijnbent | sitehub | snapshot-reader | global`).

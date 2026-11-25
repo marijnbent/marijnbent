@@ -1,10 +1,12 @@
 FROM node:22.23.4-bookworm-slim AS build
+COPY --from=oven/bun:1.4.4-slim /usr/local/bin/bun /usr/local/bin/bun
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json bun.lock ./
 COPY vendor ./vendor
-RUN npm ci
+RUN bun install --frozen-lockfile
 COPY . .
-RUN npm run check && npm run build && npm prune --omit=dev
+RUN bun run check && bun run build
+RUN rm -rf node_modules && bun install --frozen-lockfile --production
 FROM node:22.23.4-bookworm-slim AS runtime
 ENV HOST=0.0.0.0 PORT=3000 NODE_ENV=production SITEHUB_CACHE_PATH=/data/snapshot.json
 WORKDIR /app

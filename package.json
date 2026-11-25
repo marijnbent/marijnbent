@@ -6,9 +6,9 @@
     "node": "22.23.4"
   },
   "scripts": {
-    "dev": "portless marijnbent npm run watch",
+    "dev": "portless marijnbent bun run watch",
     "build": "astro build",
-    "preview": "portless marijnbent npm run start",
+    "preview": "portless marijnbent bun run start",
     "astro": "astro",
     "watch": "astro dev --host 127.0.0.1",
     "check": "astro check",
