@@ -20,9 +20,11 @@
   --section: clamp(64px, 7vw, 112px);
   --text: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
   --small: 0.9375rem;
-  --h3: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
-  --h2: clamp(2.375rem, 1.4rem + 3.6vw, 4.5rem);
-  --statement: clamp(1.375rem, 1.1rem + 1vw, 2.125rem);
+  --h3: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --h2: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+  --statement: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
+  --line: rgb(19 20 22 / 0.1);
+  --radius: 10px;
   font-family: var(--font-sans);
   font-size: 100%;
   color: var(--ink);
@@ -72,24 +74,24 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(3.25rem, 0.5rem + 8.5vw, 9.5rem);
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.75rem, 1rem + 5.5vw, 6rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
 }
 
 h2 {
   font-size: var(--h2);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.035em;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
 
 h3 {
   font-size: var(--h3);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
 }
 
 ul,
@@ -141,12 +143,13 @@ dd {
 .button {
   display: inline-flex;
   align-items: center;
-  min-height: 52px;
-  padding: 0 24px;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
   background: var(--accent);
   color: #fff;
-  font-size: 1.0625rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
   transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
@@ -159,26 +162,17 @@ dd {
 }
 
 .button.small {
-  min-height: 44px;
+  min-height: 40px;
   padding: 0 18px;
-  font-size: 1rem;
-}
-
-.button.light {
-  background: var(--ground);
-  color: var(--ink);
-}
-
-.button.light:hover {
-  background: #fff;
+  font-size: 0.9375rem;
 }
 
 .text-link,
 .back,
 .more {
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: underline;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   text-underline-offset: 5px;
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
   transition: text-decoration-color 160ms ease, color 160ms ease;
@@ -214,9 +208,9 @@ dd {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   margin-right: auto;
 }
 
@@ -230,7 +224,7 @@ dd {
 .bar nav a:hover,
 .bar nav a[aria-current] {
   text-decoration: underline;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   text-underline-offset: 6px;
 }
 
@@ -263,8 +257,9 @@ dd {
 }
 
 .hero-intro p {
-  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
-  line-height: 1.45;
+  font-size: clamp(1.125rem, 1rem + 0.3vw, 1.3125rem);
+  line-height: 1.5;
+  color: var(--soft);
 }
 
 .work {
@@ -303,6 +298,7 @@ dd {
 
 .work-picture {
   background: var(--tone);
+  border-radius: var(--radius);
   overflow: hidden;
 }
 
@@ -380,9 +376,8 @@ dd {
 
 .studio {
   margin-top: var(--section);
-  padding-block: clamp(72px, 9vw, 136px);
-  background: var(--ink);
-  color: var(--on-dark);
+  padding-block: clamp(64px, 7vw, 112px);
+  background: color-mix(in srgb, var(--accent-tint) 45%, var(--ground));
 }
 
 .studio-grid {
@@ -401,6 +396,11 @@ dd {
 
 .studio-grid h2 {
   margin-bottom: 8px;
+}
+
+.studio .shot {
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgb(19 20 22 / 0.06), 0 16px 40px rgb(19 20 22 / 0.1);
 }
 
 .teach {
@@ -428,15 +428,15 @@ dd {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 8px 40px;
-  padding: clamp(24px, 3vw, 40px);
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--radius);
   background: var(--tone);
   transition: background-color 180ms ease, color 180ms ease;
 }
 
 .teach-item h3 {
-  font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
+  font-size: clamp(1.5rem, 1.2rem + 0.9vw, 2rem);
+  letter-spacing: -0.02em;
 }
 
 .teach-item .more {
@@ -445,8 +445,11 @@ dd {
 }
 
 .teach-item:hover {
-  background: var(--accent);
-  color: #fff;
+  background: color-mix(in srgb, var(--accent-tint) 55%, var(--ground));
+}
+
+.teach-item:hover h3 {
+  color: var(--accent);
 }
 
 .facts {
@@ -463,9 +466,9 @@ dd {
 }
 
 .facts dd {
-  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.875rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.012em;
 }
 
 .foot {
@@ -489,9 +492,8 @@ dd {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px 32px;
   align-content: end;
-  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  font-weight: 500;
 }
 
 .foot-links a:hover {
@@ -514,13 +516,13 @@ dd {
 
 .course-top h1 {
   grid-column: 1 / 8;
-  font-size: clamp(3rem, 1rem + 7vw, 8rem);
-  align-self: end;
+  font-size: clamp(2.75rem, 1rem + 4.5vw, 5.25rem);
+  align-self: center;
 }
 
 .course-intro {
   grid-column: 8 / 13;
-  align-self: end;
+  align-self: center;
   display: grid;
   gap: 28px;
 }
@@ -528,6 +530,7 @@ dd {
 .course-top .facts {
   margin-top: clamp(24px, 4vw, 56px);
   padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--radius);
   background: var(--tone);
 }
 
@@ -546,11 +549,13 @@ dd {
 
 .outcome p {
   font-size: var(--statement);
-  line-height: 1.35;
+  line-height: 1.4;
+  color: var(--soft);
 }
 
 .course-drawing {
   padding: clamp(16px, 3vw, 40px);
+  border-radius: var(--radius);
   background: var(--tone);
 }
 
@@ -564,10 +569,10 @@ dd {
   grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 32px;
-  font-size: var(--text);
-  font-weight: 700;
-  padding-top: 12px;
+  gap: 8px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding-top: 4px;
 }
 
 .course-format li::before {
@@ -603,9 +608,12 @@ dd {
 
 .steps li::before {
   content: counter(session, decimal-leading-zero);
-  font-size: var(--statement);
-  font-weight: 700;
+  font-size: var(--small);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
   color: var(--accent);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
 }
 
 .ideas, .fit, .tool {
@@ -648,7 +656,7 @@ dd {
 }
 
 .fit h2 {
-  font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+  font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem);
 }
 
 .catalogue {
@@ -671,10 +679,9 @@ dd {
 }
 
 .catalogue-item h3 {
-  font-size: clamp(2rem, 1.3rem + 2.4vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-size: clamp(1.75rem, 1.3rem + 1.3vw, 2.5rem);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
 }
 
 .catalogue-item .more {
@@ -704,7 +711,7 @@ dd {
 }
 
 .project h1 {
-  font-size: clamp(3rem, 1rem + 7vw, 7.5rem);
+  font-size: clamp(2.75rem, 1rem + 4.5vw, 5.25rem);
   line-height: 1;
   overflow-wrap: anywhere;
 }
@@ -803,8 +810,9 @@ dd {
 .project-next a strong {
   grid-column: 1;
   font-size: var(--statement);
-  letter-spacing: -0.035em;
-  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .project-next a > span:last-child {
@@ -1124,7 +1132,7 @@ dd {
 
 .foot-intro h2 {
   font-size: var(--statement);
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 body:has(.foot-intro) .foot-links {
@@ -1136,6 +1144,7 @@ body:has(.foot-intro) .foot-links {
 .export-example {
   margin: 0;
   padding: clamp(20px, 3vw, 40px);
+  border-radius: var(--radius);
   background: var(--tone);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -1146,8 +1155,8 @@ body:has(.foot-intro) .foot-links {
 .export-example figcaption {
   grid-column: 1 / -1;
   font-size: var(--h3);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.012em;
 }
 
 .export-example span {
@@ -1247,8 +1256,8 @@ body:has(.foot-intro) .foot-links {
 
 .guide h1,
 .guides h1 {
-  max-width: 18ch;
-  font-size: clamp(2.5rem, 1rem + 4.5vw, 4.75rem);
+  max-width: 20ch;
+  font-size: clamp(2.25rem, 1rem + 3.2vw, 4rem);
 }
 
 .guide-meta {
@@ -1277,8 +1286,8 @@ body:has(.foot-intro) .foot-links {
 
 .guide-body h2,
 .guide-course h2 {
-  font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
-  line-height: 1.05;
+  font-size: clamp(1.5rem, 1.25rem + 0.9vw, 2rem);
+  line-height: 1.15;
 }
 
 .guide-body :is(ul, ol) {
@@ -1402,6 +1411,7 @@ body:has(.foot-intro) .foot-links {
   gap: 20px;
   justify-items: start;
   padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--radius);
   background: var(--tone);
 }
 
